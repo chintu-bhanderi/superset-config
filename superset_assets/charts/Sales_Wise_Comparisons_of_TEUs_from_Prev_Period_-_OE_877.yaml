@@ -1,0 +1,315 @@
+slice_name: Sales Wise Comparisons of TEUs from Prev Period - OE
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 79__table
+  viz_type: pivot_table_v2
+  slice_id: 877
+  groupbyColumns: []
+  groupbyRows:
+  - sales_person
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    job_date: true
+    si_cutoff: true
+    onboared: true
+    last_shipment: true
+    last_inquiry: true
+    jed: true
+    created: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs This Week
+      description: null
+      expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n  \
+        \       AND jed < date_trunc('week', current_date + interval '1 week')  \n\
+        \    THEN teu_count\n    ELSE 0  \n  END\n"
+      filterable: true
+      groupby: true
+      id: 4320
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs This Week
+    optionName: metric_mjyx6ekb259_wsy970m38km
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs Last Week
+      description: null
+      expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
+        \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN teu_count\n\
+        \    ELSE 0  \nEND  \n"
+      filterable: true
+      groupby: true
+      id: 4319
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs Prev Week
+    optionName: metric_uam9ag9zs4_s3z6a9b95g
+  - Weekly Avg TEUs
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs MTD
+      description: null
+      expression: CASE WHEN jed >= date_trunc('month', current_date) AND jed < current_date
+        THEN teu_count ELSE 0 END
+      filterable: true
+      groupby: true
+      id: 3272
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs MTD
+    optionName: metric_xtp85mq7j3l_kikac17kx4k
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs MTD - Prior
+      description: null
+      expression: "CASE WHEN jed >= date_trunc('month', current_date) - interval '1\
+        \ year'\n              AND jed < date_trunc('month', current_date) - interval\
+        \ '1 year' + (current_date - date_trunc('month', current_date)) \n       \
+        \  THEN teu_count\n         ELSE 0 \n    END"
+      filterable: true
+      groupby: true
+      id: 3271
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs MTD Prev Year
+    optionName: metric_5ckisgkxq5m_yt9msjf9d8c
+  - Monthly Avg TEUs
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs YTD - Current
+      description: null
+      expression: "CASE \n    WHEN jed >= date_trunc('year', current_date) \n    \
+        \     AND jed < current_date\n    THEN teu_count\n    ELSE 0 \nEND"
+      filterable: true
+      groupby: true
+      id: 3232
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs YTD
+    optionName: metric_19p965huoxw_ebrc0si6rfe
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: TEUs YTD - Previous
+      description: null
+      expression: "CASE \n    WHEN jed >= date_trunc('year', current_date) - interval\
+        \ '1 year'\n         AND jed < (current_date - interval '1 year')\n    THEN\
+        \ teu_count\n    ELSE 0 \nEND"
+      filterable: true
+      groupby: true
+      id: 3231
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs YTD Previous
+    optionName: metric_mw3rtijfs6d_pxha5pebcne
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_kvj3w68ylb_l77gmas433e
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_0stw08kynstl_115m9ose376e
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade
+  - clause: WHERE
+    comparator:
+    - ocean
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_ff8joyg0n5w_mrqne9lukb
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: TEUs This Week
+    operator: None
+  - colorScheme: '#E0F0FF'
+    column: TEUs Prev Week
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Weekly Avg TEUs
+    operator: None
+  - colorScheme: '#E6FFFB'
+    column: TEUs MTD
+    operator: None
+  - colorScheme: '#87E8DE'
+    column: TEUs MTD Prev Year
+    operator: None
+  - colorScheme: '#EAFF8F'
+    column: Monthly Avg TEUs
+    operator: None
+  - colorScheme: '#E0F0FF'
+    column: TEUs YTD
+    operator: None
+  - colorScheme: '#E8EBFE'
+    column: TEUs YTD Previous
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 64
+query_context: '{"datasource":{"id":79,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"trade","op":"IN","val":["export"]},{"col":"freight","op":"IN","val":["ocean"]}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["sales_person"],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  This Week","description":null,"expression":"CASE  \n    WHEN jed >= date_trunc(''week'',
+  current_date)  \n         AND jed < date_trunc(''week'', current_date + interval
+  ''1 week'')  \n    THEN teu_count\n    ELSE 0  \n  END\n","filterable":true,"groupby":true,"id":4320,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  Last Week","description":null,"expression":"CASE  \n    WHEN jed >= date_trunc(''week'',
+  current_date) - interval ''1 week''  \n    AND jed < date_trunc(''week'', current_date)  \n    THEN
+  teu_count\n    ELSE 0  \nEND  \n","filterable":true,"groupby":true,"id":4319,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  Prev Week","optionName":"metric_uam9ag9zs4_s3z6a9b95g"},"Weekly Avg TEUs",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  MTD","description":null,"expression":"CASE WHEN jed >= date_trunc(''month'', current_date)
+  AND jed < current_date THEN teu_count ELSE 0 END","filterable":true,"groupby":true,"id":3272,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  MTD","optionName":"metric_xtp85mq7j3l_kikac17kx4k"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  MTD - Prior","description":null,"expression":"CASE WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''1 year''\n              AND jed < date_trunc(''month'',
+  current_date) - interval ''1 year'' + (current_date - date_trunc(''month'', current_date))
+  \n         THEN teu_count\n         ELSE 0 \n    END","filterable":true,"groupby":true,"id":3271,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  MTD Prev Year","optionName":"metric_5ckisgkxq5m_yt9msjf9d8c"},"Monthly Avg TEUs",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  YTD - Current","description":null,"expression":"CASE \n    WHEN jed >= date_trunc(''year'',
+  current_date) \n         AND jed < current_date\n    THEN teu_count\n    ELSE 0
+  \nEND","filterable":true,"groupby":true,"id":3232,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  YTD","optionName":"metric_19p965huoxw_ebrc0si6rfe"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  YTD - Previous","description":null,"expression":"CASE \n    WHEN jed >= date_trunc(''year'',
+  current_date) - interval ''1 year''\n         AND jed < (current_date - interval
+  ''1 year'')\n    THEN teu_count\n    ELSE 0 \nEND","filterable":true,"groupby":true,"id":3231,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  YTD Previous","optionName":"metric_mw3rtijfs6d_pxha5pebcne"}],"orderby":[[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  This Week","description":null,"expression":"CASE  \n    WHEN jed >= date_trunc(''week'',
+  current_date)  \n         AND jed < date_trunc(''week'', current_date + interval
+  ''1 week'')  \n    THEN teu_count\n    ELSE 0  \n  END\n","filterable":true,"groupby":true,"id":4320,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km"},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"79__table","viz_type":"pivot_table_v2","slice_id":877,"groupbyColumns":[],"groupbyRows":["sales_person"],"time_grain_sqla":"P1D","temporal_columns_lookup":{"job_date":true,"si_cutoff":true,"onboared":true,"last_shipment":true,"last_inquiry":true,"jed":true,"created":true},"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  This Week","description":null,"expression":"CASE  \n    WHEN jed >= date_trunc(''week'',
+  current_date)  \n         AND jed < date_trunc(''week'', current_date + interval
+  ''1 week'')  \n    THEN teu_count\n    ELSE 0  \n  END\n","filterable":true,"groupby":true,"id":4320,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  Last Week","description":null,"expression":"CASE  \n    WHEN jed >= date_trunc(''week'',
+  current_date) - interval ''1 week''  \n    AND jed < date_trunc(''week'', current_date)  \n    THEN
+  teu_count\n    ELSE 0  \nEND  \n","filterable":true,"groupby":true,"id":4319,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  Prev Week","optionName":"metric_uam9ag9zs4_s3z6a9b95g"},"Weekly Avg TEUs",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  MTD","description":null,"expression":"CASE WHEN jed >= date_trunc(''month'', current_date)
+  AND jed < current_date THEN teu_count ELSE 0 END","filterable":true,"groupby":true,"id":3272,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  MTD","optionName":"metric_xtp85mq7j3l_kikac17kx4k"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  MTD - Prior","description":null,"expression":"CASE WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''1 year''\n              AND jed < date_trunc(''month'',
+  current_date) - interval ''1 year'' + (current_date - date_trunc(''month'', current_date))
+  \n         THEN teu_count\n         ELSE 0 \n    END","filterable":true,"groupby":true,"id":3271,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  MTD Prev Year","optionName":"metric_5ckisgkxq5m_yt9msjf9d8c"},"Monthly Avg TEUs",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  YTD - Current","description":null,"expression":"CASE \n    WHEN jed >= date_trunc(''year'',
+  current_date) \n         AND jed < current_date\n    THEN teu_count\n    ELSE 0
+  \nEND","filterable":true,"groupby":true,"id":3232,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  YTD","optionName":"metric_19p965huoxw_ebrc0si6rfe"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"TEUs
+  YTD - Previous","description":null,"expression":"CASE \n    WHEN jed >= date_trunc(''year'',
+  current_date) - interval ''1 year''\n         AND jed < (current_date - interval
+  ''1 year'')\n    THEN teu_count\n    ELSE 0 \nEND","filterable":true,"groupby":true,"id":3231,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"TEUs
+  YTD Previous","optionName":"metric_mw3rtijfs6d_pxha5pebcne"}],"metricsLayout":"COLUMNS","adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_kvj3w68ylb_l77gmas433e","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"},{"clause":"WHERE","comparator":["export"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_0stw08kynstl_115m9ose376e","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"trade"},{"clause":"WHERE","comparator":["ocean"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_ff8joyg0n5w_mrqne9lukb","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"freight"}],"row_limit":10000,"order_desc":true,"aggregateFunction":"Sum","colTotals":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_a_to_z","colOrder":"key_a_to_z","conditional_formatting":[{"colorScheme":"#E8EBFE","column":"TEUs
+  This Week","operator":"None"},{"colorScheme":"#E0F0FF","column":"TEUs Prev Week","operator":"None"},{"colorScheme":"#FFEF9D","column":"Weekly
+  Avg TEUs","operator":"None"},{"colorScheme":"#E6FFFB","column":"TEUs MTD","operator":"None"},{"colorScheme":"#87E8DE","column":"TEUs
+  MTD Prev Year","operator":"None"},{"colorScheme":"#EAFF8F","column":"Monthly Avg
+  TEUs","operator":"None"},{"colorScheme":"#E0F0FF","column":"TEUs YTD","operator":"None"},{"colorScheme":"#E8EBFE","column":"TEUs
+  YTD Previous","operator":"None"}],"extra_form_data":{},"dashboards":[64],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 0b907eca-0e3c-4f6f-9bc4-010e892a5c5b
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

@@ -1,0 +1,158 @@
+slice_name: Customer Wise Month on Month Alloted vs Picked
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 40__table
+  viz_type: pivot_table_v2
+  slice_id: 1090
+  groupbyColumns:
+  - jed
+  groupbyRows:
+  - customer
+  time_grain_sqla: P1M
+  temporal_columns_lookup:
+    booking_confirmed_date: true
+    booking_placed_date: true
+    booking_shared_with_customer_date: true
+    created_at: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    loaded_on_vessel_date: true
+    valid_till_date: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: alloted
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1288
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: FLOAT
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Alloted
+    optionName: metric_jusq9m8bxmj_iabjphfl3
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pickedup
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1289
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Picked
+    optionName: metric_12r56mpgb56j_7kk40aqjq52
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pickup_pending
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1290
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Not Picked
+    optionName: metric_ljkf808htka_0611n0usr3w3
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: carrier
+    operator: IS NOT NULL
+    operatorId: IS_NOT_NULL
+    comparator: null
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_f1nepfusuah_e0967893brc
+  - expressionType: SIMPLE
+    subject: vas_service
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Forwarding
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_2k9vlu9r90l_51w2c6hrpvv
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_88x2j2zjr7t_ushn5q8dep
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  rowTotals: false
+  rowSubTotals: false
+  colTotals: true
+  combineMetric: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  extra_form_data: {}
+  dashboards:
+  - 64
+query_context: '{"datasource":{"id":40,"type":"table"},"force":false,"queries":[{"filters":[{"col":"carrier","op":"IS
+  NOT NULL"},{"col":"vas_service","op":"IN","val":["Forwarding"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1M","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1M","columnType":"BASE_AXIS","sqlExpression":"jed","label":"jed","expressionType":"SQL"},"customer"],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"alloted","description":null,"expression":null,"filterable":true,"groupby":true,"id":1288,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"FLOAT","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Alloted","optionName":"metric_jusq9m8bxmj_iabjphfl3","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickedup","description":null,"expression":null,"filterable":true,"groupby":true,"id":1289,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Picked","optionName":"metric_12r56mpgb56j_7kk40aqjq52","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickup_pending","description":null,"expression":null,"filterable":true,"groupby":true,"id":1290,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Not
+  Picked","optionName":"metric_ljkf808htka_0611n0usr3w3","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"alloted","description":null,"expression":null,"filterable":true,"groupby":true,"id":1288,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"FLOAT","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Alloted","optionName":"metric_jusq9m8bxmj_iabjphfl3","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"40__table","viz_type":"pivot_table_v2","slice_id":1090,"groupbyColumns":["jed"],"groupbyRows":["customer"],"time_grain_sqla":"P1M","temporal_columns_lookup":{"booking_confirmed_date":true,"booking_placed_date":true,"booking_shared_with_customer_date":true,"created_at":true,"etd":true,"gate_close_cutoff":true,"jed":true,"loaded_on_vessel_date":true,"valid_till_date":true},"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"alloted","description":null,"expression":null,"filterable":true,"groupby":true,"id":1288,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"FLOAT","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Alloted","optionName":"metric_jusq9m8bxmj_iabjphfl3","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickedup","description":null,"expression":null,"filterable":true,"groupby":true,"id":1289,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Picked","optionName":"metric_12r56mpgb56j_7kk40aqjq52","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickup_pending","description":null,"expression":null,"filterable":true,"groupby":true,"id":1290,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Not
+  Picked","optionName":"metric_ljkf808htka_0611n0usr3w3","sqlExpression":null}],"metricsLayout":"COLUMNS","adhoc_filters":[{"expressionType":"SIMPLE","subject":"carrier","operator":"IS
+  NOT NULL","operatorId":"IS_NOT_NULL","comparator":null,"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_f1nepfusuah_e0967893brc"},{"expressionType":"SIMPLE","subject":"vas_service","operator":"IN","operatorId":"IN","comparator":["Forwarding"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_2k9vlu9r90l_51w2c6hrpvv"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_88x2j2zjr7t_ushn5q8dep"}],"row_limit":10000,"order_desc":true,"aggregateFunction":"Sum","rowTotals":false,"rowSubTotals":false,"colTotals":true,"combineMetric":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_a_to_z","colOrder":"key_a_to_z","extra_form_data":{},"dashboards":[64],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 37361f0c-2ba2-4dec-8881-a4d8ff9d2efb
+version: 1.0.0
+dataset_uuid: 409d613f-b962-4e9d-94a6-0b0ec54c3e85

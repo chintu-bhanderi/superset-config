@@ -1,0 +1,224 @@
+slice_name: User wise HBL Release Performance
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 12__table
+  viz_type: pivot_table_v2
+  slice_id: 733
+  groupbyColumns: []
+  groupbyRows:
+  - bl_user
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Carrier
+    sqlExpression: carrier
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel-Voyage
+    sqlExpression: CONCAT(vessel,CONCAT('-', voyage))
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    etd: true
+    jed: true
+    jobdate: true
+    invoice_received_date: true
+    invoice_paid_date: true
+    si_cutoff: true
+    si_received_from_customer_date: true
+    gate_cutoff: true
+    create_draft_at: true
+    si_filed_at: true
+    draft_received_at: true
+    first_draft_shared_at: true
+    draft_approved_at: true
+    carrier_released: true
+    given_to_customer_at: true
+    surrendered_at_origin_at: true
+    received_by_shipper_at: true
+    event_date: true
+    master_released_at: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:29:36.939520'
+      column_name: Carrier Release in 0-2 Days
+      created_on: '2025-05-15T18:29:36.939519'
+      description: null
+      expression: CASE WHEN carrier_released - etd >= 0 AND carrier_released -etd
+        <3 THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3861
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: eb31ebcf-89d0-4e85-baed-6ba163d06a00
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: 0-2 Days
+    optionName: metric_ag4sh10o4nr_83zdb3c1bx
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:29:36.939502'
+      column_name: Carrier Released in 3-5 Days
+      created_on: '2025-05-15T18:29:36.939501'
+      description: null
+      expression: CASE WHEN carrier_released - etd >= 3 AND carrier_released -etd
+        <=5 THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3860
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 329b4014-7e4f-40e8-b9d3-364d67e03075
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: 3-5 Days
+    optionName: metric_ot7gkulctq_k542iuu2h3
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:29:36.939476'
+      column_name: Carrier Released In 5+ Days
+      created_on: '2025-05-15T18:29:36.939474'
+      description: null
+      expression: CASE WHEN carrier_released - etd > 5 THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3859
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 794b6d4b-3b1d-4772-97d9-bf8c8d617717
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: 5+ Days
+    optionName: metric_qorv3c3d8a_9bhvoy84o64
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_z4x57jbkhqd_iyzy9k9dr8
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: carrier_released is not NULL
+    subject: null
+  - clause: WHERE
+    comparator:
+    - house
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_n3yg1flyus_16hrvfkylpw
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: type_of_bl
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_q9s4rg4t2w_egohg0qf9g9
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: job_number is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_xay5lx6fbea_cr05o20kb9m
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: etd
+  row_limit: 10000
+  order_desc: false
+  aggregateFunction: Sum
+  expandCollapse: true
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#CDFEE1'
+    column: 0-2 Days
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: 3-5 Days
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: 5+ Days
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 57
+query_context: '{"datasource":{"id":12,"type":"table"},"force":false,"queries":[{"filters":[{"col":"type_of_bl","op":"IN","val":["house"]},{"col":"etd","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":"(carrier_released
+  is not NULL) AND (job_number is not NULL)"},"applied_time_extras":{},"columns":["bl_user",{"datasourceWarning":false,"expressionType":"SQL","label":"Customer","sqlExpression":"customer"},{"datasourceWarning":false,"expressionType":"SQL","label":"Carrier","sqlExpression":"carrier"},{"datasourceWarning":false,"expressionType":"SQL","label":"Vessel-Voyage","sqlExpression":"CONCAT(vessel,CONCAT(''-'',
+  voyage))"}],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939520","column_name":"Carrier
+  Release in 0-2 Days","created_on":"2025-05-15T18:29:36.939519","description":null,"expression":"CASE
+  WHEN carrier_released - etd >= 0 AND carrier_released -etd <3 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3861,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"eb31ebcf-89d0-4e85-baed-6ba163d06a00","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"0-2
+  Days","optionName":"metric_ag4sh10o4nr_83zdb3c1bx","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939502","column_name":"Carrier
+  Released in 3-5 Days","created_on":"2025-05-15T18:29:36.939501","description":null,"expression":"CASE
+  WHEN carrier_released - etd >= 3 AND carrier_released -etd <=5 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3860,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"329b4014-7e4f-40e8-b9d3-364d67e03075","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"3-5
+  Days","optionName":"metric_ot7gkulctq_k542iuu2h3","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939476","column_name":"Carrier
+  Released In 5+ Days","created_on":"2025-05-15T18:29:36.939474","description":null,"expression":"CASE
+  WHEN carrier_released - etd > 5 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3859,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"794b6d4b-3b1d-4772-97d9-bf8c8d617717","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"5+
+  Days","optionName":"metric_qorv3c3d8a_9bhvoy84o64","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939520","column_name":"Carrier
+  Release in 0-2 Days","created_on":"2025-05-15T18:29:36.939519","description":null,"expression":"CASE
+  WHEN carrier_released - etd >= 0 AND carrier_released -etd <3 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3861,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"eb31ebcf-89d0-4e85-baed-6ba163d06a00","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"0-2
+  Days","optionName":"metric_ag4sh10o4nr_83zdb3c1bx","sqlExpression":null},true]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":false,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"12__table","viz_type":"pivot_table_v2","slice_id":733,"groupbyColumns":[],"groupbyRows":["bl_user",{"datasourceWarning":false,"expressionType":"SQL","label":"Customer","sqlExpression":"customer"},{"datasourceWarning":false,"expressionType":"SQL","label":"Carrier","sqlExpression":"carrier"},{"datasourceWarning":false,"expressionType":"SQL","label":"Vessel-Voyage","sqlExpression":"CONCAT(vessel,CONCAT(''-'',
+  voyage))"}],"time_grain_sqla":"P1D","temporal_columns_lookup":{"etd":true,"jed":true,"jobdate":true,"invoice_received_date":true,"invoice_paid_date":true,"si_cutoff":true,"si_received_from_customer_date":true,"gate_cutoff":true,"create_draft_at":true,"si_filed_at":true,"draft_received_at":true,"first_draft_shared_at":true,"draft_approved_at":true,"carrier_released":true,"given_to_customer_at":true,"surrendered_at_origin_at":true,"received_by_shipper_at":true,"event_date":true,"master_released_at":true},"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939520","column_name":"Carrier
+  Release in 0-2 Days","created_on":"2025-05-15T18:29:36.939519","description":null,"expression":"CASE
+  WHEN carrier_released - etd >= 0 AND carrier_released -etd <3 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3861,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"eb31ebcf-89d0-4e85-baed-6ba163d06a00","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"0-2
+  Days","optionName":"metric_ag4sh10o4nr_83zdb3c1bx","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939502","column_name":"Carrier
+  Released in 3-5 Days","created_on":"2025-05-15T18:29:36.939501","description":null,"expression":"CASE
+  WHEN carrier_released - etd >= 3 AND carrier_released -etd <=5 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3860,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"329b4014-7e4f-40e8-b9d3-364d67e03075","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"3-5
+  Days","optionName":"metric_ot7gkulctq_k542iuu2h3","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-05-15T18:29:36.939476","column_name":"Carrier
+  Released In 5+ Days","created_on":"2025-05-15T18:29:36.939474","description":null,"expression":"CASE
+  WHEN carrier_released - etd > 5 THEN 1 ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3859,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"794b6d4b-3b1d-4772-97d9-bf8c8d617717","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"5+
+  Days","optionName":"metric_qorv3c3d8a_9bhvoy84o64","sqlExpression":null}],"metricsLayout":"COLUMNS","adhoc_filters":[{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_z4x57jbkhqd_iyzy9k9dr8","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"carrier_released
+  is not NULL","subject":null},{"clause":"WHERE","comparator":["house"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_n3yg1flyus_16hrvfkylpw","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"type_of_bl"},{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_q9s4rg4t2w_egohg0qf9g9","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"job_number
+  is not NULL","subject":null},{"clause":"WHERE","comparator":"No filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_xay5lx6fbea_cr05o20kb9m","isExtra":true,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"etd"}],"row_limit":10000,"order_desc":false,"aggregateFunction":"Sum","expandCollapse":true,"colTotals":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_a_to_z","colOrder":"key_a_to_z","conditional_formatting":[{"colorScheme":"#CDFEE1","column":"0-2
+  Days","operator":"None"},{"colorScheme":"#FFEF9D","column":"3-5 Days","operator":"None"},{"colorScheme":"#FEDAD9","column":"5+
+  Days","operator":"None"}],"extra_form_data":{},"dashboards":[57],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: edc5defa-b25a-4a15-8d3f-135616082ab5
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c

@@ -1,0 +1,96 @@
+slice_name: Picked
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 40__table
+  viz_type: big_number_total
+  slice_id: 1074
+  metric:
+    aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pickedup
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 4534
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Picked
+    optionName: metric_zbito62lzhq_lkviknsxo8
+    sqlExpression: null
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: carrier
+    operator: IS NOT NULL
+    operatorId: IS_NOT_NULL
+    comparator: null
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_t9hgdddg5g_92f7jmr47g
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_4artgchyyw1_lqnkksksex
+  - expressionType: SIMPLE
+    subject: vas_service
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Forwarding
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_eyxgjssr73h_0u2ztd1phdw
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_kmdaaw1r3k_wvhbliy8hwc
+  header_font_size: 0.4
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 64
+query_context: '{"datasource":{"id":40,"type":"table"},"force":false,"queries":[{"filters":[{"col":"carrier","op":"IS
+  NOT NULL"},{"col":"trade_type","op":"IN","val":["export"]},{"col":"vas_service","op":"IN","val":["Forwarding"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickedup","description":null,"expression":null,"filterable":true,"groupby":true,"id":4534,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Picked","optionName":"metric_zbito62lzhq_lkviknsxo8","sqlExpression":null}],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"40__table","viz_type":"big_number_total","slice_id":1074,"metric":{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"pickedup","description":null,"expression":null,"filterable":true,"groupby":true,"id":4534,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Picked","optionName":"metric_zbito62lzhq_lkviknsxo8","sqlExpression":null},"adhoc_filters":[{"expressionType":"SIMPLE","subject":"carrier","operator":"IS
+  NOT NULL","operatorId":"IS_NOT_NULL","comparator":null,"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_t9hgdddg5g_92f7jmr47g"},{"expressionType":"SIMPLE","subject":"trade_type","operator":"IN","operatorId":"IN","comparator":["export"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_4artgchyyw1_lqnkksksex"},{"expressionType":"SIMPLE","subject":"vas_service","operator":"IN","operatorId":"IN","comparator":["Forwarding"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_eyxgjssr73h_0u2ztd1phdw"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_kmdaaw1r3k_wvhbliy8hwc"}],"header_font_size":0.4,"subheader_font_size":0.15,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","extra_form_data":{},"dashboards":[64],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 17079800-e221-4c5c-9790-515bccf95f7b
+version: 1.0.0
+dataset_uuid: 409d613f-b962-4e9d-94a6-0b0ec54c3e85

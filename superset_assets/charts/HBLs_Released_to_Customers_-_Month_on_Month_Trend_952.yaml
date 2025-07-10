@@ -1,0 +1,102 @@
+slice_name: HBLs Released to Customers - Month on Month Trend
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 12__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 952
+  x_axis: etd
+  time_grain_sqla: P1M
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - Shipment Documents
+  groupby:
+  - HBL Customer Release - On Time / Delayed
+  adhoc_filters:
+  - clause: WHERE
+    comparator:
+    - house
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_4ha0ps3yc3u_6y37mjh8zqb
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: type_of_bl
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_k8ush1w5s59_l1j3vf18wn
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: job_number is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_sr3rc8l2es_epdu40uxr9o
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: given_to_customer_at is not null or carrier_released is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_gb31fwpwuv6_fnuwf4jp6sv
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: etd
+  order_desc: true
+  row_limit: 1000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: shipmnts_colors
+  stack: Stack
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 64
+query_context: '{"datasource":{"id":12,"type":"table"},"force":false,"queries":[{"filters":[{"col":"type_of_bl","op":"IN","val":["house"]},{"col":"etd","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1M","having":"","where":"(job_number is
+  not NULL) AND (given_to_customer_at is not null or carrier_released is not NULL)"},"applied_time_extras":{},"columns":[{"timeGrain":"P1M","columnType":"BASE_AXIS","sqlExpression":"etd","label":"etd","expressionType":"SQL"},"HBL
+  Customer Release - On Time / Delayed"],"metrics":["Shipment Documents"],"orderby":[["Shipment
+  Documents",false]],"annotation_layers":[],"row_limit":1000,"series_columns":["HBL
+  Customer Release - On Time / Delayed"],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["etd"],"columns":["HBL
+  Customer Release - On Time / Delayed"],"aggregates":{"Shipment Documents":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"Shipment
+  Documents":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"12__table","viz_type":"echarts_timeseries_bar","slice_id":952,"x_axis":"etd","time_grain_sqla":"P1M","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["Shipment
+  Documents"],"groupby":["HBL Customer Release - On Time / Delayed"],"adhoc_filters":[{"clause":"WHERE","comparator":["house"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_4ha0ps3yc3u_6y37mjh8zqb","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"type_of_bl"},{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_k8ush1w5s59_l1j3vf18wn","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"job_number
+  is not NULL","subject":null},{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_sr3rc8l2es_epdu40uxr9o","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"given_to_customer_at
+  is not null or carrier_released is not NULL","subject":null},{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_gb31fwpwuv6_fnuwf4jp6sv","isExtra":true,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"etd"}],"order_desc":true,"row_limit":1000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"shipmnts_colors","stack":"Stack","show_legend":true,"legendType":"scroll","legendOrientation":"top","y_axis_format":"SMART_NUMBER","truncateXAxis":true,"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[64],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: e42afb19-1df4-41c9-9e08-a4092440aa09
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c
