@@ -1,0 +1,223 @@
+slice_name: MBL - User wise Customer Release Performance
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 75__table
+  viz_type: pivot_table_v2
+  slice_id: 727
+  groupbyColumns: []
+  groupbyRows:
+  - bl_user
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Carrier
+    sqlExpression: carrier
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel-Voyage
+    sqlExpression: CONCAT(vessel,CONCAT('-', voyage))
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job Number
+    sqlExpression: job_number
+  - datasourceWarning: false
+    expressionType: SQL
+    label: ETD
+    sqlExpression: etd
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Released From Carrier
+    sqlExpression: carrier_released
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    etd: true
+    jed: true
+    jobdate: true
+    invoice_received_date: true
+    invoice_paid_date: true
+    si_cutoff: true
+    si_received_from_customer_date: true
+    gate_cutoff: true
+    create_draft_at: true
+    si_filed_at: true
+    draft_received_at: true
+    first_draft_shared_at: true
+    draft_approved_at: true
+    carrier_released: true
+    given_to_customer_at: true
+    surrendered_at_origin_at: true
+    received_by_shipper_at: true
+    event_date: true
+    master_released_at: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:59:05.594281'
+      column_name: Customer Release 0-2 Days
+      created_on: '2025-05-15T18:59:05.594280'
+      description: null
+      expression: "CASE \r\n  WHEN \r\n    (CASE WHEN given_to_customer_at IS NOT\
+        \ NULL \r\n          THEN given_to_customer_at - carrier_released \r\n   \
+        \       ELSE surrendered_at_origin_at - carrier_released \r\n     END) >=\
+        \ 0 \r\n    AND \r\n    (CASE WHEN given_to_customer_at IS NOT NULL \r\n \
+        \         THEN given_to_customer_at - carrier_released \r\n          ELSE\
+        \ surrendered_at_origin_at - carrier_released \r\n     END) < 3 \r\n  THEN\
+        \ 1 \r\n  ELSE 0 \r\nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3864
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 292e7e7f-d2b3-4516-a889-4a934b01a322
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 0-2 Days
+    optionName: metric_ag4sh10o4nr_83zdb3c1bx
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:59:05.594261'
+      column_name: Customer Release 3-5 Days
+      created_on: '2025-05-15T18:59:05.594259'
+      description: null
+      expression: "CASE \r\n  WHEN \r\n    (CASE WHEN given_to_customer_at IS NOT\
+        \ NULL \r\n          THEN given_to_customer_at - carrier_released \r\n   \
+        \       ELSE surrendered_at_origin_at - carrier_released \r\n     END) >=\
+        \ 3 \r\n    AND \r\n    (CASE WHEN given_to_customer_at IS NOT NULL \r\n \
+        \         THEN given_to_customer_at - carrier_released \r\n          ELSE\
+        \ surrendered_at_origin_at - carrier_released \r\n     END) <= 5 \r\n  THEN\
+        \ 1 \r\n  ELSE 0 \r\nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3863
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 2f27d8e5-df54-49a9-8da7-fa2e3a1f7506
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 3-5 Days
+    optionName: metric_ot7gkulctq_k542iuu2h3
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-15T18:59:05.594232'
+      column_name: Customer Release 5+ Days
+      created_on: '2025-05-15T18:59:05.594229'
+      description: null
+      expression: "CASE \r\n  WHEN \r\n    (CASE WHEN given_to_customer_at IS NOT\
+        \ NULL \r\n          THEN given_to_customer_at - carrier_released \r\n   \
+        \       ELSE surrendered_at_origin_at - carrier_released \r\n     END) > 5\
+        \ \r\n  THEN 1 \r\n  ELSE 0 \r\nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3862
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 815b17f8-bea0-4ad8-bbe2-b148102103ee
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 5+ Days
+    optionName: metric_qorv3c3d8a_9bhvoy84o64
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: ship_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - direct
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_93jl0mrrg1h_r63iz6htw18
+  - expressionType: SQL
+    sqlExpression: given_to_customer_at is not null or surrendered_at_origin_at is
+      not NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_z4x57jbkhqd_iyzy9k9dr8
+  - expressionType: SIMPLE
+    subject: type_of_bl
+    operator: IN
+    operatorId: IN
+    comparator:
+    - master
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_n3yg1flyus_16hrvfkylpw
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_xay5lx6fbea_cr05o20kb9m
+  row_limit: 10000
+  order_desc: false
+  aggregateFunction: Sum
+  expandCollapse: true
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#CDFEE1'
+    column: 0-2 Days
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: 3-5 Days
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: 5+ Days
+    operator: None
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f9bc1d0a-63fd-4f5d-bfd6-6943b9ebfa22
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c

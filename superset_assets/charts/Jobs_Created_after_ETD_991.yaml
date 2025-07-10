@@ -1,0 +1,113 @@
+slice_name: 'Jobs Created after ETD '
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 78__table
+  viz_type: big_number_total
+  slice_id: 707
+  metric:
+    aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: false
+    label: COUNT(DISTINCT job_number)
+    optionName: metric_nc3egpa3qtn_zgjw9c51qck
+    sqlExpression: COUNT(DISTINCT job_number)
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: freight_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - ocean
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_n3lvql7e17h_iudjzyfmtvq
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_7ih66jv802w_smr1z1d4djc
+  - expressionType: SIMPLE
+    subject: accounting_status
+    operator: NOT IN
+    operatorId: NOT_IN
+    comparator:
+    - closed
+    - billing_closed
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_9am78m8yqy_58ob2tevck9
+  - expressionType: SQL
+    sqlExpression: job_number is NOT NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_sgydrk31yul_c64sb8l8wop
+  - expressionType: SQL
+    sqlExpression: jobdate > etd
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_tfqf3qhplx_w967sno02kp
+  - expressionType: SIMPLE
+    subject: shipment_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - house
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_c43s8pzaex9_hc19c39k76b
+  - expressionType: SIMPLE
+    subject: shipment_created
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_opukojc0uo_96vohrsejc4
+  header_font_size: 0.4
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 57
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: e43607d0-879f-464a-8534-e54731dfbe44
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

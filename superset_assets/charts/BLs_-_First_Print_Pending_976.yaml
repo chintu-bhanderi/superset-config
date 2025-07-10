@@ -1,0 +1,217 @@
+slice_name: BLs - First Print Pending
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 75__table
+  viz_type: table
+  slice_id: 658
+  query_mode: aggregate
+  groupby:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job Number
+    sqlExpression: job_number_hyperlink
+  - order_num
+  - carrier
+  - bl_number
+  - Release Type CF
+  - bl_type
+  - customer
+  - sales_person
+  - bl_user
+  - pol
+  - pod
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel Voyage
+    sqlExpression: CONCAT(vessel,CONCAT('-', voyage))
+  - etd
+  - days_since_etd
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    carrier_released: true
+    create_draft_at: true
+    draft_approved_at: true
+    draft_received_at: true
+    etd: true
+    event_date: true
+    first_draft_shared_at: true
+    gate_cutoff: true
+    given_to_customer_at: true
+    invoice_paid_date: true
+    invoice_received_date: true
+    jed: true
+    jobdate: true
+    master_released_at: true
+    received_by_shipper_at: true
+    si_cutoff: true
+    si_filed_at: true
+    si_received_from_customer_date: true
+    surrendered_at_origin_at: true
+    vessel_departed_date: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: container_count
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 629
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: Container Count
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Containers
+    optionName: metric_mlktpdoqsf_9yzsvz7nycb
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: quantity_origin_port_gated_in
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 3836
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Gated In
+    optionName: metric_rnjk1hc4r1_q62wws0077a
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: quantity_loaded_on_vessel
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 3835
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Loaded
+    optionName: metric_5of8h8tu8zt_55cwvxjkqat
+    sqlExpression: null
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator:
+    - direct
+    - back_to_back
+    - consol
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_4ha0ps3yc3u_6y37mjh8zqb
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: ship_type
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_loo32f0boh_2c43wcqvabp
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: si_filed_at is not null AND draft_received_at is NULL
+    subject: null
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_0opmkoul5p9c_cndnpxtk7tm
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: carrier_released is NULL
+    subject: null
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_gb31fwpwuv6_fnuwf4jp6sv
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: etd
+  timeseries_limit_metric:
+    aggregate: MIN
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: etd
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 621
+      is_certified: false
+      is_dttm: true
+      python_date_format: null
+      type: DATE
+      type_generic: 2
+      verbose_name: ETD
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: MIN(ETD)
+    optionName: metric_hhpsie8n708_o0757vfo9g
+    sqlExpression: null
+  order_by_cols: []
+  row_limit: 1000
+  server_page_length: 10
+  order_desc: false
+  table_timestamp_format: '%d-%m-%Y'
+  page_length: 50
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 57
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: d491c8ea-6ec9-4e17-92e6-0f1986fda796
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c

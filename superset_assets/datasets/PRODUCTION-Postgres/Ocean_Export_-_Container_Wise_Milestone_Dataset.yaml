@@ -1,0 +1,1099 @@
+table_name: Ocean Export  - Container Wise Milestone Dataset
+main_dttm_col: jobdate
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: null
+sql: "select \ns.id ,\ns.job_number,\ns.job_date as jobdate,\ns.job_execution_date\
+  \ as jed,\ns.created_at as shipment_created,\ns.trade_type as trade_type,\ns.freight_type\
+  \ as freight_type,\ns.shipment_type,\nsp.name AS sales_person,\npol.name as pol,\n\
+  pod.name as pod,\ndocs.first_name as bl_user,\ncarrier.name as carrier,\nc.registered_name\
+  \ as customer,\nCONCAT('<a href=\"https://booking.shipmnts.com/view/shipment/',\
+  \ s.id, '\" target=\"_blank\">', COALESCE(s.job_number, s.shipment_booking_number),\
+  \ '</a>') AS job_number_hyperlink,\ns.shipment_booking_number,\nvessel.name as vessel_name,\n\
+  s.estimated_time_of_arrival::DATE as eta,\ns.estimated_time_of_departure::DATE as\
+  \ etd,\ns.atd_pol_date::DATE as atd, \ns.actual_time_of_arrival::DATE as ata,\n\
+  -- Milestones and cutoffs \nasr.gate_close_cutoff::DATE as gate_close_cutoff,\n\
+  asr.quantity_pickup_pending,\nasr.document_cutoff_date::DATE as docs_cutoff,\nasr.loaded_on_vessel_date::DATE,\n\
+  -- Quantities\nasr.allocated_quantity,\nasr.quantity_picked_up,\nasr.quantity_loading_pending,\n\
+  asr.quantity_loaded_on_vessel,\nasr.quantity_origin_port_gated_in,\nascr.empty_picked_up_date::DATE\
+  \ as empty_picked_up_date,\nascr.port_of_loading_gate_in_date::DATE as pol_gated_in_date,\n\
+  ascr.documents_handed_over_to_carrier_date::DATE as docs_handover_date,\nascr.port_of_loading_loaded_date::DATE\
+  \ as loading_date,\nascr.port_of_discharge_gate_out_date::DATE as pod_gate_out,\
+  \ \nascr.on_carriage_icd_gate_out_date::DATE as pcd_gate_out,\nascr.destination_empty_to_carrier_date::DATE\
+  \ as empty_return_date,\nascr.routing_updated_at::DATE,\nsc.container_number,\n\
+  sc.container_type,\nsc.last_action_status as container_status,\ns.origin_carrier_free_days\
+  \ as origin_lfd,\ns.destination_carrier_free_days,\ns.destination_port_free_days,\n\
+  s.lfd_at_carrier::DATE,\ns.lfd_at_pod::DATE,\ns.lfd_at_pocd::DATE,\ns.status,\n\
+  s.accounting_status,\ns.last_action_status,\ns.lfd_at_empty_return::DATE\nfrom shipments\
+  \ s \nleft outer join analytics_shipment_reports as asr on asr.id = s.id \nleft\
+  \ outer join container_cargo_details as ccd on ccd.shipment_id = s.id \nleft outer\
+  \ join shipment_containers as sc on sc.id = ccd.shipment_container_id \nleft outer\
+  \ join analytics_shipment_container_reports as ascr on ascr.id = sc.id\nleft outer\
+  \ join user_accounts as docs on docs.id = asr.created_by_id\nleft outer join companies\
+  \ as c on c.id = s.customer_company_id \nleft outer join carriers as carrier on\
+  \ carrier.id = s.carrier_id \nleft outer join branch_accounts as branch on branch.id\
+  \ = s.involved_branch_id\nLEFT outer JOIN sales_people sp ON sp.id = s.sales_agent_id\n\
+  left outer join locations as pol on pol.id = s.port_of_loading_id \nleft outer join\
+  \ locations as pod on pod.id=s.port_of_discharge_id \nleft outer join ocean_vessels\
+  \ as vessel on s.ocean_vessel_id=vessel.imo\nwhere s.cancelled_at is null and s.deleted_at\
+  \ is null and sc.deleted_at is null \nand s.services ->> 'freight_forwarding' =\
+  \ 'true'\nand s.freight_type='ocean'  and s.trade_type='export'\nand s.tenant_id\
+  \ = {{url_param('tenant_id') or 43}}\nand 'Shipment::Shipment' in {% if url_param('allowed_doctypes')\
+  \ %}\n{{ parse_url_param(url_param('allowed_doctypes')) }}\n{% else %} ('Shipment::Shipment')\
+  \ {% endif %}\nand\n(case when {{url_param('is_collaborator') or false}} then {{url_param('user_contact_id')\
+  \ or 1}}  = any(s.collaborator_ids) else 1=1 end)\nand\nbranch.erp_cost_center_id\
+  \ in{% if url_param('allowed_cost_centers') %} \n{{ parse_url_param(url_param('allowed_cost_centers'))\
+  \ }}\n{% else %}\n(branch.erp_cost_center_id)\n{% endif %}\nand\ns.customer_company_id\
+  \  = {%if url_param('company') %}\n{{ url_param('company') }}\n{% else %}\ns.customer_company_id\n\
+  {% endif %}\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 477b721b-7118-4416-8368-3f7bc1e9df78
+metrics:
+- metric_name: On Time Departures %
+  verbose_name: ''
+  metric_type: null
+  expression: 'SUM (CASE WHEN atd>etd  THEN 0 ELSE 1 END )* 100 / COUNT(*)
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Late Departures %
+  verbose_name: ''
+  metric_type: null
+  expression: 'SUM (CASE WHEN atd>etd  THEN 1 ELSE 0 END )* 100 / COUNT(*)
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: On Time %
+  verbose_name: ''
+  metric_type: null
+  expression: 'SUM (CASE WHEN ata>eta THEN 0 ELSE 1 END )* 100 / COUNT(*)
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Picked Up
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(CASE WHEN empty_picked_up_date is NOT NULL THEN 1 ELSE 0 END)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Pickup Pending
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(CASE WHEN empty_picked_up_date is NULL THEN 1 ELSE 0 END)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: count
+  verbose_name: Containers
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Exception Summary
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "TRIM(\n  CONCAT_WS(' | ',\n    CASE \n      WHEN pol_gated_in_date\
+    \ IS NOT NULL AND pol_gated_in_date > gate_close_cutoff \n      THEN 'Container\
+    \ late gated in' \n      ELSE NULL \n    END,\n    CASE \n      WHEN routing_updated_at\
+    \ IS NOT NULL \n      THEN 'Container Rollover / Shutout' \n      ELSE NULL \n\
+    \    END,\n    CASE \n      WHEN pod_gate_out IS NOT NULL AND pod_gate_out > lfd_at_pod\
+    \ \n      THEN 'Container Incurred Demurrage' \n      ELSE NULL \n    END,\n \
+    \   CASE \n      WHEN empty_return_date IS NOT NULL AND empty_return_date > lfd_at_empty_return\
+    \ \n      THEN 'Container Incurred Detention' \n      ELSE NULL \n    END\n  )\n\
+    )\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Gate In 3-5 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n    WHEN gate_close_cutoff BETWEEN CURRENT_DATE + INTERVAL '3\
+    \ days' \n                               AND CURRENT_DATE + INTERVAL '5 days'\
+    \ \n         AND pol_gated_in_date IS NULL \n    THEN 1 \n    ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Gate In 5+ Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n    WHEN gate_close_cutoff > CURRENT_DATE + INTERVAL '5 days'\
+    \ \n         AND pol_gated_in_date IS NULL \n    THEN 1 \n    ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Pending - ETD - 7-14 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN etd BETWEEN CURRENT_DATE + INTERVAL '7 days' AND CURRENT_DATE\
+    \ + INTERVAL '14  days' AND container_number IS NULL THEN 1\r\n    ELSE 0 END"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Pending - ETD 0-7 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN etd BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 \
+    \ days' AND container_number IS NULL THEN 1\r\n    ELSE 0 END"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: ETD 15+ Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN etd > CURRENT_DATE + INTERVAL '15  days' AND container_number\
+    \ IS NULL THEN 1\r\n    ELSE 0 END"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Arrival 5+ Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN eta BETWEEN CURRENT_DATE + INTERVAL '5 days' AND CURRENT_DATE\
+    \ + INTERVAL '7 days' THEN 1 ELSE 0 END\r\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Arrival 3-5 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN eta BETWEEN CURRENT_DATE + INTERVAL '3 days' AND CURRENT_DATE\
+    \ + INTERVAL '5 days' THEN 1 ELSE 0 END\r\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Gate In 0-3 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN gate_close_cutoff BETWEEN CURRENT_DATE AND CURRENT_DATE +\
+    \ INTERVAL '3 days' AND pol_gated_in_date is NULL THEN 1 ELSE 0\r\nend"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Departures 3-5 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN etd between CURRENT_DATE+INTERVAL '3 days'  AND CURRENT_DATE
+    + INTERVAL '5 days' THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Arrival in 0-3 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN eta BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '3 days'\
+    \ THEN 1 ELSE 0 END\r\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Departures 0-3 Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN etd between CURRENT_DATE AND CURRENT_DATE + INTERVAL '3 days'
+    THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Cutoff Passed
+  verbose_name: Gate CutOff Passed
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN CURRENT_DATE> gate_close_cutoff and pol_gated_in_date is\
+    \ NULL THEN 1 ELSE 0 \nEND"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Departures 5+ Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN etd > CURRENT_DATE+INTERVAL '5 days'  THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Average Delay
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: (CASE WHEN ata > eta THEN ata::date - eta::date ELSE 0 END)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Departures - ETD Crossed
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN etd < CURRENT_DATE THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: On Time Gate In
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN pol_gated_in_date > gate_close_cutoff THEN 0 ELSE 1 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: On Time Arrivals
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'CASE WHEN ata>eta  THEN 0 ELSE 1 END '
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Late Gate In
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN pol_gated_in_date > gate_close_cutoff THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Gate In Pending
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: case when pol_gated_in_date is null then 1 else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Gate in Pending
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: case when pol_gated_in_date is null then 1 else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: ETA Passed
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN CURRENT_DATE > eta THEN 1 ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: On Time Departures
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'CASE WHEN atd>etd THEN 0 ELSE 1 END '
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Late Arrivals
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'CASE WHEN ata>eta THEN 1 ELSE 0 END '
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: lfd_at_empty_return
+  verbose_name: Last Free Date - Empty Return
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: lfd_at_pocd
+  verbose_name: Last Free Date - PCOD
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: lfd_at_carrier
+  verbose_name: Last Free Date - Carrier
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: lfd_at_pod
+  verbose_name: Last Free Date - POD
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: origin_lfd
+  verbose_name: Last Free Date - Origin
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pcd_gate_out
+  verbose_name: Gate Out - PCD
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pod_gate_out
+  verbose_name: Gate Out - POD
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pol_gated_in_date
+  verbose_name: Gated In - POL
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: ata
+  verbose_name: Actual Time Of Arrivals
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: atd
+  verbose_name: Actual Time Of Departure
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: empty_picked_up_date
+  verbose_name: Empty Picked Up Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: destination_carrier_free_days
+  verbose_name: Destination Carrier Free Days
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: destination_port_free_days
+  verbose_name: Destination Port Free Days
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Detention Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: empty_return_date - eta
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Estimated Transit
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'eta - etd
+
+    '
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: shipment_created
+  verbose_name: Shipment Created At
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gate_close_cutoff
+  verbose_name: Gate Close CutOff
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: docs_handover_date
+  verbose_name: Docs Handover Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: jed
+  verbose_name: Job Execution Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: empty_return_date
+  verbose_name: Empty Return Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: shipment_booking_number
+  verbose_name: Shipment Booking Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: quantity_pickup_pending
+  verbose_name: Quantity PickUp Pending
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: docs_cutoff
+  verbose_name: Docs CutOff
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: jobdate
+  verbose_name: Job Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: loading_date
+  verbose_name: Loading Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: bl_user
+  verbose_name: BL User
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: container_number
+  verbose_name: Container Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: container_status
+  verbose_name: Container Status
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: container_type
+  verbose_name: Container Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: freight_type
+  verbose_name: Freight Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: job_number_hyperlink
+  verbose_name: Job Link
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: job_number
+  verbose_name: Job Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vessel_name
+  verbose_name: Vessel Name
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: shipment_type
+  verbose_name: Shipment Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: trade_type
+  verbose_name: Trade Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Actual Transit
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ata-atd
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Demurrage Days
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: pod_gate_out-eta
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: eta
+  verbose_name: ETA
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: etd
+  verbose_name: ETD
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: carrier
+  verbose_name: Carrier
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: customer
+  verbose_name: Customer
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pod
+  verbose_name: POD
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pol
+  verbose_name: POL
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: loaded_on_vessel_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: routing_updated_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: allocated_quantity
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: FLOAT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: quantity_origin_port_gated_in
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: quantity_loaded_on_vessel
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: quantity_loading_pending
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: quantity_picked_up
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: last_action_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: accounting_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: sales_person
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d
