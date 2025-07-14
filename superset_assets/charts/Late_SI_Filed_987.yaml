@@ -1,0 +1,90 @@
+slice_name: Late SI Filed
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 75__table
+  viz_type: big_number_total
+  slice_id: 698
+  metric:
+    aggregate: COUNT_DISTINCT
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: ship_id
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 618
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: SI Pending
+    optionName: metric_hv2lo7ucp9l_zncj41reqwo
+    sqlExpression: null
+  adhoc_filters:
+  - expressionType: SQL
+    sqlExpression: si_filed_at is NOT NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_g4eq8yoalzr_smjhyf9gyam
+  - expressionType: SIMPLE
+    subject: allocated_quantity
+    operator: '>'
+    operatorId: GREATER_THAN
+    comparator: '0'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_v9u3hjg6pqc_noptwaxxwej
+  - expressionType: SQL
+    sqlExpression: si_filed_at > si_cutoff
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_xqd58v8dwfi_0pg888faiot
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_how0p8h1w5o_qclmhklv86
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: dd8477ed-2e14-4ebd-9e0a-ab099aa169e8
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c

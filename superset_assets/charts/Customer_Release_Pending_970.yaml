@@ -1,0 +1,81 @@
+slice_name: Customer Release Pending
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 75__table
+  viz_type: big_number_total
+  slice_id: 652
+  metric: count
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: ship_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - direct
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_83hoq3e0o9h_y8864t58t9e
+  - expressionType: SQL
+    sqlExpression: NOT(given_to_customer_at is not NULL or surrendered_at_origin_at
+      is not NULL)
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_87j78d2hwjw_6l15vxojonn
+  - expressionType: SQL
+    sqlExpression: job_number is not NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_uuh3ymsijo_nt5u4q2ta4l
+  - expressionType: SQL
+    sqlExpression: 'carrier_released is NOT NULL
+
+      '
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_5viwgp5td19_yny8nol9uk
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_unt6trmacti_0dn37vswvqzw
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 57
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f1e8b846-7304-4f08-9db5-50eb40636cb7
+version: 1.0.0
+dataset_uuid: 4fc51f9b-3504-4494-9dde-c1ff47aec07c
