@@ -3,7 +3,8 @@ import os
 import shutil
 
 # --- Config ---
-ZIP_PATH = "/Users/chintukumarbhanderi/Downloads/dashboard_export_20250710T160150.zip"
+# ZIP_PATH = "/Users/chintukumarbhanderi/Shipments/superset2/superset-config/assets/superset_assets_export.zip"
+ZIP_PATH = "/Users/chintukumarbhanderi/Shipments/superset2/superset-config/assets/dashboard_export_41.zip"
 DEST_FOLDER = "superset_assets"
 
 # --- Step 1: Unzip to temp folder ---
