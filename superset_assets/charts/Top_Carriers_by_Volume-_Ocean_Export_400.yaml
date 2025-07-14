@@ -1,0 +1,110 @@
+slice_name: Top Carriers by Volume- Ocean Export
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 79__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 400
+  x_axis: carrier_sf
+  x_axis_sort_series: max
+  x_axis_sort_series_ascending: true
+  metrics:
+  - count
+  - FCL TEU
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: freight
+    operator: IN
+    operatorId: IN
+    comparator:
+    - ocean
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_uypzcp5kzy_m1h1zu6ymba
+  - expressionType: SIMPLE
+    subject: is_forwarding
+    operator: IN
+    operatorId: IN
+    comparator:
+    - '1'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_mqk75oz428l_ikugau4xh08
+  - expressionType: SIMPLE
+    subject: trade
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_zwcuxiatmm_yquztwglri8
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_hircf178fhi_eurb775k41t
+  timeseries_limit_metric: FCL TEU
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title: ''
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: d3Category20c
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelRotation: 0
+  y_axis_format: SMART_NUMBER
+  logAxis: true
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 4
+  - 39
+  - 67
+query_context: '{"datasource":{"id":79,"type":"table"},"force":false,"queries":[{"filters":[{"col":"freight","op":"IN","val":["ocean"]},{"col":"is_forwarding","op":"IN","val":["1"]},{"col":"trade","op":"IN","val":["export"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"carrier_sf","label":"carrier_sf","expressionType":"SQL"}],"metrics":["count","FCL
+  TEU"],"orderby":[["FCL TEU",false]],"annotation_layers":[],"row_limit":10,"series_columns":[],"series_limit":0,"series_limit_metric":"FCL
+  TEU","order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["carrier_sf"],"columns":[],"aggregates":{"count":{"operator":"mean"},"FCL
+  TEU":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"79__table","viz_type":"echarts_timeseries_bar","slice_id":400,"x_axis":"carrier_sf","x_axis_sort_series":"max","x_axis_sort_series_ascending":true,"metrics":["count","FCL
+  TEU"],"groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"freight","operator":"IN","operatorId":"IN","comparator":["ocean"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_uypzcp5kzy_m1h1zu6ymba"},{"expressionType":"SIMPLE","subject":"is_forwarding","operator":"IN","operatorId":"IN","comparator":["1"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_mqk75oz428l_ikugau4xh08"},{"expressionType":"SIMPLE","subject":"trade","operator":"IN","operatorId":"IN","comparator":["export"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_zwcuxiatmm_yquztwglri8"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_hircf178fhi_eurb775k41t"}],"timeseries_limit_metric":"FCL
+  TEU","order_desc":true,"row_limit":10,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"horizontal","x_axis_title":"","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"d3Category20c","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelRotation":0,"y_axis_format":"SMART_NUMBER","logAxis":true,"truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[4,39,67],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 49a0a32c-0e8e-4ccd-a852-9cdf0423a42b
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

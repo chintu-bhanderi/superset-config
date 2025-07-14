@@ -1,8 +1,8 @@
 database_name: alex_prod
-sqlalchemy_uri: postgresql+psycopg2://read_user:XXXXXXXXXX@20.244.67.218:5432/alex_production?sslmode=require
+sqlalchemy_uri: postgresql+psycopg2://read_user:XXXXXXXXXX@production-replicas.stackgres.svc:5432/alex_production?sslmode=require
 cache_timeout: null
 expose_in_sqllab: true
-allow_run_async: true
+allow_run_async: false
 allow_ctas: false
 allow_cvas: false
 allow_dml: false

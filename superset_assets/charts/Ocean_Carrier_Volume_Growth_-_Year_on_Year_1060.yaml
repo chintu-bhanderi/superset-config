@@ -1,0 +1,117 @@
+slice_name: Ocean Carrier Volume Growth - Year on Year
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 79__table
+  viz_type: pivot_table_v2
+  slice_id: 1042
+  groupbyColumns:
+  - JED Month (Numeric)
+  - JED Year
+  groupbyRows:
+  - business_vertical
+  - carrier
+  temporal_columns_lookup:
+    jed: true
+    created: true
+    job_date: true
+    si_cutoff: true
+    onboared: true
+    last_shipment: true
+    last_inquiry: true
+  metrics:
+  - aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: true
+    label: Shipments
+    optionName: metric_mboxhf0mol_y1hmzvy2j4
+    sqlExpression: count(*)
+  - FCL TEU
+  - LCL CBM
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_4m9r4xdidpa_g8asy7ov50g
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: 'Previous Year : Next Year'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_fhxg4m7htot_4npzvh2yilk
+  - expressionType: SIMPLE
+    subject: freight
+    operator: IN
+    operatorId: IN
+    comparator:
+    - ocean
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_545tp6m89o8_p4qks3agdk9
+  - expressionType: SIMPLE
+    subject: is_forwarding
+    operator: IN
+    operatorId: IN
+    comparator:
+    - '1'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_w66h0j59eo_v1g36nux0l
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  colTotals: true
+  transposePivot: false
+  combineMetric: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#F0F5FF'
+    column: Shipments
+    operator: None
+  - colorScheme: '#D6E4FF'
+    column: LCL CBM
+    operator: None
+  - colorScheme: '#E6FFFB'
+    column: FCL TEU
+    operator: None
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":79,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"jed","op":"TEMPORAL_RANGE","val":"Previous Year : Next Year"},{"col":"freight","op":"IN","val":["ocean"]},{"col":"is_forwarding","op":"IN","val":["1"]}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["JED
+  Month (Numeric)","JED Year","business_vertical","carrier"],"metrics":[{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":true,"label":"Shipments","optionName":"metric_mboxhf0mol_y1hmzvy2j4","sqlExpression":"count(*)"},"FCL
+  TEU","LCL CBM"],"orderby":[[{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":true,"label":"Shipments","optionName":"metric_mboxhf0mol_y1hmzvy2j4","sqlExpression":"count(*)"},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"79__table","viz_type":"pivot_table_v2","slice_id":1042,"groupbyColumns":["JED
+  Month (Numeric)","JED Year"],"groupbyRows":["business_vertical","carrier"],"temporal_columns_lookup":{"jed":true,"created":true,"job_date":true,"si_cutoff":true,"onboared":true,"last_shipment":true,"last_inquiry":true},"metrics":[{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":true,"label":"Shipments","optionName":"metric_mboxhf0mol_y1hmzvy2j4","sqlExpression":"count(*)"},"FCL
+  TEU","LCL CBM"],"metricsLayout":"COLUMNS","adhoc_filters":[{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_4m9r4xdidpa_g8asy7ov50g"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"Previous
+  Year : Next Year","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_fhxg4m7htot_4npzvh2yilk"},{"expressionType":"SIMPLE","subject":"freight","operator":"IN","operatorId":"IN","comparator":["ocean"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_545tp6m89o8_p4qks3agdk9"},{"expressionType":"SIMPLE","subject":"is_forwarding","operator":"IN","operatorId":"IN","comparator":["1"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_w66h0j59eo_v1g36nux0l"}],"row_limit":10000,"order_desc":true,"aggregateFunction":"Sum","expandCollapse":true,"colTotals":true,"transposePivot":false,"combineMetric":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_z_to_a","colOrder":"key_a_to_z","conditional_formatting":[{"colorScheme":"#F0F5FF","column":"Shipments","operator":"None"},{"colorScheme":"#D6E4FF","column":"LCL
+  CBM","operator":"None"},{"colorScheme":"#E6FFFB","column":"FCL TEU","operator":"None"}],"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 4a6428a3-7a67-453c-a375-dc5c62b79b39
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

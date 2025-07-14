@@ -1,0 +1,112 @@
+slice_name: Air Carrier Wise Volume - Month on Month
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 79__table
+  viz_type: pivot_table_v2
+  slice_id: 265
+  groupbyColumns:
+  - JED Month (Numeric)
+  groupbyRows:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Carrier
+    sqlExpression: carrier
+  - business_vertical
+  time_grain_sqla: P1W
+  temporal_columns_lookup:
+    jed: true
+    created: true
+    job_date: true
+    si_cutoff: true
+    onboared: true
+    last_shipment: true
+    last_inquiry: true
+  metrics:
+  - Tonnage
+  - count
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator:
+    - air
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_jmwjgjtmh_2pwulb8365b
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_hircf178fhi_eurb775k41t
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  row_limit: 10000
+  series_limit_metric:
+    aggregate: MAX
+    column:
+      advanced_data_type: null
+      changed_on: '2024-08-26T13:09:41.709277'
+      column_name: jed
+      created_on: '2024-08-26T13:09:41.296832'
+      description: null
+      expression: ''
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 361
+      is_active: true
+      is_dttm: true
+      python_date_format: null
+      type: DATE
+      type_generic: 2
+      uuid: 63f7a230-7a7f-4990-89a3-ffda961c2a8a
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: MAX(jed)
+    optionName: metric_2rlqp5dcbwp_5bipmhgpxsw
+    sqlExpression: null
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  rowTotals: false
+  rowSubTotals: false
+  colTotals: true
+  colSubTotals: false
+  combineMetric: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_z_to_a
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: Tonnage
+    operator: None
+  - colorScheme: '#F0F5FF'
+    column: count
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 4
+  - 67
+query_context: '{"datasource":{"id":79,"type":"table"},"force":false,"queries":[{"filters":[{"col":"freight","op":"IN","val":["air"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1W","having":"","where":""},"applied_time_extras":{},"columns":["JED
+  Month (Numeric)",{"datasourceWarning":false,"expressionType":"SQL","label":"Carrier","sqlExpression":"carrier"},"business_vertical"],"metrics":["Tonnage","count"],"orderby":[[{"aggregate":"MAX","column":{"advanced_data_type":null,"changed_on":"2024-08-26T13:09:41.709277","column_name":"jed","created_on":"2024-08-26T13:09:41.296832","description":null,"expression":"","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":361,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"63f7a230-7a7f-4990-89a3-ffda961c2a8a","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MAX(jed)","optionName":"metric_2rlqp5dcbwp_5bipmhgpxsw","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"series_limit_metric":{"aggregate":"MAX","column":{"advanced_data_type":null,"changed_on":"2024-08-26T13:09:41.709277","column_name":"jed","created_on":"2024-08-26T13:09:41.296832","description":null,"expression":"","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":361,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"63f7a230-7a7f-4990-89a3-ffda961c2a8a","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MAX(jed)","optionName":"metric_2rlqp5dcbwp_5bipmhgpxsw","sqlExpression":null},"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"79__table","viz_type":"pivot_table_v2","slice_id":265,"groupbyColumns":["JED
+  Month (Numeric)"],"groupbyRows":[{"datasourceWarning":false,"expressionType":"SQL","label":"Carrier","sqlExpression":"carrier"},"business_vertical"],"time_grain_sqla":"P1W","temporal_columns_lookup":{"jed":true,"created":true,"job_date":true,"si_cutoff":true,"onboared":true,"last_shipment":true,"last_inquiry":true},"metrics":["Tonnage","count"],"metricsLayout":"COLUMNS","adhoc_filters":[{"clause":"WHERE","comparator":["air"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_jmwjgjtmh_2pwulb8365b","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"freight"},{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_hircf178fhi_eurb775k41t","isExtra":true,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"}],"row_limit":10000,"series_limit_metric":{"aggregate":"MAX","column":{"advanced_data_type":null,"changed_on":"2024-08-26T13:09:41.709277","column_name":"jed","created_on":"2024-08-26T13:09:41.296832","description":null,"expression":"","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":361,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"63f7a230-7a7f-4990-89a3-ffda961c2a8a","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MAX(jed)","optionName":"metric_2rlqp5dcbwp_5bipmhgpxsw","sqlExpression":null},"order_desc":true,"aggregateFunction":"Sum","expandCollapse":true,"rowTotals":false,"rowSubTotals":false,"colTotals":true,"colSubTotals":false,"combineMetric":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"value_z_to_a","colOrder":"key_z_to_a","conditional_formatting":[{"colorScheme":"#E8EBFE","column":"Tonnage","operator":"None"},{"colorScheme":"#F0F5FF","column":"count","operator":"None"}],"extra_form_data":{},"dashboards":[4,67],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 696e4067-bec4-4674-a749-f91708d5dc0e
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

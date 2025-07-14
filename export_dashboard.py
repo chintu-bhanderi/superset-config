@@ -3,15 +3,13 @@ import os
 import urllib.parse
 
 # --- Config ---
-dashboard_id = 41
-api_token = "Iy11hoWxD"  # You should move this to env var for production
+dashboard_ids = [41, 38]
 
 # Encode the q parameter properly
 url = f"https://superset.staging.shipmnts.com/api/v1/dashboard/export"
 
 params = {
-    "q": f"!({dashboard_id})",
-    "token": "ga4rXU6Ak"
+    "q": f"!({','.join(map(str, dashboard_ids))})"
 }
 
 # Cookies (copied from your browser)
@@ -22,15 +20,8 @@ cookies = {
     "session": ".eJwljstKBTEQRP8laxfpR9LJ_Zkh_UJx8MKMrsR_N2Jtiio4cL7LkVfcr-WR67zjpRxvXh5FjFByhawOCrsJREbMqc3dqwINURJPzKbUq1TXZubedRBi0JiVsdYxkYRbN2AnckaEOgcuTeu9ayzmJAlHoFWxolrzvhzLFvm64_q3-Zt2X3l8Pt_jYx_ELQHRwYKThQeGWcJEJ2vWdibGcNnc-bR1xmY2-PMLfqJDIA.aG-LSg.Yg-sCuNktoca2-MhS0I_pGzbRmA"
 }
 
-
-headers = {
-    "Authorization": f"Bearer {api_token}",
-    "Accept": "application/zip",
-    "Content-Type": "application/json"
-}
-
 output_dir = "assets"
-output_file = f"dashboard_export_{dashboard_id}.zip"
+output_file = f"exported_dashboard.zip"
 os.makedirs(output_dir, exist_ok=True)
 
 print(f"Requesting dashboard export from: {url}")

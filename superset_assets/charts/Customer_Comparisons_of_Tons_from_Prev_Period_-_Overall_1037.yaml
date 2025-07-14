@@ -1,0 +1,324 @@
+slice_name: Customer Comparisons of Tons from Prev Period - Overall
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 79__table
+  viz_type: pivot_table_v2
+  slice_id: 1019
+  groupbyColumns: []
+  groupbyRows:
+  - customer
+  - business_vertical
+  temporal_columns_lookup:
+    jed: true
+    created: true
+    job_date: true
+    si_cutoff: true
+    onboared: true
+    last_shipment: true
+    last_inquiry: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.393530'
+      column_name: Tonnage This Week
+      created_on: '2025-06-12T11:01:24.393529'
+      description: null
+      expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n  \
+        \       AND jed < date_trunc('week', current_date + interval '1 week')  \n\
+        \    THEN tonnage/1000\n    ELSE 0  \n  END\n"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4457
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: df45e0b4-2749-4a77-bcb0-f0a15a8061e3
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons This Week
+    optionName: metric_mjyx6ekb259_wsy970m38km
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.393499'
+      column_name: Tonnage Last Week
+      created_on: '2025-06-12T11:01:24.393495'
+      description: null
+      expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
+        \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN tonnage/1000\n\
+        \    ELSE 0  \nEND  \n"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4456
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: bb9b7a55-e216-40f7-8679-7b34743b2e17
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons Prev Week
+    optionName: metric_uam9ag9zs4_s3z6a9b95g
+    sqlExpression: null
+  - Weekly Avg Tons
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.394316'
+      column_name: Tonnage MTD
+      created_on: '2025-06-12T11:01:24.394314'
+      description: null
+      expression: "CASE WHEN jed >= date_trunc('month', current_date) \n         \
+        \     AND jed < current_date \n              AND freight = 'air' \n      \
+        \   THEN tonnage/1000 \n         ELSE 0 \n    END"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3281
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 9ce8c2ce-fd40-4094-8674-8281fb6a5b31
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons MTD
+    optionName: metric_xtp85mq7j3l_kikac17kx4k
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.394328'
+      column_name: Tonnage MTD - Prior
+      created_on: '2025-06-12T11:01:24.394327'
+      description: null
+      expression: "CASE WHEN jed >= date_trunc('month', current_date) - interval '1\
+        \ year'\n              AND jed < date_trunc('month', current_date) - interval\
+        \ '1 year' + (current_date - date_trunc('month', current_date)) \n       \
+        \       AND freight = 'air' \n         THEN tonnage/1000 \n         ELSE 0\
+        \ \n    END"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3280
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 75cc0a46-f4e8-43cc-8540-c227585d421f
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons MTD Prev Year
+    optionName: metric_5ckisgkxq5m_yt9msjf9d8c
+    sqlExpression: null
+  - Monthly Avg Tons
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.394414'
+      column_name: Tonnage YTD - Current
+      created_on: '2025-06-12T11:01:24.394413'
+      description: null
+      expression: "CASE \n    WHEN jed >= date_trunc('year', current_date) \n    \
+        \     AND jed < current_date\n         AND freight = 'air'\n    THEN tonnage/1000\n\
+        \    ELSE 0 \nEND\n"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3250
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 032230dc-8682-44d7-8b3e-779feb051d41
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons YTD
+    optionName: metric_19p965huoxw_ebrc0si6rfe
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-12T11:01:24.394426'
+      column_name: Tonnage YTD - Previous
+      created_on: '2025-06-12T11:01:24.394425'
+      description: null
+      expression: "CASE \n    WHEN jed >= date_trunc('year', current_date) - interval\
+        \ '1 year'\n         AND jed < (current_date - interval '1 year')\n      \
+        \   AND freight = 'air'\n    THEN tonnage/1000\n    ELSE 0 \nEND\n"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3249
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: a8c19b3e-af44-42c6-a798-8cc0a02d9ba4
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Tons YTD Previous
+    optionName: metric_mw3rtijfs6d_pxha5pebcne
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_kvj3w68ylb_l77gmas433e
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - air
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_0qib2vac1f8_bpkcvmljsjj
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: Tons This Week
+    operator: None
+  - colorScheme: '#E0F0FF'
+    column: Tons Prev Week
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Weekly Avg Tons
+    operator: None
+  - colorScheme: '#E6FFFB'
+    column: Tons MTD
+    operator: None
+  - colorScheme: '#87E8DE'
+    column: Tons MTD Prev Year
+    operator: None
+  - colorScheme: '#EAFF8F'
+    column: Monthly Avg Tons
+    operator: None
+  - colorScheme: '#E0F0FF'
+    column: Tons YTD
+    operator: None
+  - colorScheme: '#E8EBFE'
+    column: Tons YTD Previous
+    operator: None
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":79,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"freight","op":"IN","val":["air"]}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["customer","business_vertical"],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.393530","column_name":"Tonnage
+  This Week","created_on":"2025-06-12T11:01:24.393529","description":null,"expression":"CASE  \n    WHEN
+  jed >= date_trunc(''week'', current_date)  \n         AND jed < date_trunc(''week'',
+  current_date + interval ''1 week'')  \n    THEN tonnage/1000\n    ELSE 0  \n  END\n","extra":"{}","filterable":true,"groupby":true,"id":4457,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"df45e0b4-2749-4a77-bcb0-f0a15a8061e3","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.393499","column_name":"Tonnage
+  Last Week","created_on":"2025-06-12T11:01:24.393495","description":null,"expression":"CASE  \n    WHEN
+  jed >= date_trunc(''week'', current_date) - interval ''1 week''  \n    AND jed <
+  date_trunc(''week'', current_date)  \n    THEN tonnage/1000\n    ELSE 0  \nEND  \n","extra":"{}","filterable":true,"groupby":true,"id":4456,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"bb9b7a55-e216-40f7-8679-7b34743b2e17","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  Prev Week","optionName":"metric_uam9ag9zs4_s3z6a9b95g","sqlExpression":null},"Weekly
+  Avg Tons",{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394316","column_name":"Tonnage
+  MTD","created_on":"2025-06-12T11:01:24.394314","description":null,"expression":"CASE
+  WHEN jed >= date_trunc(''month'', current_date) \n              AND jed < current_date
+  \n              AND freight = ''air'' \n         THEN tonnage/1000 \n         ELSE
+  0 \n    END","extra":"{}","filterable":true,"groupby":true,"id":3281,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"9ce8c2ce-fd40-4094-8674-8281fb6a5b31","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  MTD","optionName":"metric_xtp85mq7j3l_kikac17kx4k","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394328","column_name":"Tonnage
+  MTD - Prior","created_on":"2025-06-12T11:01:24.394327","description":null,"expression":"CASE
+  WHEN jed >= date_trunc(''month'', current_date) - interval ''1 year''\n              AND
+  jed < date_trunc(''month'', current_date) - interval ''1 year'' + (current_date
+  - date_trunc(''month'', current_date)) \n              AND freight = ''air'' \n         THEN
+  tonnage/1000 \n         ELSE 0 \n    END","extra":"{}","filterable":true,"groupby":true,"id":3280,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"75cc0a46-f4e8-43cc-8540-c227585d421f","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  MTD Prev Year","optionName":"metric_5ckisgkxq5m_yt9msjf9d8c","sqlExpression":null},"Monthly
+  Avg Tons",{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394414","column_name":"Tonnage
+  YTD - Current","created_on":"2025-06-12T11:01:24.394413","description":null,"expression":"CASE
+  \n    WHEN jed >= date_trunc(''year'', current_date) \n         AND jed < current_date\n         AND
+  freight = ''air''\n    THEN tonnage/1000\n    ELSE 0 \nEND\n","extra":"{}","filterable":true,"groupby":true,"id":3250,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"032230dc-8682-44d7-8b3e-779feb051d41","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  YTD","optionName":"metric_19p965huoxw_ebrc0si6rfe","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394426","column_name":"Tonnage
+  YTD - Previous","created_on":"2025-06-12T11:01:24.394425","description":null,"expression":"CASE
+  \n    WHEN jed >= date_trunc(''year'', current_date) - interval ''1 year''\n         AND
+  jed < (current_date - interval ''1 year'')\n         AND freight = ''air''\n    THEN
+  tonnage/1000\n    ELSE 0 \nEND\n","extra":"{}","filterable":true,"groupby":true,"id":3249,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"a8c19b3e-af44-42c6-a798-8cc0a02d9ba4","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  YTD Previous","optionName":"metric_mw3rtijfs6d_pxha5pebcne","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.393530","column_name":"Tonnage
+  This Week","created_on":"2025-06-12T11:01:24.393529","description":null,"expression":"CASE  \n    WHEN
+  jed >= date_trunc(''week'', current_date)  \n         AND jed < date_trunc(''week'',
+  current_date + interval ''1 week'')  \n    THEN tonnage/1000\n    ELSE 0  \n  END\n","extra":"{}","filterable":true,"groupby":true,"id":4457,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"df45e0b4-2749-4a77-bcb0-f0a15a8061e3","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"79__table","viz_type":"pivot_table_v2","slice_id":1019,"groupbyColumns":[],"groupbyRows":["customer","business_vertical"],"temporal_columns_lookup":{"jed":true,"created":true,"job_date":true,"si_cutoff":true,"onboared":true,"last_shipment":true,"last_inquiry":true},"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.393530","column_name":"Tonnage
+  This Week","created_on":"2025-06-12T11:01:24.393529","description":null,"expression":"CASE  \n    WHEN
+  jed >= date_trunc(''week'', current_date)  \n         AND jed < date_trunc(''week'',
+  current_date + interval ''1 week'')  \n    THEN tonnage/1000\n    ELSE 0  \n  END\n","extra":"{}","filterable":true,"groupby":true,"id":4457,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"df45e0b4-2749-4a77-bcb0-f0a15a8061e3","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  This Week","optionName":"metric_mjyx6ekb259_wsy970m38km","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.393499","column_name":"Tonnage
+  Last Week","created_on":"2025-06-12T11:01:24.393495","description":null,"expression":"CASE  \n    WHEN
+  jed >= date_trunc(''week'', current_date) - interval ''1 week''  \n    AND jed <
+  date_trunc(''week'', current_date)  \n    THEN tonnage/1000\n    ELSE 0  \nEND  \n","extra":"{}","filterable":true,"groupby":true,"id":4456,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"bb9b7a55-e216-40f7-8679-7b34743b2e17","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  Prev Week","optionName":"metric_uam9ag9zs4_s3z6a9b95g","sqlExpression":null},"Weekly
+  Avg Tons",{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394316","column_name":"Tonnage
+  MTD","created_on":"2025-06-12T11:01:24.394314","description":null,"expression":"CASE
+  WHEN jed >= date_trunc(''month'', current_date) \n              AND jed < current_date
+  \n              AND freight = ''air'' \n         THEN tonnage/1000 \n         ELSE
+  0 \n    END","extra":"{}","filterable":true,"groupby":true,"id":3281,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"9ce8c2ce-fd40-4094-8674-8281fb6a5b31","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  MTD","optionName":"metric_xtp85mq7j3l_kikac17kx4k","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394328","column_name":"Tonnage
+  MTD - Prior","created_on":"2025-06-12T11:01:24.394327","description":null,"expression":"CASE
+  WHEN jed >= date_trunc(''month'', current_date) - interval ''1 year''\n              AND
+  jed < date_trunc(''month'', current_date) - interval ''1 year'' + (current_date
+  - date_trunc(''month'', current_date)) \n              AND freight = ''air'' \n         THEN
+  tonnage/1000 \n         ELSE 0 \n    END","extra":"{}","filterable":true,"groupby":true,"id":3280,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"75cc0a46-f4e8-43cc-8540-c227585d421f","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  MTD Prev Year","optionName":"metric_5ckisgkxq5m_yt9msjf9d8c","sqlExpression":null},"Monthly
+  Avg Tons",{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394414","column_name":"Tonnage
+  YTD - Current","created_on":"2025-06-12T11:01:24.394413","description":null,"expression":"CASE
+  \n    WHEN jed >= date_trunc(''year'', current_date) \n         AND jed < current_date\n         AND
+  freight = ''air''\n    THEN tonnage/1000\n    ELSE 0 \nEND\n","extra":"{}","filterable":true,"groupby":true,"id":3250,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"032230dc-8682-44d7-8b3e-779feb051d41","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  YTD","optionName":"metric_19p965huoxw_ebrc0si6rfe","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2025-06-12T11:01:24.394426","column_name":"Tonnage
+  YTD - Previous","created_on":"2025-06-12T11:01:24.394425","description":null,"expression":"CASE
+  \n    WHEN jed >= date_trunc(''year'', current_date) - interval ''1 year''\n         AND
+  jed < (current_date - interval ''1 year'')\n         AND freight = ''air''\n    THEN
+  tonnage/1000\n    ELSE 0 \nEND\n","extra":"{}","filterable":true,"groupby":true,"id":3249,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"a8c19b3e-af44-42c6-a798-8cc0a02d9ba4","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Tons
+  YTD Previous","optionName":"metric_mw3rtijfs6d_pxha5pebcne","sqlExpression":null}],"metricsLayout":"COLUMNS","adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_kvj3w68ylb_l77gmas433e","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"},{"clause":"WHERE","comparator":["air"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_0qib2vac1f8_bpkcvmljsjj","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"freight"}],"row_limit":10000,"order_desc":true,"aggregateFunction":"Sum","expandCollapse":true,"colTotals":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_a_to_z","colOrder":"key_a_to_z","conditional_formatting":[{"colorScheme":"#E8EBFE","column":"Tons
+  This Week","operator":"None"},{"colorScheme":"#E0F0FF","column":"Tons Prev Week","operator":"None"},{"colorScheme":"#FFEF9D","column":"Weekly
+  Avg Tons","operator":"None"},{"colorScheme":"#E6FFFB","column":"Tons MTD","operator":"None"},{"colorScheme":"#87E8DE","column":"Tons
+  MTD Prev Year","operator":"None"},{"colorScheme":"#EAFF8F","column":"Monthly Avg
+  Tons","operator":"None"},{"colorScheme":"#E0F0FF","column":"Tons YTD","operator":"None"},{"colorScheme":"#E8EBFE","column":"Tons
+  YTD Previous","operator":"None"}],"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 3881cd5b-7677-4bfc-8337-625d0563cefb
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17
