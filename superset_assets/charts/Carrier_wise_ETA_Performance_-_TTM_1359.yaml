@@ -11,53 +11,53 @@ params:
   x_axis_sort_series: name
   x_axis_sort_series_ascending: true
   metrics:
-  - count
+    - count
   groupby:
-  - eta_status
+    - eta_status
   adhoc_filters:
-  - clause: WHERE
-    comparator: No filter
-    datasourceWarning: false
-    expressionType: SIMPLE
-    filterOptionName: filter_f4m77etmq1j_8q6ss60ae5p
-    isExtra: false
-    isNew: false
-    operator: TEMPORAL_RANGE
-    sqlExpression: null
-    subject: container_created_at
-  - clause: WHERE
-    comparator: null
-    datasourceWarning: false
-    expressionType: SQL
-    filterOptionName: filter_2qis3u9y8ew_5h6zmb7lqan
-    isExtra: false
-    isNew: false
-    operator: null
-    sqlExpression: eta_status is not NULL
-    subject: null
-  - clause: WHERE
-    comparator: Last year
-    datasourceWarning: false
-    expressionType: SIMPLE
-    filterOptionName: filter_4fw1hm1slx4_09ofo32pd2jt
-    isExtra: false
-    isNew: false
-    operator: TEMPORAL_RANGE
-    operatorId: TEMPORAL_RANGE
-    sqlExpression: null
-    subject: jed
-  - clause: WHERE
-    comparator:
-    - export
-    datasourceWarning: false
-    expressionType: SIMPLE
-    filterOptionName: filter_wver50uve5c_59hya0gc6b6
-    isExtra: false
-    isNew: false
-    operator: IN
-    operatorId: IN
-    sqlExpression: null
-    subject: trade_type
+    - clause: WHERE
+      comparator: No filter
+      datasourceWarning: false
+      expressionType: SIMPLE
+      filterOptionName: filter_f4m77etmq1j_8q6ss60ae5p
+      isExtra: fals
+      isNew: false
+      operator: TEMPORAL_RANGE
+      sqlExpression: null
+      subject: container_created_at
+    - clause: WHERE
+      comparator: null
+      datasourceWarning: false
+      expressionType: SQL
+      filterOptionName: filter_2qis3u9y8ew_5h6zmb7lqan
+      isExtra: false
+      isNew: false
+      operator: null
+      sqlExpression: eta_status is not NULL
+      subject: null
+    - clause: WHERE
+      comparator: Last year
+      datasourceWarning: false
+      expressionType: SIMPLE
+      filterOptionName: filter_4fw1hm1slx4_09ofo32pd2jt
+      isExtra: false
+      isNew: false
+      operator: TEMPORAL_RANGE
+      operatorId: TEMPORAL_RANGE
+      sqlExpression: null
+      subject: jed
+    - clause: WHERE
+      comparator:
+        - export
+      datasourceWarning: false
+      expressionType: SIMPLE
+      filterOptionName: filter_wver50uve5c_59hya0gc6b6
+      isExtra: false
+      isNew: false
+      operator: IN
+      operatorId: IN
+      sqlExpression: null
+      subject: trade_type
   row_limit: 10
   truncate_metric: true
   show_empty_columns: true
@@ -77,14 +77,19 @@ params:
   y_axis_format: SMART_NUMBER
   truncateXAxis: true
   y_axis_bounds:
-  - null
-  - null
+    - null
+    - null
   rich_tooltip: true
   tooltipTimeFormat: smart_date
   extra_form_data: {}
   dashboards:
-  - 6
-query_context: null
+    - 6
+query_context:
+  '{"datasource":{"id":100,"type":"table"},"force":false,"queries":[{"filters":[{"col":"container_created_at","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"jed","op":"TEMPORAL_RANGE","val":"Last year"},{"col":"trade_type","op":"IN","val":["export"]}],"extras":{"having":"","where":"(eta_status
+  is not NULL)"},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"carrier","label":"carrier","expressionType":"SQL"},"eta_status"],"metrics":["count"],"orderby":[["count",false]],"annotation_layers":[],"row_limit":10,"series_columns":["eta_status"],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["carrier"],"columns":["eta_status"],"aggregates":{"count":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"count":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_f4m77etmq1j_8q6ss60ae5p","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"container_created_at"},{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_2qis3u9y8ew_5h6zmb7lqan","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"eta_status
+  is not NULL","subject":null},{"clause":"WHERE","comparator":"Last year","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_4fw1hm1slx4_09ofo32pd2jt","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"},{"clause":"WHERE","comparator":["export"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_wver50uve5c_59hya0gc6b6","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"trade_type"}],"annotation_layers":[],"color_scheme":"supersetColors","dashboards":[6],"datasource":"100__table","extra_form_data":{},"groupby":["eta_status"],"legendOrientation":"top","legendType":"scroll","metrics":["count"],"only_total":true,"orientation":"vertical","rich_tooltip":true,"row_limit":10,"show_empty_columns":true,"show_legend":true,"slice_id":1359,"sort_series_type":"max","stack":"Stack","tooltipTimeFormat":"smart_date","truncateXAxis":true,"truncate_metric":true,"viz_type":"echarts_timeseries_bar","x_axis":"carrier","x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"x_axis_time_format":"smart_date","x_axis_title_margin":15,"y_axis_bounds":[null,null],"y_axis_format":"SMART_NUMBER","y_axis_title_margin":15,"y_axis_title_position":"Left","force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
 cache_timeout: null
 uuid: 38efbf4e-c63c-4aba-8566-03617e00aad8
 version: 1.0.0

@@ -52,8 +52,8 @@ headers = {
     "Origin": BASE_URL,
 }
 
-print(f"🚀 Exporting dashboards: {dashboard_ids}")
 print(f"📦 Export URL: {EXPORT_URL}")
+print(f"🚀 Exporting dashboards: {dashboard_ids}")
 export_resp = session.get(EXPORT_URL, headers=headers, params={"q": q_param})
 export_resp.raise_for_status()
 
@@ -87,7 +87,7 @@ for root, dirs, files in os.walk(root_data_folder):
         dest_file = os.path.join(dest_dir, file)
 
         shutil.copy2(src_file, dest_file)
-        print(f"✅ Copied: {src_file} → {dest_file}")
+        # print(f"✅ Copied: {src_file} → {dest_file}")
 
 # --- Cleanup temp folder ---
 shutil.rmtree(TEMP_EXTRACT_PATH)
