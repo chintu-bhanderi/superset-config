@@ -1,0 +1,101 @@
+slice_name: Sales Person Wise Monthly Volume - OE
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 70__table
+  viz_type: pivot_table_v2
+  groupbyColumns:
+  - JED Month (Numeric)
+  groupbyRows:
+  - sales_person
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    jed: true
+    created: true
+    job_date: true
+    si_cutoff: true
+    onboared: true
+    last_shipment: true
+    last_inquiry: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: teu_count
+      description: null
+      expression: ''
+      filterable: true
+      groupby: true
+      id: 3077
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: TEUs
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: TEUs
+    optionName: metric_9fp9goxtva5_lbarvhu1xi
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_kvj3w68ylb_l77gmas433e
+  - expressionType: SIMPLE
+    subject: trade
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_0stw08kynstl_115m9ose376e
+  - expressionType: SIMPLE
+    subject: freight
+    operator: IN
+    operatorId: IN
+    comparator:
+    - ocean
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_ff8joyg0n5w_mrqne9lukb
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - column: TEUs
+    colorScheme: '#E8EBFE'
+    operator: None
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 28354828-76db-485e-b440-fede2c9fa4f6
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

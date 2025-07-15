@@ -1,0 +1,952 @@
+table_name: MIS - Container Wise Dataset
+main_dttm_col: job_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: null
+sql: "WITH weekly_teus AS (\n    SELECT \n        EXTRACT(YEAR FROM s.job_execution_date)\
+  \ AS year,\n        EXTRACT(WEEK FROM s.job_execution_date) AS week_number,\n  \
+  \      SUM(\n            CASE \n                WHEN sc.container_type LIKE '20%'\
+  \ THEN 1\n                WHEN sc.container_type LIKE '40%' THEN 2\n           \
+  \     ELSE 0 \n            END\n        ) AS total_teus\n    FROM shipment_containers\
+  \ sc\n    JOIN container_cargo_details ccd ON sc.id = ccd.shipment_container_id\
+  \ AND ccd.deleted_at IS NULL\n    JOIN shipments s ON ccd.shipment_id = s.id \n\
+  \        AND s.status = 'shipment_created'\n        AND s.load_type = 'fcl'\n  \
+  \      AND s.shipment_type != 'consol'\n        AND s.deleted_at IS NULL\n     \
+  \   AND s.tenant_id = {{url_param('tenant_id') or 43}}\n    WHERE sc.container_number\
+  \ IS NOT NULL AND sc.deleted_at IS NULL\n    GROUP BY year, week_number\n),\nytd_running_avg\
+  \ AS (\n    SELECT \n        year,\n        week_number,\n        total_teus,\n\
+  \        AVG(total_teus) OVER (\n            PARTITION BY year \n            ORDER\
+  \ BY week_number \n            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n\
+  \        ) AS ytd_running_avg_teus\n    FROM weekly_teus\n)\nSELECT \n    s.job_number,\n\
+  \    s.job_date,\n    s.job_execution_date::DATE AS jed,\n    sp.name AS sales_person,\n\
+  \    com.registered_name AS customer_name,\n    com.company_group AS customer_group,\n\
+  \    shippr.registered_name AS shipper,\n    consg.registered_name AS consignee,\n\
+  \    sc.container_type,\n    sc.id,\n    sc.container_number,\n    1 AS qty,\n \
+  \   CASE\n        WHEN sc.container_type LIKE '20%' THEN 1\n        WHEN sc.container_type\
+  \ LIKE '40%' THEN 2\n        ELSE 0\n    END AS teu,\n    ytd.ytd_running_avg_teus,\n\
+  \    CASE\n        WHEN s.shipment_properties ->> 'is_perishable' = 'true' THEN\
+  \ 'Perishable'\n        WHEN s.shipment_properties ->> 'isTempControlled' = 'true'\
+  \ THEN 'Temp Controlled'\n        ELSE 'General'\n    END AS cargo_type,\n    s.freight_type,\n\
+  \    s.trade_type,\n    s.load_type,\n    br.cost_center_code AS branch,\n    s.business_type,\n\
+  \    s.commodity_description AS commodity,\n    asr.master_shipment_number ->> 'shipment_number'\
+  \ AS mbl_no,\n    asr.master_charge_terms ->> 'freight_terms' AS mbl_terms,\n  \
+  \  asr.house_shipment_number[1] ->> 'shipment_number' AS hbl_no,\n    asr.house_charge_terms\
+  \ ->> 'freight_terms' AS hbl_terms,\n    pol.name AS pol_name,\n    pol.country\
+  \ AS pol_country,\n    pol.country_code AS pol_country_code,\n    s.estimated_time_of_departure\
+  \ AS etd,\n    s.vessel_name AS vessel,\n    s.voyage_number,\n    cr.name AS carrier_name,\n\
+  \    cr.short_code AS carrier_code,\n    cr.standard_alpha_carrier_code AS sacc,\n\
+  \    pod.country AS pod_country,\n    pod.name AS pod_name,\n    pod.country_code\
+  \ AS pod_country_code,\n    s.estimated_time_of_arrival AS eta,\n    pcr.name AS\
+  \ pcr_name,\n    pcd.name AS pcd_name,\n    sub.registered_name AS business_via,\n\
+  \    ot.registered_name AS origin_transporter,\n    orc.registered_name AS origin_cha,\n\
+  \    drc.registered_name AS destination_cha,\n    dt.registered_name AS destination_transporter,\n\
+  \    s.status AS shipment_status,\n    s.accounting_status,\n    sc.cargo_gross_volume\
+  \ AS cbm,\n    usr.first_name AS created_by\nFROM shipment_containers sc\nJOIN container_cargo_details\
+  \ ccd ON sc.id = ccd.shipment_container_id AND ccd.deleted_at IS NULL\nJOIN shipments\
+  \ s ON ccd.shipment_id = s.id \n    AND s.status = 'shipment_created'\n    AND s.load_type\
+  \ = 'fcl'\n    AND s.shipment_type != 'consol'\n    AND s.deleted_at IS NULL\n \
+  \   and s.cancelled_at is null\n    AND s.tenant_id = {{url_param('tenant_id') or\
+  \ 43}}\nLEFT JOIN analytics_shipment_reports asr ON s.id = asr.id\nLEFT JOIN carriers\
+  \ cr ON s.carrier_id = cr.id\nLEFT JOIN locations pcr ON pcr.id = s.place_of_carrier_receipt_id\n\
+  LEFT JOIN locations pol ON pol.id = s.port_of_loading_id\nLEFT JOIN locations pod\
+  \ ON pod.id = s.port_of_discharge_id\nLEFT JOIN locations pcd ON pcd.id = s.place_of_carrier_delivery_id\n\
+  LEFT JOIN companies com ON com.id = s.customer_company_id\nLEFT JOIN sales_people\
+  \ sp ON sp.id = s.sales_agent_id\nLEFT JOIN user_accounts usr ON usr.id = asr.created_by_id\n\
+  LEFT JOIN branch_accounts br ON br.id = s.involved_branch_id\nLEFT JOIN companies\
+  \ shippr ON shippr.id = asr.shipper_id\nLEFT JOIN companies consg ON consg.id =\
+  \ asr.consignee_id\nLEFT JOIN companies sub ON sub.id = asr.subagent_id\nLEFT JOIN\
+  \ companies orc ON orc.id = asr.origin_clearance_agent_id\nLEFT JOIN companies ot\
+  \ ON ot.id = asr.destination_transport_agent_id\nLEFT JOIN companies drc ON drc.id\
+  \ = asr.destination_clearance_agent_id\nLEFT JOIN companies dt ON dt.id = asr.destination_transport_agent_id\n\
+  LEFT JOIN ytd_running_avg ytd ON \n    EXTRACT(YEAR FROM s.job_date) = ytd.year\
+  \ AND \n    EXTRACT(WEEK FROM s.job_date) = ytd.week_number\nWHERE sc.container_number\
+  \ IS NOT NULL AND sc.deleted_at IS NULL\n  AND (\n      CASE \n         WHEN {{url_param('is_collaborator')\
+  \ or false}} \n         THEN {{url_param('user_contact_id') or 1}} = ANY(s.collaborator_ids)\
+  \ \n         ELSE true\n       END\n  )\n  AND br.erp_cost_center_id IN {% if url_param('allowed_cost_centers')\
+  \ %} \n      {{ parse_url_param(url_param('allowed_cost_centers')) }}\n  {% else\
+  \ %}\n      (br.erp_cost_center_id)\n  {% endif %}\n  AND s.business_vertical_id\
+  \ IN \n      {% if url_param('business_verticals') %} \n      {{ parse_url_param(url_param('business_verticals'))\
+  \ }}\n      {% else %}\n      (s.business_vertical_id)\n      {% endif %}\n  AND\
+  \ s.customer_company_id = {%if url_param('company') %}\n      {{ url_param('company')\
+  \ }}\n      {% else %}\n      s.customer_company_id\n      {% endif %}\n  AND 'Shipment::Shipment'\
+  \ IN \n      {% if url_param('allowed_doctypes') %}\n          {{ parse_url_param(url_param('allowed_doctypes'))\
+  \ }}\n      {% else %} \n          ('Shipment::Shipment') \n      {% endif %}\n\
+  ORDER BY ytd.year, ytd.week_number;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 33b6a293-442b-45bf-bbba-8647e65bced8
+metrics:
+- metric_name: YTD Average
+  verbose_name: ''
+  metric_type: null
+  expression: "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)  \n\
+    \         AND jed < date_trunc('week', current_date)  -- Exclude current week\n\
+    \    THEN teu\n    ELSE 0  \n  END\n)  \n/  \nNULLIF(EXTRACT(WEEK FROM current_date)\
+    \ - 1, 0)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Destination Sector
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n    WHEN pod_country IN ('Vietnam', 'Taiwan', 'Thailand', 'Indonesia',\
+    \ 'China', 'Cambodia', 'Brunei') THEN 'Far East - FEA'\n    WHEN pod_country IN\
+    \ ('Sri Lanka') THEN 'Colombo - CBO'\n    WHEN pod_country IN ('United Arab Emirates',\
+    \ 'Turkey', 'Saudi Arabia', 'Qatar', 'Oman', 'Lebanon', 'Kuwait', 'Jordan', 'Israel',\
+    \ 'Egypt', 'Bahrain') THEN 'Middle East - MEA'\n    WHEN pod_country IN ('Iran')\
+    \ THEN 'Iran - IRA'\n    WHEN pod_country IN ('Malaysia', 'India', 'Hong Kong',\
+    \ 'Singapore') THEN 'Asia - ASIA'\n    WHEN pod_country IN ('Seychelles', 'Mauritius',\
+    \ 'Maldives', 'Madagascar', 'Mayotte', 'R\xE9union', 'Comoros') THEN 'Indian Ocean\
+    \ Island - IOI'\n    WHEN pod_country IN ('Tanzania', 'Somalia', 'Kenya') THEN\
+    \ 'East Africa - EAF'\n    WHEN pod_country IN ('Senegal', 'Nigeria', 'Mozambique',\
+    \ 'Morocco', 'Ghana', 'Gambia', 'Gabon', 'Cameroon', 'C\xF4te d Ivoire') THEN\
+    \ 'West Africa - WAF'\n    WHEN pod_country IN ('South Africa') THEN 'South Africa\
+    \ - SAF'\n    WHEN pod_country IN ('Algeria', 'Angola', 'Tunisia', 'Libya', 'Sudan',\
+    \ 'Sierra Leone', 'Niger', 'Namibia', 'Mali', 'Malawi') THEN 'North Africa - NAF'\n\
+    \    WHEN pod_country IN ('Spain', 'Italy', 'Greece', 'France', 'Portugal', 'Turkey',\
+    \ 'Cyprus') THEN 'Mediterranean - MED'\n    WHEN pod_country IN ('Sweden', 'Romania',\
+    \ 'Poland', 'Netherlands', 'Norway', 'Switzerland', 'Ukraine', 'United Kingdom',\
+    \ 'Germany', 'Denmark', 'Belgium') THEN 'Europe'\n    WHEN pod_country IN ('Brazil',\
+    \ 'Argentina', 'Chile', 'Peru', 'Colombia', 'Venezuela', 'Ecuador', 'Uruguay',\
+    \ 'Paraguay', 'Bolivia', 'Suriname', 'Guyana', 'French Guiana') THEN 'South America\
+    \ West Coast - SAMWC'\n    WHEN pod_country IN ('Mexico', 'USA') THEN 'USA West\
+    \ Coast - USWC'\n    WHEN pod_country IN ('Canada') THEN 'Canada'\n    WHEN pod_country\
+    \ IN ('Australia', 'New Zealand', 'Papua New Guinea') THEN 'Australia, New Zealand,\
+    \ Papua New Guinea - AUS'\n    WHEN pod_country IN ('Russia') THEN 'Russia - RUS'\n\
+    \    ELSE NULL\nEND\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Container Code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'CASE
+
+    WHEN container_type = ''40 Reefer High Cube'' THEN ''40 RF''
+
+    WHEN container_type = ''40 One Door Open'' THEN ''40 ODO''
+
+    WHEN container_type = ''20 Standard Dry'' THEN ''20 STD''
+
+    WHEN container_type = ''40 High Cube'' THEN ''40 HC''
+
+    WHEN container_type = ''20 One Door Open'' THEN ''20 ODO''
+
+    WHEN container_type = ''40 Standard Dry'' THEN ''40 STD''
+
+    WHEN container_type = ''20 Reefer'' THEN ''20 RF''
+
+    WHEN container_type = ''40 Hard Top'' THEN ''40 HT''
+
+    WHEN container_type = ''40 Hard Cube Open Top'' THEN ''40 HCOT''
+
+    ELSE ''Null''
+
+    END
+
+    '
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: TEUs Last Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
+    \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN teu\n\
+    \    ELSE 0  \nEND  \n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Week with year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "'Week-' || EXTRACT(WEEK FROM jed) || ' ' || EXTRACT(YEAR FROM jed)\
+    \ || \n' (' || \nTO_CHAR(DATE_TRUNC('week', jed), 'DDth Mon') || ' - ' || \nTO_CHAR(DATE_TRUNC('week',\
+    \ jed) + INTERVAL '6 days', 'DDth Mon') || \n')'\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: TEUs WTD
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n    AND\
+    \ jed <= current_date  \n    THEN teu\n    ELSE 0  \nEND  \n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Dry / Reefer
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN container_type='40 Reefer High Cube' OR container_type='20
+    Reefer' THEN 'Reefer' ELSE 'Dry' END
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Dry TEUs
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN container_type='40 Reefer High Cube' OR container_type='20
+    Reefer' THEN 0 ELSE teu END
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Reefer TEUs
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN container_type='40 Reefer High Cube' OR container_type='20
+    Reefer' THEN teu ELSE 0 END
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Month
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'LPAD(EXTRACT(MONTH FROM jed)::TEXT, 2, ''0'') || '' - '' || TO_CHAR(jed,
+    ''Mon'')
+
+
+
+    '
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CONCAT('Week ', TO_CHAR(jed, 'IW'))
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: TO_CHAR(date_trunc('year', jed), 'YYYY')
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: ytd_running_avg_teus
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: cbm
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: eta
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: etd
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: job_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: jed
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: teu
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: qty
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: accounting_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: destination_cha
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: carrier_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: destination_transporter
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: created_by
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: voyage_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: business_via
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: carrier_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pcd_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: cargo_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pcr_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: origin_cha
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: trade_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: load_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: sales_person
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: origin_transporter
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipment_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: job_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: business_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: hbl_terms
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: mbl_terms
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: hbl_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: mbl_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer_group
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: freight_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: branch
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: sacc
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: commodity
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: consignee
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: vessel
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipper
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d

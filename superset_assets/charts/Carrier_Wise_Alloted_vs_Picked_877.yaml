@@ -1,0 +1,185 @@
+slice_name: Carrier Wise Alloted vs Picked
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 76__table
+  viz_type: table
+  slice_id: 1081
+  query_mode: aggregate
+  groupby:
+  - carrier
+  temporal_columns_lookup:
+    booking_confirmed_date: true
+    booking_placed_date: true
+    booking_shared_with_customer_date: true
+    created_at: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    loaded_on_vessel_date: true
+    valid_till_date: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: ordered
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1286
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: FLOAT
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Alloted
+    optionName: metric_nugkrh5s27k_gfb6lde7k5t
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pickedup
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1289
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Picked
+    optionName: metric_55s21jj2lkk_3csyibccwd6
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pickup_pending
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1290
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Not Picked
+    optionName: metric_ghzwlo0lvyg_jktvbqay8o
+    sqlExpression: null
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: carrier
+    operator: IS NOT NULL
+    operatorId: IS_NOT_NULL
+    comparator: null
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_3m7qc8ezmja_xz0ucm9pca
+  - expressionType: SIMPLE
+    subject: vas_service
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Forwarding
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_1v1sanf2ek_7f8jkja2c45
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_7n71s47kbns_7d68t6r9jha
+  timeseries_limit_metric:
+    aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: ordered
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 4531
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: FLOAT
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: SUM(ordered)
+    optionName: metric_97viepnn1c9_dlykozjceh
+    sqlExpression: null
+  order_by_cols: []
+  row_limit: 10000
+  order_desc: true
+  show_totals: true
+  table_timestamp_format: smart_date
+  page_length: 0
+  show_cell_bars: true
+  align_pn: true
+  color_pn: true
+  allow_rearrange_columns: true
+  conditional_formatting:
+  - colorScheme: '#D6E4FF'
+    column: Alloted
+    operator: None
+  - colorScheme: '#ACE1C4'
+    column: Picked
+    operator: None
+  - colorScheme: '#FDE380'
+    column: Not Picked
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 64
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: dcdb5f30-7184-4eb7-8b7b-0263d2a0bd27
+version: 1.0.0
+dataset_uuid: 409d613f-b962-4e9d-94a6-0b0ec54c3e85
