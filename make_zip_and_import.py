@@ -13,7 +13,7 @@ load_dotenv(".env.local")  # Change to ".env.staging" if needed
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
-ASSETS_BASE_DIR = "superset_assets"  # Expects folders like: superset_assets/Dashboard, superset_assets/Slice, etc.
+ASSETS_BASE_DIR = "superset_assets"
 
 # --- Type to API path mapping ---
 type_url_map = {
