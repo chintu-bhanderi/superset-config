@@ -50,10 +50,7 @@ params:
   dashboards:
   - 57
   annotation_layers: []
-query_context: '{"datasource":{"id":75,"type":"table"},"force":false,"queries":[{"filters":[{"col":"allocated_quantity","op":">","val":0},{"col":"etd","op":"TEMPORAL_RANGE","val":"No
-  filter"}],"extras":{"having":"","where":"(job_number is NULL)"},"applied_time_extras":{},"columns":[],"metrics":["count"],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"adhoc_filters":[{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_c25ctqpqv_1tdfb2gvylx","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"job_number
-  is NULL","subject":null},{"clause":"WHERE","comparator":0,"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_ezbu3peo2p9_07vtumgbkk7","isExtra":false,"isNew":false,"operator":">","operatorId":"GREATER_THAN","sqlExpression":null,"subject":"allocated_quantity"},{"clause":"WHERE","comparator":"No
-  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_unt6trmacti_0dn37vswvqzw","isExtra":true,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"etd"}],"annotation_layers":[],"conditional_formatting":[],"dashboards":[57],"datasource":"75__table","extra_form_data":{},"header_font_size":0.5,"metric":"count","slice_id":966,"subheader_font_size":0.3,"time_format":"smart_date","viz_type":"big_number_total","y_axis_format":"SMART_NUMBER","force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+query_context: null
 cache_timeout: null
 uuid: 86969706-28ce-483e-8d18-c9bf2fcba4c5
 version: 1.0.0

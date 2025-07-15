@@ -53,6 +53,7 @@ headers = {
 }
 
 print(f"🚀 Exporting dashboards: {dashboard_ids}")
+print(f"📦 Export URL: {EXPORT_URL}")
 export_resp = session.get(EXPORT_URL, headers=headers, params={"q": q_param})
 export_resp.raise_for_status()
 
