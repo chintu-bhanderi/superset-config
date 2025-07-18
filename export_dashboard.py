@@ -11,11 +11,11 @@ USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 EXPORT_IDS = "41,38"
 EXPORT_DIR = "assets"
-EXPORT_FILE = "exported_dashboard.zip"
+EXPORT_FILE = "exported_dashboard1.zip"
 
 LOGIN_URL = f"{BASE_URL}/api/v1/security/login"
 CSRF_URL = f"{BASE_URL}/api/v1/security/csrf_token/"
-EXPORT_URL = f"{BASE_URL}/api/v1/dashboard/export"
+EXPORT_URL = f"{BASE_URL}/api/v1/assets/export/"
 
 # --- Authenticate ---
 session = requests.Session()
@@ -51,7 +51,7 @@ headers = {
 }
 
 print(f"🚀 Requesting dashboard export: {dashboard_ids}")
-export_resp = session.get(EXPORT_URL, headers=headers, params={"q": q_param})
+export_resp = session.get(EXPORT_URL, headers=headers)
 
 # --- Save File ---
 if export_resp.status_code == 200:
