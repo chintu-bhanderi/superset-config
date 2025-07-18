@@ -1,0 +1,56 @@
+slice_name: Payable Overdue %
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number
+params:
+  datasource: 106__table
+  viz_type: big_number
+  slice_id: 322
+  x_axis: posting_date
+  time_grain_sqla: P1M
+  metric: Overdue %
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_ecc1algt13d_8c5oy3kl1xm
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  - clause: WHERE
+    comparator:
+    - Purchase Invoice
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_803y8edr758_kdizp5ot2j
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: real_voucher_type
+  compare_lag: 1
+  show_trend_line: false
+  start_y_axis_at_zero: true
+  color_picker:
+    a: 1
+    b: 135
+    g: 122
+    r: 0
+  header_font_size: 0.6
+  subheader_font_size: 0.4
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  rolling_type: None
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f5ac3491-3136-4c1b-81b0-a7f601c9a5db
+version: 1.0.0
+dataset_uuid: f5bead0e-a014-48fa-80b2-86e1403f8380

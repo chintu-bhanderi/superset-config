@@ -1,0 +1,38 @@
+slice_name: Net Payable O/S
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number
+params:
+  datasource: 106__table
+  viz_type: big_number
+  x_axis: posting_date
+  time_grain_sqla: P1M
+  metric: Payable Net O/S
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: posting_date
+  compare_lag: 1
+  show_trend_line: false
+  start_y_axis_at_zero: true
+  color_picker:
+    r: 0
+    g: 122
+    b: 135
+    a: 1
+  header_font_size: 0.6
+  subheader_font_size: 0.4
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  rolling_type: cumsum
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: a6e81a9d-a112-4095-8f0e-9318689d462d
+version: 1.0.0
+dataset_uuid: f5bead0e-a014-48fa-80b2-86e1403f8380

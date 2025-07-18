@@ -1,0 +1,13 @@
+database_name: fin_prod
+sqlalchemy_uri: mysql+mysqldb://root:XXXXXXXXXX@mariadb-primary.newmariadb.svc.cluster.local:3306/4cc39d25ace286b6
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_dml: false
+allow_file_upload: false
+extra:
+  allows_virtual_table_explore: true
+uuid: a7a3ee1d-801e-4e1b-bfe2-bff0a2d3b0a1
+version: 1.0.0

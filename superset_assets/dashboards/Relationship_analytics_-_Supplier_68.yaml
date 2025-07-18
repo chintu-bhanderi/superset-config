@@ -1,0 +1,1488 @@
+dashboard_title: Relationship analytics - Supplier
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: c094afaa-cf80-4fb5-a2c9-711a1ff9332d
+position:
+  CHART-8Lktf2YKki:
+    children: []
+    id: CHART-8Lktf2YKki
+    meta:
+      chartId: 1430
+      height: 50
+      sliceName: GP % Trend
+      uuid: 5eb743fd-66e5-4518-a47f-28ceb5ac673d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    - ROW-ZgdiHQVMRg
+    - COLUMN-4swsX4O58E
+    type: CHART
+  CHART-9O0J-yjdaO:
+    children: []
+    id: CHART-9O0J-yjdaO
+    meta:
+      chartId: 1211
+      height: 50
+      sliceName: Top reasons for loss
+      uuid: 9b6de6fa-b895-4a89-bea5-e5af5389021f
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    - COLUMN-2SilapJ42V
+    type: CHART
+  CHART-9RpDKCm9tU:
+    children: []
+    id: CHART-9RpDKCm9tU
+    meta:
+      chartId: 1425
+      height: 13
+      sliceName: Quoted TEUs - Won
+      uuid: 936d774b-669e-4ea8-ab2f-1fca0f08938c
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    - ROW-jRq-cU_XyQ
+    type: CHART
+  CHART-CZbsMc2R6E:
+    children: []
+    id: CHART-CZbsMc2R6E
+    meta:
+      chartId: 1443
+      height: 50
+      sliceName: Payment Trend
+      uuid: e0319a9b-45cb-42c2-857f-fdcabd7725eb
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    - COLUMN-sty96GgiM8
+    type: CHART
+  CHART-E2V5rDsi_Y:
+    children: []
+    id: CHART-E2V5rDsi_Y
+    meta:
+      chartId: 1429
+      height: 50
+      sliceName: Quotes Trend
+      uuid: 1a245f5a-9cb4-4b31-ad8c-7d8d591d1cdd
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    - ROW-ZgdiHQVMRg
+    - COLUMN-kYWP7rIXnL
+    type: CHART
+  CHART-GfW-JpHgAV:
+    children: []
+    id: CHART-GfW-JpHgAV
+    meta:
+      chartId: 1442
+      height: 50
+      sliceName: Payment Performance
+      uuid: f82fe0d6-8aad-4080-9918-1e7f2c2eaaf6
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    - COLUMN-LmKeHbwl6D
+    type: CHART
+  CHART-JkQhxaA8Un:
+    children: []
+    id: CHART-JkQhxaA8Un
+    meta:
+      chartId: 1437
+      height: 13
+      sliceName: Payable within Due
+      uuid: 42308092-5009-4e6f-9d41-dba878ba1c50
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    - ROW-mVI7zMlLRP
+    type: CHART
+  CHART-KQa2NCFoR1:
+    children: []
+    id: CHART-KQa2NCFoR1
+    meta:
+      chartId: 1434
+      height: 50
+      sliceName: Top Won Ports - Import
+      uuid: 502d59e3-11a6-4ce7-a24c-1aab3f315eea
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    - COLUMN-iYbdftwYQ5
+    type: CHART
+  CHART-MGm4PDBHEW:
+    children: []
+    id: CHART-MGm4PDBHEW
+    meta:
+      chartId: 1426
+      height: 13
+      sliceName: Quoted CBM- Won
+      uuid: f6242226-a05b-419e-b5a1-768c1e62845d
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    - ROW-xuNiye7UKC
+    type: CHART
+  CHART-NIo6BghACJ:
+    children: []
+    id: CHART-NIo6BghACJ
+    meta:
+      chartId: 1423
+      height: 13
+      sliceName: Revenue Won
+      uuid: 57016787-8eb3-4901-9654-75ac9405ab5e
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    - ROW-7zN1ld3KJZ
+    type: CHART
+  CHART-QAhy0rLPkB:
+    children: []
+    id: CHART-QAhy0rLPkB
+    meta:
+      chartId: 1424
+      height: 13
+      sliceName: GP %
+      uuid: 3e9cc2c0-54d6-4c5b-8a7c-99b66d38cd3b
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    - ROW-dL6enniv1R
+    type: CHART
+  CHART-QEISchhoL0:
+    children: []
+    id: CHART-QEISchhoL0
+    meta:
+      chartId: 1441
+      height: 13
+      sliceName: Payment Amount
+      uuid: 1f55eade-b323-4ffa-a2e0-69df00847d6d
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    - ROW-Fyp0vIO2LT
+    type: CHART
+  CHART-RgTumPnucv:
+    children: []
+    id: CHART-RgTumPnucv
+    meta:
+      chartId: 1422
+      height: 13
+      sliceName: Total Quotes Lost
+      uuid: 1c82bb35-413f-414a-9f3b-548533334c49
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    - ROW-k0hJXmvgMd
+    type: CHART
+  CHART-TftM_TAGhn:
+    children: []
+    id: CHART-TftM_TAGhn
+    meta:
+      chartId: 1439
+      height: 13
+      sliceName: DPO 30 Days
+      uuid: e24b63b8-d2b0-442b-8b5c-e87e95879858
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    - ROW-b-73UYt4wL
+    type: CHART
+  CHART-VrLYh3MaXt:
+    children: []
+    id: CHART-VrLYh3MaXt
+    meta:
+      chartId: 1432
+      height: 13
+      sliceName: Overdue Payable OS
+      uuid: 4df5e87f-7feb-4b75-a6a9-98aef962a7d0
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    - ROW-KZTLpUpx-Z
+    type: CHART
+  CHART-WB_xVvd1UC:
+    children: []
+    id: CHART-WB_xVvd1UC
+    meta:
+      chartId: 1433
+      height: 57
+      sliceName: Invoice wise Payable O/S
+      uuid: 74aff014-c1a1-4672-b8fb-4859255693bc
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-BYlujxwP-B
+    - ROW-uYJ_NwKs7p
+    type: CHART
+  CHART-Y3w7JM7x8h:
+    children: []
+    id: CHART-Y3w7JM7x8h
+    meta:
+      chartId: 1431
+      height: 13
+      sliceName: Net Payable O/S
+      uuid: a6e81a9d-a112-4095-8f0e-9318689d462d
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    - ROW-hEaD_acuFm
+    type: CHART
+  CHART-YItlyJumrG:
+    children: []
+    id: CHART-YItlyJumrG
+    meta:
+      chartId: 1428
+      height: 50
+      sliceName: Linked Quotes
+      uuid: ebf71293-fb96-40ec-9b20-4facdc69e72d
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    - ROW-CciQVWJD7D
+    type: CHART
+  CHART-ZOFIf-TIzL:
+    children: []
+    id: CHART-ZOFIf-TIzL
+    meta:
+      chartId: 1421
+      height: 12
+      sliceName: Total Quotes Won
+      uuid: bffd8472-c0f3-4ba5-8fd8-f4f217c0db34
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    - ROW-h_bxG6gmV2
+    type: CHART
+  CHART-baiguZXl8t:
+    children: []
+    id: CHART-baiguZXl8t
+    meta:
+      chartId: 1440
+      height: 13
+      sliceName: On Account Amount
+      uuid: 62599f11-af0c-43d1-9a5c-3335b8122c55
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    - ROW-1fu0imlO7G
+    type: CHART
+  CHART-hQ5am43uWO:
+    children: []
+    id: CHART-hQ5am43uWO
+    meta:
+      chartId: 1438
+      height: 13
+      sliceName: Payable Overdue %
+      uuid: f5ac3491-3136-4c1b-81b0-a7f601c9a5db
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    - ROW-cfvyo919UE
+    type: CHART
+  CHART-j6houQhiVm:
+    children: []
+    id: CHART-j6houQhiVm
+    meta:
+      chartId: 1420
+      height: 12
+      sliceName: Total Quotes
+      uuid: 2b89b186-b696-4021-9216-caa1c9e521ae
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    - ROW-9BJboU1faE
+    type: CHART
+  CHART-lRqAMcJB8T:
+    children: []
+    id: CHART-lRqAMcJB8T
+    meta:
+      chartId: 1444
+      height: 50
+      sliceName: DPO Trend
+      uuid: b1ccb87d-88d9-43a4-a84c-b8cf1e4a3e07
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    - COLUMN-peg_Oxs6k9
+    type: CHART
+  CHART-mH4iiT-g09:
+    children: []
+    id: CHART-mH4iiT-g09
+    meta:
+      chartId: 1436
+      height: 50
+      sliceName: Tradelane & Carrier wise supplier performance
+      uuid: 841140f1-3c40-43b9-86bc-455d1ab41368
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW---Pbipd7TW
+    type: CHART
+  CHART-sEPJ-yA8x3:
+    children: []
+    id: CHART-sEPJ-yA8x3
+    meta:
+      chartId: 1435
+      height: 50
+      sliceName: Top Won Carrier - Export
+      uuid: 5f896315-94c9-42b2-aa5b-7727503859b1
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    - COLUMN-OOK5B1-KhT
+    type: CHART
+  CHART-xqwkY3ZvdU:
+    children: []
+    id: CHART-xqwkY3ZvdU
+    meta:
+      chartId: 1427
+      height: 13
+      sliceName: Quoted Tonnage- Won
+      uuid: 0bdb63f3-6dd6-4146-bb6c-5b3db4becc2c
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    - ROW-6phNk5vN1P
+    type: CHART
+  COLUMN-2SilapJ42V:
+    children:
+    - CHART-9O0J-yjdaO
+    id: COLUMN-2SilapJ42V
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    type: COLUMN
+  COLUMN-4swsX4O58E:
+    children:
+    - CHART-8Lktf2YKki
+    id: COLUMN-4swsX4O58E
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    - ROW-ZgdiHQVMRg
+    type: COLUMN
+  COLUMN-4xjSQpYE_w:
+    children:
+    - ROW-hEaD_acuFm
+    - ROW-mVI7zMlLRP
+    - ROW-b-73UYt4wL
+    - ROW-Fyp0vIO2LT
+    id: COLUMN-4xjSQpYE_w
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    type: COLUMN
+  COLUMN-BYlujxwP-B:
+    children:
+    - ROW-uYJ_NwKs7p
+    id: COLUMN-BYlujxwP-B
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    type: COLUMN
+  COLUMN-JRimDLMxpb:
+    children:
+    - ROW-KZTLpUpx-Z
+    - ROW-cfvyo919UE
+    - ROW-1fu0imlO7G
+    id: COLUMN-JRimDLMxpb
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    type: COLUMN
+  COLUMN-LmKeHbwl6D:
+    children:
+    - CHART-GfW-JpHgAV
+    id: COLUMN-LmKeHbwl6D
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    type: COLUMN
+  COLUMN-OOK5B1-KhT:
+    children:
+    - CHART-sEPJ-yA8x3
+    id: COLUMN-OOK5B1-KhT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    type: COLUMN
+  COLUMN-QhUu0H2ESA:
+    children:
+    - ROW-CciQVWJD7D
+    - ROW-ZgdiHQVMRg
+    id: COLUMN-QhUu0H2ESA
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 8
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    type: COLUMN
+  COLUMN-SImL0Bqoxr:
+    children:
+    - ROW-h_bxG6gmV2
+    - ROW-7zN1ld3KJZ
+    - ROW-jRq-cU_XyQ
+    - ROW-6phNk5vN1P
+    id: COLUMN-SImL0Bqoxr
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    type: COLUMN
+  COLUMN-VR59JC8RDN:
+    children:
+    - ROW-9BJboU1faE
+    - ROW-k0hJXmvgMd
+    - ROW-dL6enniv1R
+    - ROW-xuNiye7UKC
+    id: COLUMN-VR59JC8RDN
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 2
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    type: COLUMN
+  COLUMN-iYbdftwYQ5:
+    children:
+    - CHART-KQa2NCFoR1
+    id: COLUMN-iYbdftwYQ5
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-JwUWn0CVjQ
+    type: COLUMN
+  COLUMN-kYWP7rIXnL:
+    children:
+    - CHART-E2V5rDsi_Y
+    id: COLUMN-kYWP7rIXnL
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    - ROW-ZgdiHQVMRg
+    type: COLUMN
+  COLUMN-peg_Oxs6k9:
+    children:
+    - CHART-lRqAMcJB8T
+    id: COLUMN-peg_Oxs6k9
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    type: COLUMN
+  COLUMN-sty96GgiM8:
+    children:
+    - CHART-CZbsMc2R6E
+    id: COLUMN-sty96GgiM8
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Q_F7BhKRbF
+    type: COLUMN
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - TABS-OH5clU9yFU
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER-62vSX4FC8r:
+    children: []
+    id: HEADER-62vSX4FC8r
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      headerSize: MEDIUM_HEADER
+      text: Sales Analytics
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: HEADER
+  HEADER-MmcOSyUrpx:
+    children: []
+    id: HEADER-MmcOSyUrpx
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      headerSize: MEDIUM_HEADER
+      text: Volume and Revenue Analytics
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: HEADER
+  HEADER-kvAatK1sOe:
+    children: []
+    id: HEADER-kvAatK1sOe
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      headerSize: MEDIUM_HEADER
+      text: Accounts Payable Analytics
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: HEADER
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Relationship analytics - Supplier
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW---Pbipd7TW:
+    children:
+    - CHART-mH4iiT-g09
+    id: ROW---Pbipd7TW
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-1fu0imlO7G:
+    children:
+    - CHART-baiguZXl8t
+    id: ROW-1fu0imlO7G
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    type: ROW
+  ROW-6phNk5vN1P:
+    children:
+    - CHART-xqwkY3ZvdU
+    id: ROW-6phNk5vN1P
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    type: ROW
+  ROW-7zN1ld3KJZ:
+    children:
+    - CHART-NIo6BghACJ
+    id: ROW-7zN1ld3KJZ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    type: ROW
+  ROW-9BJboU1faE:
+    children:
+    - CHART-j6houQhiVm
+    id: ROW-9BJboU1faE
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    type: ROW
+  ROW-Bg3BYV6gCF:
+    children:
+    - COLUMN-4xjSQpYE_w
+    - COLUMN-JRimDLMxpb
+    - COLUMN-BYlujxwP-B
+    id: ROW-Bg3BYV6gCF
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-CciQVWJD7D:
+    children:
+    - CHART-YItlyJumrG
+    id: ROW-CciQVWJD7D
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    type: ROW
+  ROW-Fyp0vIO2LT:
+    children:
+    - CHART-QEISchhoL0
+    id: ROW-Fyp0vIO2LT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    type: ROW
+  ROW-JwUWn0CVjQ:
+    children:
+    - COLUMN-iYbdftwYQ5
+    - COLUMN-OOK5B1-KhT
+    - COLUMN-2SilapJ42V
+    id: ROW-JwUWn0CVjQ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-KZTLpUpx-Z:
+    children:
+    - CHART-VrLYh3MaXt
+    id: ROW-KZTLpUpx-Z
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    type: ROW
+  ROW-Q_F7BhKRbF:
+    children:
+    - COLUMN-LmKeHbwl6D
+    - COLUMN-sty96GgiM8
+    - COLUMN-peg_Oxs6k9
+    id: ROW-Q_F7BhKRbF
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-ZgdiHQVMRg:
+    children:
+    - COLUMN-kYWP7rIXnL
+    - COLUMN-4swsX4O58E
+    id: ROW-ZgdiHQVMRg
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-QhUu0H2ESA
+    type: ROW
+  ROW-b-73UYt4wL:
+    children:
+    - CHART-TftM_TAGhn
+    id: ROW-b-73UYt4wL
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    type: ROW
+  ROW-cfvyo919UE:
+    children:
+    - CHART-hQ5am43uWO
+    id: ROW-cfvyo919UE
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-JRimDLMxpb
+    type: ROW
+  ROW-dL6enniv1R:
+    children:
+    - CHART-QAhy0rLPkB
+    id: ROW-dL6enniv1R
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    type: ROW
+  ROW-fBNbThDZz-:
+    children:
+    - COLUMN-VR59JC8RDN
+    - COLUMN-SImL0Bqoxr
+    - COLUMN-QhUu0H2ESA
+    id: ROW-fBNbThDZz-
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-hEaD_acuFm:
+    children:
+    - CHART-Y3w7JM7x8h
+    id: ROW-hEaD_acuFm
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    type: ROW
+  ROW-h_bxG6gmV2:
+    children:
+    - CHART-ZOFIf-TIzL
+    id: ROW-h_bxG6gmV2
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    type: ROW
+  ROW-jRq-cU_XyQ:
+    children:
+    - CHART-9RpDKCm9tU
+    id: ROW-jRq-cU_XyQ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-SImL0Bqoxr
+    type: ROW
+  ROW-k0hJXmvgMd:
+    children:
+    - CHART-RgTumPnucv
+    id: ROW-k0hJXmvgMd
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    type: ROW
+  ROW-kcpkzyg520:
+    children: []
+    id: ROW-kcpkzyg520
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-mVI7zMlLRP:
+    children:
+    - CHART-JkQhxaA8Un
+    id: ROW-mVI7zMlLRP
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-4xjSQpYE_w
+    type: ROW
+  ROW-uYJ_NwKs7p:
+    children:
+    - CHART-WB_xVvd1UC
+    id: ROW-uYJ_NwKs7p
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-Bg3BYV6gCF
+    - COLUMN-BYlujxwP-B
+    type: ROW
+  ROW-xHUdH92PCZ:
+    children: []
+    id: ROW-xHUdH92PCZ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    type: ROW
+  ROW-xuNiye7UKC:
+    children:
+    - CHART-MGm4PDBHEW
+    id: ROW-xuNiye7UKC
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    - TAB-6qttXfrWQP
+    - ROW-fBNbThDZz-
+    - COLUMN-VR59JC8RDN
+    type: ROW
+  TAB-6qttXfrWQP:
+    children:
+    - HEADER-62vSX4FC8r
+    - ROW-fBNbThDZz-
+    - ROW-JwUWn0CVjQ
+    - ROW---Pbipd7TW
+    - HEADER-MmcOSyUrpx
+    - ROW-xHUdH92PCZ
+    - HEADER-kvAatK1sOe
+    - ROW-Bg3BYV6gCF
+    - ROW-Q_F7BhKRbF
+    - ROW-kcpkzyg520
+    id: TAB-6qttXfrWQP
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Supplier Analytics
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-OH5clU9yFU
+    type: TAB
+  TABS-OH5clU9yFU:
+    children:
+    - TAB-6qttXfrWQP
+    id: TABS-OH5clU9yFU
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: TABS
+metadata:
+  chart_configuration:
+    '312':
+      id: 312
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '313':
+      id: 313
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '314':
+      id: 314
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '317':
+      id: 317
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '318':
+      id: 318
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '319':
+      id: 319
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '320':
+      id: 320
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '321':
+      id: 321
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+        - 329
+    '327':
+      id: 327
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 328
+        - 329
+    '328':
+      id: 328
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 329
+    '329':
+      id: 329
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+        - 311
+        - 312
+        - 313
+        - 314
+        - 315
+        - 316
+        - 317
+        - 318
+        - 319
+        - 320
+        - 321
+        - 322
+        - 323
+        - 324
+        - 325
+        - 326
+        - 327
+        - 328
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 304
+    - 305
+    - 306
+    - 307
+    - 308
+    - 309
+    - 310
+    - 311
+    - 312
+    - 313
+    - 314
+    - 315
+    - 316
+    - 317
+    - 318
+    - 319
+    - 320
+    - 321
+    - 322
+    - 323
+    - 324
+    - 325
+    - 326
+    - 327
+    - 328
+    - 329
+  color_scheme: ''
+  refresh_frequency: 0
+  color_scheme_domain: []
+  expanded_slices: {}
+  label_colors: {}
+  shared_label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  native_filter_configuration: []
+version: 1.0.0

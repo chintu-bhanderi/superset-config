@@ -1,0 +1,62 @@
+slice_name: Payment Amount
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number
+params:
+  datasource: 108__table
+  viz_type: big_number
+  x_axis: payment_date
+  time_grain_sqla: P1M
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: payment_amount
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 2043
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Payment Amount
+    optionName: metric_ezrye9f2bth_wa59sf15wr
+  adhoc_filters:
+  - clause: WHERE
+    subject: payment_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  compare_lag: 1
+  show_trend_line: false
+  start_y_axis_at_zero: true
+  color_picker:
+    r: 0
+    g: 122
+    b: 135
+    a: 1
+  header_font_size: 0.4
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  rolling_type: cumsum
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 1f55eade-b323-4ffa-a2e0-69df00847d6d
+version: 1.0.0
+dataset_uuid: e8f64336-0ac8-44fd-8cba-a5d86f83a471

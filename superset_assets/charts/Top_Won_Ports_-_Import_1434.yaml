@@ -1,0 +1,88 @@
+slice_name: Top Won Ports - Import
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 88__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 318
+  x_axis: pol
+  x_axis_sort: count
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - count
+  groupby: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_h45hd6rtgsj_sbwvm70b8c
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: inquiry_created_at
+  - clause: WHERE
+    comparator:
+    - won
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_w6ixg97fyw_07avxyifcpvp
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: quote_status
+  - clause: WHERE
+    comparator:
+    - import
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_zx7u8rk4a8c_27krvaa7dci
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  timeseries_limit_metric: count
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  annotation_layers: []
+  orientation: horizontal
+  x_axis_title: ''
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: supersetColors
+  show_value: false
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelRotation: 0
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 20
+query_context: null
+cache_timeout: null
+uuid: 502d59e3-11a6-4ce7-a24c-1aab3f315eea
+version: 1.0.0
+dataset_uuid: 3f348298-40e0-4d14-99b3-efe47f94b006
