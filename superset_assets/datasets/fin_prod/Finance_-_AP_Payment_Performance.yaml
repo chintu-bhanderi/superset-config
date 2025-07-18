@@ -13,11 +13,9 @@ sql: "select outer_gle.posting_date as payment_date, outer_gle.debit as payment_
   \ outer_gle.against_voucher\n-- left join `tabSales Team` as sales on sales.parent\
   \ = outer_si.name\nleft join {{ url_param('fin_database') or '5aaf8046cbf6fb75'\
   \ }}.`tabSupplier` as s on outer_pi.supplier = s.name\nwhere outer_gle.voucher_type\
-  \ in ('Payment Entry', 'Forex Payment Entry') \nand outer_gle.debit > 0 \nand 'Purchase\
-  \ Invoice' in {% if url_param('allowed_doctypes') %}\n{{ parse_url_param(url_param('allowed_doctypes'))\
-  \ }}\n{% else %} ('Purchase Invoice') {% endif %}\nand\npi.cost_center in{% if url_param('allowed_cost_centers')\
-  \ %} \n{{ parse_url_param(url_param('allowed_cost_centers')) }}\n{% else %}\n(pi.cost_center)\n\
-  {% endif %}"
+  \ in ('Payment Entry', 'Forex Payment Entry') \nand outer_gle.debit > 0 \nand\n\
+  pi.cost_center in{% if url_param('allowed_cost_centers') %} \n{{ parse_url_param(url_param('allowed_cost_centers'))\
+  \ }}\n{% else %}\n(pi.cost_center)\n{% endif %}"
 params: null
 template_params: null
 filter_select_enabled: true
