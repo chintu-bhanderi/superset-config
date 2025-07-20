@@ -4,16 +4,20 @@ import zipfile
 import yaml
 import json
 import requests
+import ast
 from datetime import datetime
 from dotenv import load_dotenv
 
-# --- Load environment ---
-load_dotenv(".env.local")  # Change to ".env.staging" if needed
+# --- Load environment variables ---
+load_dotenv(".env.local")  # Use ".env.staging" or others as needed
 
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 ASSETS_BASE_DIR = "superset_assets"
+
+# --- Replacement map from environment variable ---
+REPLACE_MAP = ast.literal_eval(os.getenv("REPLACE_MAP", "{}"))
 
 # --- Type to API path mapping ---
 type_url_map = {
@@ -22,9 +26,14 @@ type_url_map = {
     "SqlaTable": "dataset",
 }
 
-# --- Superset API endpoints ---
 LOGIN_URL = f"{BASE_URL}/api/v1/security/login"
 CSRF_URL = f"{BASE_URL}/api/v1/security/csrf_token/"
+
+def apply_replacements(content: str, replacements: dict) -> str:
+    """Replace strings in content based on the given map"""
+    for old, new in replacements.items():
+        content = content.replace(old, new)
+    return content
 
 # --- Step 1: Superset login session ---
 print("🔐 Logging in...")
@@ -44,9 +53,9 @@ csrf_resp = session.get(CSRF_URL, headers={"Authorization": f"Bearer {access_tok
 csrf_resp.raise_for_status()
 csrf_token = csrf_resp.json()["result"]
 
-# --- Step 3: Process each type ---
+# --- Step 3: Import assets by type ---
 for DYNAMIC_TYPE, api_segment in type_url_map.items():
-    folder_path = ASSETS_BASE_DIR  # Use the same base folder always
+    folder_path = ASSETS_BASE_DIR
     metadata_path = os.path.join(folder_path, "metadata.yaml")
     IMPORT_URL = f"{BASE_URL}/api/v1/{api_segment}/import/"
 
@@ -54,14 +63,14 @@ for DYNAMIC_TYPE, api_segment in type_url_map.items():
         print(f"⚠️ Skipping {DYNAMIC_TYPE} — metadata.yaml not found in {folder_path}")
         continue
 
-    # Update metadata.yaml content in memory
-    with open(metadata_path, "r") as f:
+    # --- Load and update metadata in memory ---
+    with open(metadata_path, "r", encoding="utf-8") as f:
         metadata = yaml.safe_load(f)
 
     metadata["type"] = DYNAMIC_TYPE
     metadata["timestamp"] = datetime.utcnow().isoformat()
 
-    # Collect updated files into memory
+    # --- Collect updated files in memory ---
     updated_files = {}
     for root, _, files in os.walk(folder_path):
         for file in files:
@@ -70,21 +79,25 @@ for DYNAMIC_TYPE, api_segment in type_url_map.items():
 
             if file == "metadata.yaml":
                 updated_files[arcname] = yaml.dump(metadata)
+            elif file.endswith(".yaml"):
+                with open(file_path, "r", encoding="utf-8") as f:
+                    original_content = f.read()
+                    replaced_content = apply_replacements(original_content, REPLACE_MAP)
+                    updated_files[arcname] = replaced_content
             else:
                 with open(file_path, "rb") as f:
                     updated_files[arcname] = f.read()
 
-    # Create ZIP in memory
+    # --- Create ZIP in memory ---
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for arcname, content in updated_files.items():
             if isinstance(content, str):
                 content = content.encode("utf-8")
             zipf.writestr(arcname, content)
-
     zip_buffer.seek(0)
 
-    # Make the import request
+    # --- Upload to Superset ---
     headers = {
         "Accept": "application/json",
         "Authorization": f"Bearer {access_token}",
