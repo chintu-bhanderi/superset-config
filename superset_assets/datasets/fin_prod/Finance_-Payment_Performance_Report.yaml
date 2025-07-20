@@ -1,0 +1,118 @@
+table_name: Finance -Payment Performance Report
+main_dttm_col: payment_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: 5aaf8046cbf6fb75
+sql: "select outer_gle.posting_date as payment_date, outer_si.name, outer_si.customer,\
+  \ sales.sales_person, outer_si.due_date as si_due_date\nfrom {{ url_param('fin_database')\
+  \ or '5aaf8046cbf6fb75' }}.`tabGL Entry` as outer_gle\ninner join {{ url_param('fin_database')\
+  \ or '5aaf8046cbf6fb75' }}.`tabSales Invoice` as outer_si on outer_si.name = outer_gle.against_voucher\n\
+  left join {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabSales Team`\
+  \ as sales on sales.parent = outer_si.name\nwhere outer_gle.voucher_type in ('Payment\
+  \ Entry', 'Forex Payment Entry') \nand outer_gle.credit > 0 \nand 'Sales Invoice'\
+  \ in {% if url_param('allowed_doctypes') %}\n{{ parse_url_param(url_param('allowed_doctypes'))\
+  \ }}\n{% else %} ('Sales Invoice') {% endif %}\nand\nouter_si.cost_center in{% if\
+  \ url_param('allowed_cost_centers') %} \n{{ parse_url_param(url_param('allowed_cost_centers'))\
+  \ }}\n{% else %}\n(outer_si.cost_center)\n{% endif %}"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: c7afc96a-8d72-4127-93f5-e64f77cf4ab6
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: TIMESTAMPDIFF(DAY, si_due_date, payment_date)
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: si_due_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: payment_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: sales_person
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: 4a43713e-dbb4-4dd9-b11b-98788d60174f

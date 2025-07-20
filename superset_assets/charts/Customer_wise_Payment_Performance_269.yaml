@@ -1,0 +1,82 @@
+slice_name: Customer wise Payment Performance
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 50__table
+  viz_type: table
+  slice_id: 269
+  query_mode: aggregate
+  groupby:
+  - customer
+  temporal_columns_lookup:
+    payment_date: true
+    si_due_date: true
+  metrics:
+  - aggregate: AVG
+    column:
+      advanced_data_type: null
+      changed_on: '2024-11-11T06:06:12.138054'
+      column_name: Difference
+      created_on: '2024-11-11T06:06:12.138049'
+      description: null
+      expression: TIMESTAMPDIFF(DAY, si_due_date, payment_date)
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 1964
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: ff9dc05e-9000-44c6-a8bf-bbe1cc5830e0
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Average Payment performance
+    optionName: metric_a73xwqna2k5_hmp333esznb
+    sqlExpression: null
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: payment_date
+  order_by_cols: []
+  row_limit: 500
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting:
+  - colorScheme: '#ACE1C4'
+    column: Average Payment performance
+    operator: <
+    targetValue: 0
+  - colorScheme: '#EFA1AA'
+    column: Average Payment performance
+    operator: '>'
+    targetValue: 0
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":50,"type":"table"},"force":false,"queries":[{"filters":[{"col":"payment_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["customer"],"metrics":[{"aggregate":"AVG","column":{"advanced_data_type":null,"changed_on":"2024-11-11T06:06:12.138054","column_name":"Difference","created_on":"2024-11-11T06:06:12.138049","description":null,"expression":"TIMESTAMPDIFF(DAY,
+  si_due_date, payment_date)","extra":"{}","filterable":true,"groupby":true,"id":1964,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"ff9dc05e-9000-44c6-a8bf-bbe1cc5830e0","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Average
+  Payment performance","optionName":"metric_a73xwqna2k5_hmp333esznb","sqlExpression":null}],"orderby":[[{"aggregate":"AVG","column":{"advanced_data_type":null,"changed_on":"2024-11-11T06:06:12.138054","column_name":"Difference","created_on":"2024-11-11T06:06:12.138049","description":null,"expression":"TIMESTAMPDIFF(DAY,
+  si_due_date, payment_date)","extra":"{}","filterable":true,"groupby":true,"id":1964,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"ff9dc05e-9000-44c6-a8bf-bbe1cc5830e0","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Average
+  Payment performance","optionName":"metric_a73xwqna2k5_hmp333esznb","sqlExpression":null},false]],"annotation_layers":[],"row_limit":500,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"50__table","viz_type":"table","slice_id":269,"query_mode":"aggregate","groupby":["customer"],"temporal_columns_lookup":{"payment_date":true,"si_due_date":true},"metrics":[{"aggregate":"AVG","column":{"advanced_data_type":null,"changed_on":"2024-11-11T06:06:12.138054","column_name":"Difference","created_on":"2024-11-11T06:06:12.138049","description":null,"expression":"TIMESTAMPDIFF(DAY,
+  si_due_date, payment_date)","extra":"{}","filterable":true,"groupby":true,"id":1964,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"ff9dc05e-9000-44c6-a8bf-bbe1cc5830e0","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Average
+  Payment performance","optionName":"metric_a73xwqna2k5_hmp333esznb","sqlExpression":null}],"all_columns":[],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"payment_date"}],"order_by_cols":[],"row_limit":500,"order_desc":true,"table_timestamp_format":"smart_date","show_cell_bars":true,"color_pn":true,"conditional_formatting":[{"colorScheme":"#ACE1C4","column":"Average
+  Payment performance","operator":"<","targetValue":0},{"colorScheme":"#EFA1AA","column":"Average
+  Payment performance","operator":">","targetValue":0}],"extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: d6318f54-99fb-4ef2-8e9b-f8cc158ec09b
+version: 1.0.0
+dataset_uuid: c7afc96a-8d72-4127-93f5-e64f77cf4ab6

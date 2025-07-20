@@ -1,0 +1,72 @@
+slice_name: Customers with Highest Overdue
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 203
+  x_axis:
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  time_grain_sqla: P1M
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - O/S Overdue
+  groupby: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: Last year
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_g6iulsgtkdu_r45bcirmgh
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  timeseries_limit_metric: O/S Overdue
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: d3Category20c
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  logAxis: true
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"Last
+  year"}],"extras":{"time_grain_sqla":"P1M","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1M","columnType":"BASE_AXIS","expressionType":"SQL","label":"Customer","sqlExpression":"customer"}],"metrics":["O/S
+  Overdue"],"orderby":[["O/S Overdue",false]],"annotation_layers":[],"row_limit":10,"series_columns":[],"series_limit":0,"series_limit_metric":"O/S
+  Overdue","order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["Customer"],"columns":[],"aggregates":{"O/S
+  Overdue":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":203,"x_axis":{"expressionType":"SQL","label":"Customer","sqlExpression":"customer"},"time_grain_sqla":"P1M","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["O/S
+  Overdue"],"groupby":[],"adhoc_filters":[{"clause":"WHERE","comparator":"Last year","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_g6iulsgtkdu_r45bcirmgh","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"posting_date"}],"timeseries_limit_metric":"O/S
+  Overdue","order_desc":true,"row_limit":10,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"d3Category20c","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","logAxis":true,"truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: c241cc64-d1a8-44e8-89c5-3d92b2a749a5
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

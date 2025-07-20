@@ -1,0 +1,77 @@
+slice_name: O/S  OverDue
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 5__table
+  viz_type: big_number_total
+  slice_id: 8
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-11T09:01:09.708065'
+      column_name: os
+      created_on: '2025-06-11T09:01:09.708064'
+      description: null
+      expression: null
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 2218
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      uuid: fd94a6d5-7c13-478f-8a33-a8ec08e3ee75
+      verbose_name: O/S Amount
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(O/S Amount)
+    optionName: metric_kbotvgb2ngp_0hkoxbk4da0c
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: posting_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_o3cwgtxxc4_83rc8axyvfs
+  - expressionType: SIMPLE
+    subject: Overdue
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Overdue
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_gvqlbzwcynt_o277wuyd3nm
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+  - 19
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"Overdue","op":"IN","val":["Overdue"]}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-06-11T09:01:09.708065","column_name":"os","created_on":"2025-06-11T09:01:09.708064","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":2218,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"fd94a6d5-7c13-478f-8a33-a8ec08e3ee75","verbose_name":"O/S
+  Amount"},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(O/S
+  Amount)","optionName":"metric_kbotvgb2ngp_0hkoxbk4da0c"}],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"5__table","viz_type":"big_number_total","slice_id":8,"metric":{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-06-11T09:01:09.708065","column_name":"os","created_on":"2025-06-11T09:01:09.708064","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":2218,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"fd94a6d5-7c13-478f-8a33-a8ec08e3ee75","verbose_name":"O/S
+  Amount"},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(O/S
+  Amount)","optionName":"metric_kbotvgb2ngp_0hkoxbk4da0c"},"adhoc_filters":[{"expressionType":"SIMPLE","subject":"posting_date","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_o3cwgtxxc4_83rc8axyvfs"},{"expressionType":"SIMPLE","subject":"Overdue","operator":"IN","operatorId":"IN","comparator":["Overdue"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_gvqlbzwcynt_o277wuyd3nm"}],"header_font_size":0.5,"subheader_font_size":0.3,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","extra_form_data":{},"dashboards":[3,19],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 62519c69-9aff-44ee-b98e-b0e2f9a928de
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

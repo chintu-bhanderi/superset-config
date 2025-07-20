@@ -1,0 +1,13 @@
+database_name: fin_prod
+sqlalchemy_uri: mysql+mysqldb://analytics-user:XXXXXXXXXX@98.70.73.90:3306/5aaf8046cbf6fb75?ssl=1
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_dml: false
+allow_file_upload: false
+extra:
+  allows_virtual_table_explore: true
+uuid: 4a43713e-dbb4-4dd9-b11b-98788d60174f
+version: 1.0.0

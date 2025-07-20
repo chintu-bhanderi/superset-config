@@ -1,0 +1,45 @@
+slice_name: Overdue breakdown
+description: null
+certified_by: null
+certification_details: null
+viz_type: pie
+params:
+  datasource: 5__table
+  viz_type: pie
+  slice_id: 3
+  groupby:
+  - Overdue
+  metric: Net O/S
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: posting_date
+  row_limit: 100
+  sort_by_metric: true
+  color_scheme: supersetColors
+  show_labels_threshold: 5
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  label_type: key
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  show_labels: true
+  labels_outside: true
+  label_line: true
+  outerRadius: 58
+  donut: true
+  innerRadius: 30
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["Overdue"],"metrics":["Net
+  O/S"],"orderby":[["Net O/S",false]],"annotation_layers":[],"row_limit":100,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"5__table","viz_type":"pie","slice_id":3,"groupby":["Overdue"],"metric":"Net
+  O/S","adhoc_filters":[{"clause":"WHERE","comparator":"No filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"posting_date"}],"row_limit":100,"sort_by_metric":true,"color_scheme":"supersetColors","show_labels_threshold":5,"show_legend":true,"legendType":"scroll","legendOrientation":"top","label_type":"key","number_format":"SMART_NUMBER","date_format":"smart_date","show_labels":true,"labels_outside":true,"label_line":true,"outerRadius":58,"donut":true,"innerRadius":30,"extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 4705cabb-f0a8-4c01-a8e0-24aa99f10c92
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

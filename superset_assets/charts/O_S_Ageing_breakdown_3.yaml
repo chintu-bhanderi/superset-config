@@ -1,0 +1,59 @@
+slice_name: O/S Ageing breakdown
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 3
+  x_axis: Aging Bucket Sort
+  metrics:
+  - Net O/S
+  groupby:
+  - Overdue
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: posting_date
+  row_limit: 100
+  truncate_metric: true
+  show_empty_columns: true
+  annotation_layers: []
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: d3Category20c
+  stack: Stack
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  logAxis: true
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"Aging
+  Bucket Sort","label":"Aging Bucket Sort","expressionType":"SQL"},"Overdue"],"metrics":["Net
+  O/S"],"orderby":[["Net O/S",false]],"annotation_layers":[],"row_limit":100,"series_columns":["Overdue"],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["Aging
+  Bucket Sort"],"columns":["Overdue"],"aggregates":{"Net O/S":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"Net
+  O/S":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":3,"x_axis":"Aging
+  Bucket Sort","metrics":["Net O/S"],"groupby":["Overdue"],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"posting_date"}],"row_limit":100,"truncate_metric":true,"show_empty_columns":true,"annotation_layers":[],"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"d3Category20c","stack":"Stack","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","logAxis":true,"truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: eb6e52a1-7049-4af8-a2e2-d23ee806e967
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

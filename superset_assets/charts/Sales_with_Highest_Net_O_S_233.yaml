@@ -1,0 +1,69 @@
+slice_name: Sales with Highest Net O/S
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 233
+  x_axis: sales
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - Net O/S
+  groupby:
+  - Overdue
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_yqebfbiry0k_hqrsshps1l
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  timeseries_limit_metric: Net O/S
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  annotation_layers: []
+  orientation: vertical
+  y_axis_title: ''
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: max
+  color_scheme: d3Category20c
+  stack: Stack
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  y_axis_format: SMART_NUMBER
+  logAxis: false
+  minorSplitLine: false
+  truncateXAxis: true
+  truncateYAxis: false
+  rich_tooltip: true
+  tooltipSortByMetric: false
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"sales","label":"sales","expressionType":"SQL"},"Overdue"],"metrics":["Net
+  O/S"],"orderby":[["Net O/S",false]],"annotation_layers":[],"row_limit":10,"series_columns":["Overdue"],"series_limit":0,"series_limit_metric":"Net
+  O/S","order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["sales"],"columns":["Overdue"],"aggregates":{"Net
+  O/S":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"Net
+  O/S":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":233,"x_axis":"sales","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["Net
+  O/S"],"groupby":["Overdue"],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_yqebfbiry0k_hqrsshps1l","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"posting_date"}],"timeseries_limit_metric":"Net
+  O/S","order_desc":true,"row_limit":10,"truncate_metric":true,"show_empty_columns":true,"annotation_layers":[],"orientation":"vertical","y_axis_title":"","y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"max","color_scheme":"d3Category20c","stack":"Stack","show_legend":true,"legendType":"scroll","legendOrientation":"top","y_axis_format":"SMART_NUMBER","logAxis":false,"minorSplitLine":false,"truncateXAxis":true,"truncateYAxis":false,"rich_tooltip":true,"tooltipSortByMetric":false,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: ba0e0bfa-8704-4523-a5f8-abe8dda03c08
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

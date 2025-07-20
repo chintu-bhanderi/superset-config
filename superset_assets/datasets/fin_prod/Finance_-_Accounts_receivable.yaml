@@ -1,0 +1,1007 @@
+table_name: Finance - Accounts receivable
+main_dttm_col: posting_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: 5aaf8046cbf6fb75
+sql: "SELECT \n    SUM(gle.debit) AS invoiced_amount, \n    gle.company, \n    SUM(gle.credit)\
+  \ as payment_amount,\n    gle.voucher_type AS group_column_type,\n    SUM(IF(gle.voucher_type\
+  \ = 'Sales Invoice' AND gle.credit > 0, gle.credit, 0)) AS credit_note_amount, \n\
+  \    SUM(IF(gle.voucher_type != 'Sales Invoice' AND gle.against_voucher IS NULL\
+  \ AND gle.credit > 0, gle.credit, 0)) AS unallocated_payment_amount, \n    SUM(IF(gle.voucher_type\
+  \ != 'Sales Invoice' AND gle.against_voucher IS NOT NULL AND gle.credit > 0, gle.credit,\
+  \ 0)) AS allocated_payment_amount,\n    IF(gle.against_voucher IS NULL, gle.voucher_type,\
+  \ gle.against_voucher_type) AS real_voucher_type, \n    IF(gle.against_voucher IS\
+  \ NULL, gle.voucher_no, gle.against_voucher) AS real_voucher_number,\n    gle.party_type,\
+  \ \n    gle.party, \n    gle.posting_date,\n    gle.cost_center, \n    si.due_date\
+  \ as due_date,\n    gle.account_currency AS currency, \n    SUM(gle.debit_in_account_currency)\
+  \ AS invoice_amount_in_account_currency,\n    GROUP_CONCAT(DISTINCT gle.project\
+  \ SEPARATOR ', ') AS project, \n    gle.voucher_type, \n    gle.voucher_no,\n  \
+  \  si.customer as customer,\n    si.currency as voucher_currency,\n    c.customer_group\
+  \ as customer_group,\n    c.credit_limit,\n    st.sales_person as sales,\n    pt.credit_days,\n\
+  \    (SUM(gle.debit) - \n    SUM(IF(gle.voucher_type = 'Sales Invoice' AND gle.credit\
+  \ > 0, gle.credit, 0)) - \n    SUM(IF(gle.voucher_type != 'Sales Invoice' AND gle.against_voucher\
+  \ IS NOT NULL AND gle.credit > 0, gle.credit, 0))) AS os,\n    (SUM(gle.debit) -\
+  \ \n    SUM(IF(gle.voucher_type = 'Sales Invoice' AND gle.credit > 0, gle.credit,\
+  \ 0)) - \n    SUM(IF(gle.voucher_type != 'Sales Invoice' AND gle.against_voucher\
+  \ IS NOT NULL AND gle.credit > 0, gle.credit, 0)))/si.conversion_rate AS os_curr,\n\
+  \    (SUM(gle.debit) - \n    SUM(IF(gle.voucher_type = 'Sales Invoice' AND gle.credit\
+  \ > 0, gle.credit, 0)) - \n    SUM(IF(gle.voucher_type != 'Sales Invoice' AND gle.against_voucher\
+  \ IS NULL AND gle.credit > 0, gle.credit, 0)) - \n    SUM(IF(gle.voucher_type !=\
+  \ 'Sales Invoice' AND gle.against_voucher IS NOT NULL AND gle.credit > 0, gle.credit,\
+  \ 0))) AS net_os,\n    (SUM(gle.debit) - \n    SUM(IF(gle.voucher_type = 'Sales\
+  \ Invoice' AND gle.credit > 0, gle.credit, 0)) - \n    SUM(IF(gle.voucher_type !=\
+  \ 'Sales Invoice' AND gle.against_voucher IS NULL AND gle.credit > 0, gle.credit,\
+  \ 0)) - \n    SUM(IF(gle.voucher_type != 'Sales Invoice' AND gle.against_voucher\
+  \ IS NOT NULL AND gle.credit > 0, gle.credit, 0)))/si.conversion_rate as net_os_curr,\n\
+  \    ac.customer as analytics_customer_name,\n    ac.os_ratio,\n    ac.weighted_dso,\n\
+  \    ac.last_inv,\n    ac.last_inv_date,\n    ac.last_payment,\n    ac.last_payment_date,\n\
+  \    ac.actual_gp,\n    ac.gp_30,\n    ac.gp_60,\n    ac.gp_90,\n    ac.os_0_30,\n\
+  \    ac.os_30_60,\n    ac.os_60_90,  \n    ac.os_90_100000,\n    ac.cost_of_interest,\n\
+  \    ac.avg_payment_performance,\n    ac.total_dispute_invoices,\n    ac.avg_invoice_value,\n\
+  \    CASE \n        WHEN DATEDIFF(CURDATE(), gle.posting_date) BETWEEN 0 AND 30\
+  \ THEN '0-30'\n        WHEN DATEDIFF(CURDATE(), gle.posting_date) BETWEEN 31 AND\
+  \ 60 THEN '31-60'\n        WHEN DATEDIFF(CURDATE(), gle.posting_date) BETWEEN 61\
+  \ AND 90 THEN '61-90'\n        WHEN DATEDIFF(CURDATE(), gle.posting_date) BETWEEN\
+  \ 91 AND 120 THEN '91-120'\n        ELSE '120+'\n    END AS aging_bucket\nFROM \n\
+  {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabGL Entry` gle\nLEFT JOIN\
+  \ {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabSales Invoice` si ON\
+  \ gle.voucher_no = si.name\nLEFT JOIN {{ url_param('fin_database') or '5aaf8046cbf6fb75'\
+  \ }}.`tabCustomer` c ON si.customer = c.name\nLEFT JOIN {{ url_param('fin_database')\
+  \ or '5aaf8046cbf6fb75' }}.`analytics_customer` ac ON ac.customer = c.name\nLEFT\
+  \ JOIN {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabSales Team` st\
+  \ ON si.name = st.parent\nLEFT JOIN {{ url_param('fin_database') or '5aaf8046cbf6fb75'\
+  \ }}.`tabPayment Term` pt on si.payment_terms_template  = pt.name\nWHERE \n    gle.party_type\
+  \ = 'Customer' and gle.posting_date <= CURRENT_DATE\nGROUP BY \n    real_voucher_type,\
+  \ \n    real_voucher_number, \n    gle.party\nHAVING \n    invoiced_amount != credit_note_amount\
+  \ + unallocated_payment_amount + allocated_payment_amount"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 3354e233-093d-4b66-b483-21aeb019e28c
+metrics:
+- metric_name: Net O/S within due
+  verbose_name: ''
+  metric_type: null
+  expression: "SUM(\n    CASE \n        WHEN due_date > CURRENT_DATE \n        THEN\
+    \ (invoiced_amount - credit_note_amount - allocated_payment_amount - unallocated_payment_amount)\n\
+    \        ELSE 0 \n    END\n)"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Overdue % (Curr)
+  verbose_name: ''
+  metric_type: null
+  expression: "(SUM(CASE \n        WHEN due_date <= CURRENT_DATE AND voucher_type='Sales\
+    \ Invoice'\n        THEN os_curr\n        ELSE 0 \n    END) / SUM(os_curr))*100"
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: Overdue %
+  verbose_name: ''
+  metric_type: null
+  expression: "(SUM(CASE \n        WHEN due_date <= CURRENT_DATE AND voucher_type='Sales\
+    \ Invoice'\n        THEN os\n        ELSE 0 \n    END) / SUM(os))*100"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: O/S Overdue (Curr)
+  verbose_name: ''
+  metric_type: null
+  expression: "SUM(\n    CASE \n        WHEN due_date <= CURRENT_DATE and voucher_type='Sales\
+    \ Invoice'\n        then os_curr else 0 end \n)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: O/S Overdue
+  verbose_name: ''
+  metric_type: null
+  expression: "SUM(\n    CASE \n        WHEN due_date <= CURRENT_DATE and voucher_type='Sales\
+    \ Invoice'\n        then os else 0 end \n)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: DSO 30 Days
+  verbose_name: ''
+  metric_type: null
+  expression: '(SUM(CASE WHEN current_date - posting_date <= 30 THEN net_os ELSE 0
+    END) /
+
+    SUM(CASE WHEN current_date - posting_date <= 30 THEN invoiced_amount ELSE 0 END))
+    * 30
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: DSO 90 Days
+  verbose_name: ''
+  metric_type: null
+  expression: '(SUM(CASE WHEN current_date - posting_date <= 90 THEN net_os ELSE 0
+    END) /
+
+    SUM(CASE WHEN current_date - posting_date <= 90 THEN invoiced_amount ELSE 0 END))
+    * 90
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: DSO 365 Days
+  verbose_name: ''
+  metric_type: null
+  expression: '(SUM(CASE WHEN current_date - posting_date <= 365 THEN net_os ELSE
+    0 END) /
+
+    SUM(CASE WHEN current_date - posting_date <= 365 THEN invoiced_amount ELSE 0 END))
+    * 365
+
+    '
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Overdue above 90
+  verbose_name: ''
+  metric_type: null
+  expression: 'SUM(
+
+    CASE WHEN aging_bucket=''90-120'' OR aging_bucket=''120+'' THEN net_os ELSE 0
+
+    END
+
+    )'
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: DSO
+  verbose_name: DSO - 30 Days
+  metric_type: null
+  expression: (SUM(net_os) / SUM(invoiced_amount)) * 30
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Net O/S
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(invoiced_amount-credit_note_amount - allocated_payment_amount-unallocated_payment_amount)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Total O/S
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(invoiced_amount-credit_note_amount - allocated_payment_amount)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Invoiced Amount
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(invoiced_amount)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Posting date
+  verbose_name: ''
+  metric_type: null
+  expression: posting_date
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: count
+  verbose_name: Vouchers
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Collections
+  verbose_name: ''
+  metric_type: null
+  expression: SUM(allocated_payment_amount)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Aging Bucket Sort
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n      WHEN aging_bucket = '0-30' THEN '01-0-30'\n      WHEN aging_bucket\
+    \ = '31-60' THEN '02-31-60'\n      WHEN aging_bucket = '61-90' THEN '03-61-90'\n\
+    \      WHEN aging_bucket = '91-120' THEN '04-91-120'\n      WHEN aging_bucket\
+    \ = '120+' THEN '05-120+'\nEND"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Overdue
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN due_date <= CURRENT_DATE \n        THEN \"Overdue\"\
+    \n        ELSE \"Within Due\"\n    END"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 120+ Net O/S (Curr)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='120+' THEN net_os_curr else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 91-120 Net O/S (Curr)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='91-120' THEN net_os_curr else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 31-60 Net O/S (Curr)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='31-60' THEN net_os_curr else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 61-90 Net O/S (Curr)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='61-90' THEN net_os_curr else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 0-30 Net OS (Curr)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='0-30' THEN net_os_curr else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 120+ Net O/S
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='120+' THEN net_os else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 91-120 Net O/S
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='91-120' THEN net_os else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 31-60 Net O/S
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='31-60' THEN net_os else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 61-90 Net O/S
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='61-90' THEN net_os else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: 0-30 O/S
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN aging_bucket='0-30' THEN net_os else 0 end
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: invoice_amount_in_account_currency
+  verbose_name: Invoice Amount Account Curr
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: party_type
+  verbose_name: GL  Party Type
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: real_voucher_number
+  verbose_name: 'Voucher #'
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: Voucher Number
+  python_date_format: null
+  extra: {}
+- column_name: allocated_payment_amount
+  verbose_name: Allocated Payment Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: credit_note_amount
+  verbose_name: Credit Note Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: unallocated_payment_amount
+  verbose_name: Unallocated Payment Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voucher_type
+  verbose_name: GL Voucher Type
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: real_voucher_type
+  verbose_name: 'Voucher Type '
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: net_os_curr
+  verbose_name: Net Outstanding (Curr)
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_ratio
+  verbose_name: OS Ratio (DSO)
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gp_30
+  verbose_name: GP 30 Days
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gp_60
+  verbose_name: GP 60 Days
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gp_90
+  verbose_name: GP 90 Days
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: avg_payment_performance
+  verbose_name: Avg Payment TAT
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: avg_invoice_value
+  verbose_name: Avg Invoice Value
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: cost_of_interest
+  verbose_name: Cost Of Interest
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: due_date
+  verbose_name: Voucher Due Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: last_inv_date
+  verbose_name: Last Invoice Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: last_payment_date
+  verbose_name: Last Payment Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: total_dispute_invoices
+  verbose_name: Total Disputed Invoices
+  is_dttm: false
+  is_active: true
+  type: LONG
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Month-Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: DATE_FORMAT(posting_date, '%Y-%m')
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: invoiced_amount
+  verbose_name: Invoiced Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: cost_center
+  verbose_name: Cost Center
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: company
+  verbose_name: GL Company
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: customer_group
+  verbose_name: Customer Group
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: posting_date
+  verbose_name: Posting Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: party
+  verbose_name: GL Party
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voucher_no
+  verbose_name: Voucher Number
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: sales
+  verbose_name: Sales Person
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: project
+  verbose_name: GL Shipment
+  is_dttm: false
+  is_active: true
+  type: BLOB
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_curr
+  verbose_name: Outstanding (Curr)
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_90_100000
+  verbose_name: OS 90+
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_30_60
+  verbose_name: OS 30-60
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_0_30
+  verbose_name: OS 0-30
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os_60_90
+  verbose_name: OS 60-90
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: os
+  verbose_name: O/S Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: net_os
+  verbose_name: Net O/S
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: aging_bucket
+  verbose_name: Ageing Bucket
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: payment_amount
+  verbose_name: Payment Amount
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: credit_limit
+  verbose_name: Credit Limit
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: weighted_dso
+  verbose_name: Weighted DSO
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: actual_gp
+  verbose_name: Total GP
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voucher_currency
+  verbose_name: Voucher Currency
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: last_inv
+  verbose_name: Last Invoice
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: last_payment
+  verbose_name: Last Payment
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: credit_days
+  verbose_name: Credit Days
+  is_dttm: false
+  is_active: true
+  type: LONG
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: currency
+  verbose_name: Currency
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: customer
+  verbose_name: Customer
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: group_column_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: analytics_customer_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 4a43713e-dbb4-4dd9-b11b-98788d60174f

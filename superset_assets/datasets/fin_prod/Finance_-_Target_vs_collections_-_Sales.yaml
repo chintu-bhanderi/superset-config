@@ -1,0 +1,216 @@
+table_name: Finance - Target vs collections - Sales
+main_dttm_col: start_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: 5aaf8046cbf6fb75
+sql: "select sum(gle.credit-gle.debit) as collection, gle.voucher_no, gle.voucher_type,gle.against_voucher,\
+  \ gle.party,target.start_date, target.end_date, \ntarget.reference_doctype, target_item.reference_name,target_item.target_amount,\
+  \ target.name, target.period_type\nfrom {{ url_param('fin_database') or '5aaf8046cbf6fb75'\
+  \ }}.`tabTarget` as target \ninner join {{ url_param('fin_database') or '5aaf8046cbf6fb75'\
+  \ }}.`tabTarget Item` as target_item \non target_item.parent = target.name \ninner\
+  \ join {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabSales Team` as\
+  \ st on st.sales_person = target_item.reference_name\ninner join {{ url_param('fin_database')\
+  \ or '5aaf8046cbf6fb75' }}.`tabGL Entry`as gle  on gle.against_voucher = st.parent\n\
+  inner join {{ url_param('fin_database') or '5aaf8046cbf6fb75' }}.`tabAccount` as\
+  \ acc on acc.name = gle.account and acc.account_type = 'Receivable' \nwhere gle.against_voucher\
+  \ is not null and gle.against_voucher_type is not null and gle.party is not null\
+  \ \nand gle.credit - gle.debit > 0 and gle.posting_date >= target.start_date and\
+  \ gle.posting_date <= target.end_date\nand target.reference_doctype = 'Sales Person'\n\
+  and gle.voucher_no in (select voucher_no from `tabGL Entry`\nwhere debit > 0 and\
+  \ gle.posting_date >= target.start_date \nand gle.posting_date <= target.end_date\
+  \ and account in (select name from `tabAccount` where account_type in ('Cash', 'Bank'))\
+  \ and  voucher_type in ('Journal Entry', 'Payment Entry', 'Forex Payment Entry',\
+  \ 'Adjustment Entry'))\ngroup by gle.party, target.name"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: b339d4ea-323e-49e3-9703-55c64489f65d
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Completion %
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ROUND(CASE WHEN target_amount > 0 THEN (collection/target_amount)*100
+    else 0 end,3)
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Shortfall
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: target_amount-collection
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: target_amount
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: collection
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NEWDECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: start_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: end_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: against_voucher
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: reference_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: reference_doctype
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voucher_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voucher_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: period_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: party
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VAR_STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 4a43713e-dbb4-4dd9-b11b-98788d60174f

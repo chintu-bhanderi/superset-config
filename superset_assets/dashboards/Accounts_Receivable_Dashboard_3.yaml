@@ -1,0 +1,1642 @@
+dashboard_title: Accounts Receivable Dashboard
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: 150837aa-cc47-4b5c-bd73-a579e2a66782
+position:
+  CHART--BAJtKTqGq:
+    children: []
+    id: CHART--BAJtKTqGq
+    meta:
+      chartId: 382
+      height: 50
+      sliceName: Branch wise Net O/S
+      uuid: 30208c79-9c49-4b09-8c69-d3b80d58f700
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-TskF7l66Xx
+    type: CHART
+  CHART-1XKK5OpH4p:
+    children: []
+    id: CHART-1XKK5OpH4p
+    meta:
+      chartId: 7
+      height: 15
+      sliceName: O/S Within Due
+      uuid: 0e9504ff-1ad8-4907-9dce-5bf73acef885
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-E3zTE82uwJ
+    type: CHART
+  CHART-1cjcEBo_Q6:
+    children: []
+    id: CHART-1cjcEBo_Q6
+    meta:
+      chartId: 227
+      height: 50
+      sliceName: Target vs Collections - Customers
+      uuid: 9e26261a-2959-4d00-b768-22acb6c23a5d
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-FkVvPa2ze
+    type: CHART
+  CHART-4RFI4j5u1C:
+    children: []
+    id: CHART-4RFI4j5u1C
+    meta:
+      chartId: 157
+      height: 15
+      sliceName: On Account Amount
+      uuid: d24fc657-9ea2-4507-b1de-73f63eef9242
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-E3zTE82uwJ
+    type: CHART
+  CHART-6yAXeV7o2F:
+    children: []
+    id: CHART-6yAXeV7o2F
+    meta:
+      chartId: 3
+      height: 50
+      sliceName: O/S Ageing breakdown
+      uuid: eb6e52a1-7049-4af8-a2e2-d23ee806e967
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-4rm2lamxG
+    type: CHART
+  CHART-9TPtxQAaqB:
+    children: []
+    id: CHART-9TPtxQAaqB
+    meta:
+      chartId: 229
+      height: 50
+      sliceName: Collection Tracker - Customer wise
+      uuid: f75a59ce-e949-4e11-ad5b-9d49934c2286
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-FkVvPa2ze
+    type: CHART
+  CHART-Bx2w5rjPh3:
+    children: []
+    id: CHART-Bx2w5rjPh3
+    meta:
+      chartId: 231
+      height: 50
+      sliceName: Target vs Collections - Sales Person
+      uuid: eacba3b2-d5e3-4d2a-b5b6-e66892dd9c0e
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-dAXd7Be3u
+    type: CHART
+  CHART-D4AtP-0WSp:
+    children: []
+    id: CHART-D4AtP-0WSp
+    meta:
+      chartId: 156
+      height: 15
+      sliceName: Overdue 90+
+      uuid: 610c58e8-51a6-42cf-9681-81bb024a82e7
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-KSpid27n8H
+    type: CHART
+  CHART-FOfpK-zpGm:
+    children: []
+    id: CHART-FOfpK-zpGm
+    meta:
+      chartId: 233
+      height: 50
+      sliceName: Sales with Highest Net O/S
+      uuid: ba0e0bfa-8704-4523-a5f8-abe8dda03c08
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-KqwMkYqEm
+    type: CHART
+  CHART-FSyne6wV6R:
+    children: []
+    id: CHART-FSyne6wV6R
+    meta:
+      chartId: 230
+      height: 50
+      sliceName: Collection Tracker - Sales Wise
+      uuid: 3905528a-61e6-41df-a6b4-3e4b093aff27
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-dAXd7Be3u
+    type: CHART
+  CHART-GXg4dZzVFp:
+    children: []
+    id: CHART-GXg4dZzVFp
+    meta:
+      chartId: 203
+      height: 50
+      sliceName: Customers with Highest Overdue
+      uuid: c241cc64-d1a8-44e8-89c5-3d92b2a749a5
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-bjrUs7PvY
+    type: CHART
+  CHART-Gksx5cX21j:
+    children: []
+    id: CHART-Gksx5cX21j
+    meta:
+      chartId: 13
+      height: 64
+      sliceName: Sales wise O/S
+      uuid: c3a90a77-7f93-4c09-b0dc-f24201fc7386
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-mxYwoalts
+    type: CHART
+  CHART-Gu490eos9b:
+    children: []
+    id: CHART-Gu490eos9b
+    meta:
+      chartId: 155
+      height: 50
+      sliceName: Customers with Highest Net O/S
+      uuid: f1c71ec8-50b5-4aea-9011-1c6a79cf91c5
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-bjrUs7PvY
+    type: CHART
+  CHART-LVQw3HDpqd:
+    children: []
+    id: CHART-LVQw3HDpqd
+    meta:
+      chartId: 154
+      height: 15
+      sliceName: Overdue %
+      uuid: 7792c336-733b-4b91-8404-c2addd21e982
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-KSpid27n8H
+    type: CHART
+  CHART-RSn2NLL98O:
+    children: []
+    id: CHART-RSn2NLL98O
+    meta:
+      chartId: 236
+      height: 53
+      sliceName: Sales wise O/S comparison
+      uuid: 54599d2a-947c-47de-9085-99f1fc7aff29
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-aDkMAJKgP
+    type: CHART
+  CHART-TbETJ61X8d:
+    children: []
+    id: CHART-TbETJ61X8d
+    meta:
+      chartId: 6
+      height: 15
+      sliceName: DSO 30 Days
+      uuid: 3f7e8bbe-0296-4662-8941-f5de9bfdf9b8
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-E3zTE82uwJ
+    type: CHART
+  CHART-TzhUZfZBw0:
+    children: []
+    id: CHART-TzhUZfZBw0
+    meta:
+      chartId: 12
+      height: 15
+      sliceName: Average Credit Days
+      uuid: 0f8daaad-3056-4525-8b11-a93015327eb4
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-E3zTE82uwJ
+    type: CHART
+  CHART-Y4pCrlCJdf:
+    children: []
+    id: CHART-Y4pCrlCJdf
+    meta:
+      chartId: 388
+      height: 50
+      sliceName: Credit Utilisation
+      uuid: 82fab969-6199-4353-9a0b-6cb13831298c
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-YK47IbQ_8
+    type: CHART
+  CHART-c0fRLgf2tI:
+    children: []
+    id: CHART-c0fRLgf2tI
+    meta:
+      chartId: 14
+      height: 50
+      sliceName: Branch wise DSO Trend
+      uuid: ddadf0c8-2de4-45d2-924c-297ff31488e8
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-TskF7l66Xx
+    type: CHART
+  CHART-cJ9AJG8e-R:
+    children: []
+    id: CHART-cJ9AJG8e-R
+    meta:
+      chartId: 232
+      height: 50
+      sliceName: Collections and Credit - TTM - Sales Person
+      uuid: 68aee4ee-4a54-4cfd-a536-9b744d30cf4d
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    - ROW-KqwMkYqEm
+    type: CHART
+  CHART-dSF1RXd-7a:
+    children: []
+    id: CHART-dSF1RXd-7a
+    meta:
+      chartId: 4
+      height: 15
+      sliceName: Total Net O/S
+      uuid: fdb873a8-e21f-4270-bec9-d7d18cf45afe
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-KSpid27n8H
+    type: CHART
+  CHART-eq_A0NvlB3:
+    children: []
+    id: CHART-eq_A0NvlB3
+    meta:
+      chartId: 383
+      height: 60
+      sliceName: Branch wise Net O/S
+      uuid: e97e049b-9cfa-41c2-9599-d044e9ce2b1f
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-CmunJ88S8
+    type: CHART
+  CHART-explore-269-1:
+    children: []
+    id: CHART-explore-269-1
+    meta:
+      chartId: 269
+      height: 50
+      sliceName: Customer wise Payment Performance
+      uuid: d6318f54-99fb-4ef2-8e9b-f8cc158ec09b
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-YK47IbQ_8
+    type: CHART
+  CHART-i2J-F39kd-:
+    children: []
+    id: CHART-i2J-F39kd-
+    meta:
+      chartId: 15
+      height: 50
+      sliceName: O/S and Collections - WoW
+      uuid: d4c0d71f-5c24-4be1-86e5-d7c64d775014
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-4rm2lamxG
+    type: CHART
+  CHART-jJg5rnQo15:
+    children: []
+    id: CHART-jJg5rnQo15
+    meta:
+      chartId: 75
+      height: 50
+      sliceName: Customer wise Revenue and GP Performance
+      uuid: 46051da1-677a-4d99-bdff-b45b6ff2c162
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-YK47IbQ_8
+    type: CHART
+  CHART-lcw4OM8rnJ:
+    children: []
+    id: CHART-lcw4OM8rnJ
+    meta:
+      chartId: 595
+      height: 63
+      sliceName: Invoice collection monthly analysis
+      uuid: b2a0234a-085a-49da-8968-d4b91b8112db
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-eDTIhxceNs
+    type: CHART
+  CHART-mmY3erH2Cu:
+    children: []
+    id: CHART-mmY3erH2Cu
+    meta:
+      chartId: 11
+      height: 63
+      sliceName: Party wise O/S
+      uuid: 78f28bc6-bba3-4121-8985-d76612383aab
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    - ROW-kEYJniS9L
+    type: CHART
+  CHART-tGrqAcNrza:
+    children: []
+    id: CHART-tGrqAcNrza
+    meta:
+      chartId: 381
+      height: 50
+      sliceName: Overdue breakdown
+      uuid: 4705cabb-f0a8-4c01-a8e0-24aa99f10c92
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    - ROW-4rm2lamxG
+    type: CHART
+  CHART-vshwMArIpp:
+    children: []
+    id: CHART-vshwMArIpp
+    meta:
+      chartId: 8
+      height: 15
+      sliceName: O/S  OverDue
+      uuid: 62519c69-9aff-44ee-b98e-b0e2f9a928de
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - ROW-KSpid27n8H
+    type: CHART
+  COLUMN-Qh9Ojq0clj:
+    children:
+    - ROW-KSpid27n8H
+    - ROW-E3zTE82uwJ
+    - TABS-_CacsY4ic9
+    id: COLUMN-Qh9Ojq0clj
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    type: COLUMN
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - ROW-pk-QEPWTuj
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Accounts Receivable Dashboard
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-4rm2lamxG:
+    children:
+    - CHART-6yAXeV7o2F
+    - CHART-tGrqAcNrza
+    - CHART-i2J-F39kd-
+    id: ROW-4rm2lamxG
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    type: ROW
+  ROW-CmunJ88S8:
+    children:
+    - CHART-eq_A0NvlB3
+    id: ROW-CmunJ88S8
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    type: ROW
+  ROW-E3zTE82uwJ:
+    children:
+    - CHART-4RFI4j5u1C
+    - CHART-1XKK5OpH4p
+    - CHART-TzhUZfZBw0
+    - CHART-TbETJ61X8d
+    id: ROW-E3zTE82uwJ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    type: ROW
+  ROW-FkVvPa2ze:
+    children:
+    - CHART-1cjcEBo_Q6
+    - CHART-9TPtxQAaqB
+    id: ROW-FkVvPa2ze
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    type: ROW
+  ROW-KSpid27n8H:
+    children:
+    - CHART-dSF1RXd-7a
+    - CHART-vshwMArIpp
+    - CHART-LVQw3HDpqd
+    - CHART-D4AtP-0WSp
+    id: ROW-KSpid27n8H
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    type: ROW
+  ROW-KqwMkYqEm:
+    children:
+    - CHART-FOfpK-zpGm
+    - CHART-cJ9AJG8e-R
+    id: ROW-KqwMkYqEm
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    type: ROW
+  ROW-TskF7l66Xx:
+    children:
+    - CHART-c0fRLgf2tI
+    - CHART--BAJtKTqGq
+    id: ROW-TskF7l66Xx
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    type: ROW
+  ROW-YK47IbQ_8:
+    children:
+    - CHART-explore-269-1
+    - CHART-jJg5rnQo15
+    - CHART-Y4pCrlCJdf
+    id: ROW-YK47IbQ_8
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    type: ROW
+  ROW-aDkMAJKgP:
+    children:
+    - CHART-RSn2NLL98O
+    id: ROW-aDkMAJKgP
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    type: ROW
+  ROW-bjrUs7PvY:
+    children:
+    - CHART-Gu490eos9b
+    - CHART-GXg4dZzVFp
+    id: ROW-bjrUs7PvY
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    type: ROW
+  ROW-dAXd7Be3u:
+    children:
+    - CHART-FSyne6wV6R
+    - CHART-Bx2w5rjPh3
+    id: ROW-dAXd7Be3u
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    type: ROW
+  ROW-eDTIhxceNs:
+    children:
+    - CHART-lcw4OM8rnJ
+    id: ROW-eDTIhxceNs
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-crAgfKNjKF
+    type: ROW
+  ROW-kEYJniS9L:
+    children:
+    - CHART-mmY3erH2Cu
+    id: ROW-kEYJniS9L
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-ejWDQVBBU
+    type: ROW
+  ROW-mxYwoalts:
+    children:
+    - CHART-Gksx5cX21j
+    id: ROW-mxYwoalts
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    - TAB-VgFB2vcOG
+    type: ROW
+  ROW-pk-QEPWTuj:
+    children:
+    - COLUMN-Qh9Ojq0clj
+    id: ROW-pk-QEPWTuj
+    meta:
+      background: BACKGROUND_WHITE
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  TAB-VgFB2vcOG:
+    children:
+    - ROW-KqwMkYqEm
+    - ROW-mxYwoalts
+    - ROW-aDkMAJKgP
+    - ROW-dAXd7Be3u
+    id: TAB-VgFB2vcOG
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Sales Person Performance
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    type: TAB
+  TAB-crAgfKNjKF:
+    children:
+    - ROW-4rm2lamxG
+    - ROW-TskF7l66Xx
+    - ROW-eDTIhxceNs
+    - ROW-CmunJ88S8
+    id: TAB-crAgfKNjKF
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: AR Health
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    type: TAB
+  TAB-ejWDQVBBU:
+    children:
+    - ROW-bjrUs7PvY
+    - ROW-kEYJniS9L
+    - ROW-YK47IbQ_8
+    - ROW-FkVvPa2ze
+    id: TAB-ejWDQVBBU
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Customer Health
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    - TABS-_CacsY4ic9
+    type: TAB
+  TABS-_CacsY4ic9:
+    children:
+    - TAB-crAgfKNjKF
+    - TAB-ejWDQVBBU
+    - TAB-VgFB2vcOG
+    id: TABS-_CacsY4ic9
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-pk-QEPWTuj
+    - COLUMN-Qh9Ojq0clj
+    type: TABS
+metadata:
+  chart_configuration:
+    '3':
+      id: 3
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '11':
+      id: 11
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '13':
+      id: 13
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '14':
+      id: 14
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '15':
+      id: 15
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '75':
+      id: 75
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '155':
+      id: 155
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '203':
+      id: 203
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '227':
+      id: 227
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '229':
+      id: 229
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '230':
+      id: 230
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '231':
+      id: 231
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '232':
+      id: 232
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '233':
+      id: 233
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '236':
+      id: 236
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '269':
+      id: 269
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 381
+        - 382
+        - 383
+        - 388
+        - 595
+    '381':
+      id: 381
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 382
+        - 383
+        - 388
+        - 595
+    '382':
+      id: 382
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 383
+        - 388
+        - 595
+    '383':
+      id: 383
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 388
+        - 595
+    '388':
+      id: 388
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 595
+    '595':
+      id: 595
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 8
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 75
+        - 154
+        - 155
+        - 156
+        - 157
+        - 203
+        - 227
+        - 229
+        - 230
+        - 231
+        - 232
+        - 233
+        - 236
+        - 269
+        - 381
+        - 382
+        - 383
+        - 388
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 3
+    - 4
+    - 6
+    - 7
+    - 8
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 75
+    - 154
+    - 155
+    - 156
+    - 157
+    - 203
+    - 227
+    - 229
+    - 230
+    - 231
+    - 232
+    - 233
+    - 236
+    - 269
+    - 381
+    - 382
+    - 383
+    - 388
+    - 595
+  color_scheme: d3Category20c
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  shared_label_colors:
+    Within Due: '#9ecae1'
+    Overdue: '#3182bd'
+    Invoiced Amount: '#6baed6'
+    Collections: '#e6550d'
+    OFDEL - Delhi - OFL: '#a1d99b'
+    OFAHM - Ahmedabad - OFL: '#636363'
+    EXTR - MUMBAI - OFL: '#756bb1'
+    KLDEL - K DELHI - OFL: '#bdbdbd'
+    RSPLMUM - Mumbai - OFL: '#e6550d'
+    KLMUM - K MUMBAI - OFL: '#fd8d3c'
+    00101 - Sales Jaipur - OFL: '#fdae6b'
+    ALF - AIRLIFT - OFL: '#fdd0a2'
+    CLP - CARGOMEN - OFL: '#31a354'
+    EWF - Mumbai - OFL: '#74c476'
+    MAG - MAGNUM - OFL: '#a1d99b'
+    SAI - SHIRDI SAI - OFL: '#c7e9c0'
+    TDS-Test - TDS-Test - OFL: '#756bb1'
+    LD - Logistic Division - OFL: '#9e9ac8'
+    OFMUM - MUMBAI - OFL: '#bcbddc'
+    JFLBOM - MUMBAI - OFL: '#dadaeb'
+  color_scheme_domain:
+  - '#3182bd'
+  - '#6baed6'
+  - '#9ecae1'
+  - '#c6dbef'
+  - '#e6550d'
+  - '#fd8d3c'
+  - '#fdae6b'
+  - '#fdd0a2'
+  - '#31a354'
+  - '#74c476'
+  - '#a1d99b'
+  - '#c7e9c0'
+  - '#756bb1'
+  - '#9e9ac8'
+  - '#bcbddc'
+  - '#dadaeb'
+  - '#636363'
+  - '#969696'
+  - '#bdbdbd'
+  - '#d9d9d9'
+  native_filter_configuration:
+  - id: NATIVE_FILTER-ZFZlLe7_N
+    controlValues:
+      enableEmptyFilter: false
+    name: Date Range
+    filterType: filter_time
+    targets:
+    - {}
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded:
+      - 4
+      - 8
+      - 75
+      - 154
+      - 156
+      - 157
+      - 227
+      - 229
+      - 230
+      - 231
+      - 269
+      - 595
+    type: NATIVE_FILTER
+    description: ''
+version: 1.0.0

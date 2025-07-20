@@ -1,0 +1,77 @@
+slice_name: Sales wise O/S comparison
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 5__table
+  viz_type: pivot_table_v2
+  slice_id: 236
+  groupbyColumns:
+  - expressionType: SQL
+    label: Month
+    sqlExpression: MONTH(posting_date)
+  - expressionType: SQL
+    label: Year
+    sqlExpression: YEAR(posting_date)
+  groupbyRows:
+  - expressionType: SQL
+    label: Sales Person
+    sqlExpression: sales
+  time_grain_sqla: P1M
+  temporal_columns_lookup:
+    posting_date: true
+    due_date: true
+  metrics:
+  - Net O/S
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: posting_date
+    operator: TEMPORAL_RANGE
+    comparator: 'Previous year : Next year'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_g6iulsgtkdu_r45bcirmgh
+  row_limit: 10000
+  series_limit_metric:
+    aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: false
+    label: posting_date
+    optionName: metric_dsjpwmiob0j_a2i2k4r0t76
+    sqlExpression: posting_date
+  order_desc: true
+  aggregateFunction: Sum
+  rowTotals: false
+  rowSubTotals: false
+  colTotals: true
+  colSubTotals: false
+  combineMetric: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_z_to_a
+  conditional_formatting:
+  - colorScheme: '#EFA1AA'
+    column: Net O/S
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"Previous
+  year : Next year"}],"extras":{"time_grain_sqla":"P1M","having":"","where":""},"applied_time_extras":{},"columns":[{"expressionType":"SQL","label":"Month","sqlExpression":"MONTH(posting_date)"},{"expressionType":"SQL","label":"Year","sqlExpression":"YEAR(posting_date)"},{"expressionType":"SQL","label":"Sales
+  Person","sqlExpression":"sales"}],"metrics":["Net O/S"],"orderby":[[{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":false,"label":"posting_date","optionName":"metric_dsjpwmiob0j_a2i2k4r0t76","sqlExpression":"posting_date"},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"series_limit_metric":{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":false,"label":"posting_date","optionName":"metric_dsjpwmiob0j_a2i2k4r0t76","sqlExpression":"posting_date"},"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"5__table","viz_type":"pivot_table_v2","slice_id":236,"groupbyColumns":[{"expressionType":"SQL","label":"Month","sqlExpression":"MONTH(posting_date)"},{"expressionType":"SQL","label":"Year","sqlExpression":"YEAR(posting_date)"}],"groupbyRows":[{"expressionType":"SQL","label":"Sales
+  Person","sqlExpression":"sales"}],"time_grain_sqla":"P1M","temporal_columns_lookup":{"posting_date":true,"due_date":true},"metrics":["Net
+  O/S"],"metricsLayout":"COLUMNS","adhoc_filters":[{"expressionType":"SIMPLE","subject":"posting_date","operator":"TEMPORAL_RANGE","comparator":"Previous
+  year : Next year","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_g6iulsgtkdu_r45bcirmgh"}],"row_limit":10000,"series_limit_metric":{"aggregate":null,"column":null,"datasourceWarning":false,"expressionType":"SQL","hasCustomLabel":false,"label":"posting_date","optionName":"metric_dsjpwmiob0j_a2i2k4r0t76","sqlExpression":"posting_date"},"order_desc":true,"aggregateFunction":"Sum","rowTotals":false,"rowSubTotals":false,"colTotals":true,"colSubTotals":false,"combineMetric":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"value_z_to_a","colOrder":"key_z_to_a","conditional_formatting":[{"colorScheme":"#EFA1AA","column":"Net
+  O/S","operator":"None"}],"extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 54599d2a-947c-47de-9085-99f1fc7aff29
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

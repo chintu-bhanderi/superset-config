@@ -12,7 +12,7 @@ load_dotenv(".env.prod")  # or .env.local
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
-EXPORT_IDS = os.getenv("EXPORT_IDS", "74")
+EXPORT_IDS = os.getenv("EXPORT_IDS", "3")
 DEST_FOLDER = "superset_assets"
 
 # --- URLs ---

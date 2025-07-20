@@ -1,0 +1,263 @@
+slice_name: Invoice collection monthly analysis
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 81__table
+  viz_type: pivot_table_v2
+  groupbyColumns: []
+  groupbyRows:
+  - Month-Year
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    posting_date: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:44:05.186873'
+      column_name: base_grand_total
+      created_on: '2025-03-07T12:44:05.186868'
+      description: null
+      expression: null
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3218
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      uuid: 04329d95-b796-4aba-8adb-a860d36d7701
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Invoiced Amount
+    optionName: metric_h6zgedes46m_8ik9fjlgi2v
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:32:15.923204'
+      column_name: < 15 Days
+      created_on: '2025-03-07T12:32:15.923202'
+      description: null
+      expression: CASE WHEN DATEDIFF(CURRENT_DATE, posting_date) < 15 THEN outstanding_amount
+        ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3217
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 8ed55b82-ebb3-4841-92f7-f24c492aa85d
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: < 15 Days
+    optionName: metric_4bghvzgp68v_fv320svgpw
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:32:15.923187'
+      column_name: 15-30 Days
+      created_on: '2025-03-07T12:32:15.923186'
+      description: null
+      expression: "CASE \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 15 AND\
+        \ 30 THEN outstanding_amount\nELSE 0 \nEND "
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3216
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 81af267b-32e4-43de-aa47-d36e9613e2d6
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 15-30 Days
+    optionName: metric_5wsssy9498x_uey54fpbfrl
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:32:15.923169'
+      column_name: 31-60
+      created_on: '2025-03-07T12:32:15.923168'
+      description: null
+      expression: "CASE \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 31 AND\
+        \ 60 THEN outstanding_amount \nELSE 0 \nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3215
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 7712d447-dec4-4e4f-bde3-b98b6dca2004
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 31-60 Days
+    optionName: metric_hppnqplf6no_cgv02gx883
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:32:15.923151'
+      column_name: 61-90 Days
+      created_on: '2025-03-07T12:32:15.923149'
+      description: null
+      expression: "CASE \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 61 AND\
+        \ 90 THEN outstanding_amount\nELSE 0 END"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3214
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 45fecf4d-da2c-42d3-8fd3-acd5ea3e9982
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 61-90 Days
+    optionName: metric_sgfcqw39src_h7qa3s2gkpi
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:44:05.190900'
+      column_name: 90+ Days
+      created_on: '2025-03-07T12:44:05.190899'
+      description: null
+      expression: "CASE \nWHEN DATEDIFF(CURRENT_DATE, posting_date) > 90 THEN outstanding_amount\n\
+        ELSE 0 \nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3213
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 189cb8d7-3823-4d18-908d-0902a1e55476
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 90+ Days
+    optionName: metric_apmkceuhuiq_s2lwa3rm9a8
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-07T12:44:05.188845'
+      column_name: outstanding_amount
+      created_on: '2025-03-07T12:44:05.188844'
+      description: null
+      expression: null
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3208
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      uuid: 78b40a75-85fb-41de-976f-b7c6278491de
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Total O/S
+    optionName: metric_bt0lg2junt_diwrvjk8bo
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: posting_date
+    operator: TEMPORAL_RANGE
+    comparator: Quarter-to-Date
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_t8xo7ceafq_vuoikknuf2
+  row_limit: 1000
+  order_desc: true
+  aggregateFunction: Sum
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":81,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"Quarter-to-Date"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["Month-Year"],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.186873","column_name":"base_grand_total","created_on":"2025-03-07T12:44:05.186868","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":3218,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"04329d95-b796-4aba-8adb-a860d36d7701","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Invoiced
+  Amount","optionName":"metric_h6zgedes46m_8ik9fjlgi2v"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923204","column_name":"<
+  15 Days","created_on":"2025-03-07T12:32:15.923202","description":null,"expression":"CASE
+  WHEN DATEDIFF(CURRENT_DATE, posting_date) < 15 THEN outstanding_amount ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3217,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"8ed55b82-ebb3-4841-92f7-f24c492aa85d","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"<
+  15 Days","optionName":"metric_4bghvzgp68v_fv320svgpw"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923187","column_name":"15-30
+  Days","created_on":"2025-03-07T12:32:15.923186","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 15 AND 30 THEN outstanding_amount\nELSE
+  0 \nEND ","extra":"{}","filterable":true,"groupby":true,"id":3216,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"81af267b-32e4-43de-aa47-d36e9613e2d6","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"15-30
+  Days","optionName":"metric_5wsssy9498x_uey54fpbfrl"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923169","column_name":"31-60","created_on":"2025-03-07T12:32:15.923168","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 31 AND 60 THEN outstanding_amount
+  \nELSE 0 \nEND","extra":"{}","filterable":true,"groupby":true,"id":3215,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"7712d447-dec4-4e4f-bde3-b98b6dca2004","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"31-60
+  Days","optionName":"metric_hppnqplf6no_cgv02gx883"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923151","column_name":"61-90
+  Days","created_on":"2025-03-07T12:32:15.923149","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 61 AND 90 THEN outstanding_amount\nELSE
+  0 END","extra":"{}","filterable":true,"groupby":true,"id":3214,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"45fecf4d-da2c-42d3-8fd3-acd5ea3e9982","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"61-90
+  Days","optionName":"metric_sgfcqw39src_h7qa3s2gkpi"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.190900","column_name":"90+
+  Days","created_on":"2025-03-07T12:44:05.190899","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) > 90 THEN outstanding_amount\nELSE 0
+  \nEND","extra":"{}","filterable":true,"groupby":true,"id":3213,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"189cb8d7-3823-4d18-908d-0902a1e55476","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"90+
+  Days","optionName":"metric_apmkceuhuiq_s2lwa3rm9a8"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.188845","column_name":"outstanding_amount","created_on":"2025-03-07T12:44:05.188844","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":3208,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"78b40a75-85fb-41de-976f-b7c6278491de","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Total
+  O/S","optionName":"metric_bt0lg2junt_diwrvjk8bo"}],"orderby":[[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.186873","column_name":"base_grand_total","created_on":"2025-03-07T12:44:05.186868","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":3218,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"04329d95-b796-4aba-8adb-a860d36d7701","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Invoiced
+  Amount","optionName":"metric_h6zgedes46m_8ik9fjlgi2v"},false]],"annotation_layers":[],"row_limit":1000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"81__table","viz_type":"pivot_table_v2","groupbyColumns":[],"groupbyRows":["Month-Year"],"time_grain_sqla":"P1D","temporal_columns_lookup":{"posting_date":true},"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.186873","column_name":"base_grand_total","created_on":"2025-03-07T12:44:05.186868","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":3218,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"04329d95-b796-4aba-8adb-a860d36d7701","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Invoiced
+  Amount","optionName":"metric_h6zgedes46m_8ik9fjlgi2v"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923204","column_name":"<
+  15 Days","created_on":"2025-03-07T12:32:15.923202","description":null,"expression":"CASE
+  WHEN DATEDIFF(CURRENT_DATE, posting_date) < 15 THEN outstanding_amount ELSE 0 END","extra":"{}","filterable":true,"groupby":true,"id":3217,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"8ed55b82-ebb3-4841-92f7-f24c492aa85d","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"<
+  15 Days","optionName":"metric_4bghvzgp68v_fv320svgpw"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923187","column_name":"15-30
+  Days","created_on":"2025-03-07T12:32:15.923186","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 15 AND 30 THEN outstanding_amount\nELSE
+  0 \nEND ","extra":"{}","filterable":true,"groupby":true,"id":3216,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"81af267b-32e4-43de-aa47-d36e9613e2d6","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"15-30
+  Days","optionName":"metric_5wsssy9498x_uey54fpbfrl"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923169","column_name":"31-60","created_on":"2025-03-07T12:32:15.923168","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 31 AND 60 THEN outstanding_amount
+  \nELSE 0 \nEND","extra":"{}","filterable":true,"groupby":true,"id":3215,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"7712d447-dec4-4e4f-bde3-b98b6dca2004","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"31-60
+  Days","optionName":"metric_hppnqplf6no_cgv02gx883"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:32:15.923151","column_name":"61-90
+  Days","created_on":"2025-03-07T12:32:15.923149","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) BETWEEN 61 AND 90 THEN outstanding_amount\nELSE
+  0 END","extra":"{}","filterable":true,"groupby":true,"id":3214,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"45fecf4d-da2c-42d3-8fd3-acd5ea3e9982","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"61-90
+  Days","optionName":"metric_sgfcqw39src_h7qa3s2gkpi"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.190900","column_name":"90+
+  Days","created_on":"2025-03-07T12:44:05.190899","description":null,"expression":"CASE
+  \nWHEN DATEDIFF(CURRENT_DATE, posting_date) > 90 THEN outstanding_amount\nELSE 0
+  \nEND","extra":"{}","filterable":true,"groupby":true,"id":3213,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"189cb8d7-3823-4d18-908d-0902a1e55476","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"90+
+  Days","optionName":"metric_apmkceuhuiq_s2lwa3rm9a8"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2025-03-07T12:44:05.188845","column_name":"outstanding_amount","created_on":"2025-03-07T12:44:05.188844","description":null,"expression":null,"extra":"{}","filterable":true,"groupby":true,"id":3208,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"78b40a75-85fb-41de-976f-b7c6278491de","verbose_name":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Total
+  O/S","optionName":"metric_bt0lg2junt_diwrvjk8bo"}],"metricsLayout":"COLUMNS","adhoc_filters":[{"expressionType":"SIMPLE","subject":"posting_date","operator":"TEMPORAL_RANGE","comparator":"Quarter-to-Date","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_t8xo7ceafq_vuoikknuf2"}],"row_limit":1000,"order_desc":true,"aggregateFunction":"Sum","valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_z_to_a","colOrder":"key_a_to_z","conditional_formatting":[],"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: b2a0234a-085a-49da-8968-d4b91b8112db
+version: 1.0.0
+dataset_uuid: abb6d727-a375-4f30-b65f-d4ac6e9fbd45

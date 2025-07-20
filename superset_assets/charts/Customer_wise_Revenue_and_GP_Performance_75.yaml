@@ -1,0 +1,211 @@
+slice_name: Customer wise Revenue and GP Performance
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 9__table
+  viz_type: table
+  slice_id: 75
+  query_mode: aggregate
+  groupby:
+  - expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    jed: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: Revenue T3M
+      description: null
+      expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) -\
+        \ interval '3 months'\n             AND jed < date_trunc('month', current_date)\n\
+        \        THEN actual_income\n        ELSE 0\n    END"
+      filterable: true
+      groupby: true
+      id: 695
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Revenue T3M
+    optionName: metric_tqant5umss_7ktgv8bl9ij
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: GP T3M
+      description: GP of Trailing 3 months
+      expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) -\
+        \ interval '3 months'\n             AND jed < date_trunc('month', current_date)\n\
+        \        THEN actual_income - actual_expense\n        ELSE 0\n    END"
+      filterable: true
+      groupby: true
+      id: 692
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: GP T3M
+    optionName: metric_vvvjiy957i_1og1qx79a03
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: Revenue TTM
+      description: null
+      expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) -\
+        \ interval '12 months'\n             AND jed < date_trunc('month', current_date)\n\
+        \        THEN actual_income\n        ELSE 0\n    END"
+      filterable: true
+      groupby: true
+      id: 689
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Revenue TTM
+    optionName: metric_e8m7br2h0pj_fm704lzc1pa
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: GP TTM
+      description: null
+      expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) -\
+        \ interval '12 months'\n             AND jed < date_trunc('month', current_date)\n\
+        \        THEN actual_gp\n        ELSE 0\n    END"
+      filterable: true
+      groupby: true
+      id: 686
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: GP TTM
+    optionName: metric_sbzlo91uykh_jyrbmtoq8s
+    sqlExpression: null
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: jed
+  order_by_cols: []
+  row_limit: 10000
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting:
+  - colorScheme: '#ACE1C4'
+    column: Revenue T3M
+    operator: None
+  - colorScheme: '#ACE1C4'
+    column: Revenue TTM
+    operator: None
+  - colorScheme: '#ACE1C4'
+    column: GP TTM
+    operator: '>'
+    targetValue: 0
+  - colorScheme: '#EFA1AA'
+    column: GP TTM
+    operator: <
+    targetValue: 0
+  - colorScheme: '#EFA1AA'
+    column: GP T3M
+    operator: <
+    targetValue: 0
+  - colorScheme: '#ACE1C4'
+    column: GP T3M
+    operator: '>'
+    targetValue: 0
+  extra_form_data: {}
+  dashboards:
+  - 3
+  comparison_type: values
+query_context: '{"datasource":{"id":9,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":[{"expressionType":"SQL","label":"Customer","sqlExpression":"customer"}],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"Revenue
+  T3M","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''3 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_income\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":695,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Revenue
+  T3M","optionName":"metric_tqant5umss_7ktgv8bl9ij","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"GP
+  T3M","description":"GP of Trailing 3 months","expression":"CASE \n        WHEN jed
+  >= date_trunc(''month'', current_date) - interval ''3 months''\n             AND
+  jed < date_trunc(''month'', current_date)\n        THEN actual_income - actual_expense\n        ELSE
+  0\n    END","filterable":true,"groupby":true,"id":692,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"GP
+  T3M","optionName":"metric_vvvjiy957i_1og1qx79a03","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"Revenue
+  TTM","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''12 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_income\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":689,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Revenue
+  TTM","optionName":"metric_e8m7br2h0pj_fm704lzc1pa","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"GP
+  TTM","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''12 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_gp\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":686,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"GP
+  TTM","optionName":"metric_sbzlo91uykh_jyrbmtoq8s","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"Revenue
+  T3M","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''3 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_income\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":695,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Revenue
+  T3M","optionName":"metric_tqant5umss_7ktgv8bl9ij","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"9__table","viz_type":"table","slice_id":75,"query_mode":"aggregate","groupby":[{"expressionType":"SQL","label":"Customer","sqlExpression":"customer"}],"time_grain_sqla":"P1D","temporal_columns_lookup":{"jed":true},"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"Revenue
+  T3M","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''3 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_income\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":695,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Revenue
+  T3M","optionName":"metric_tqant5umss_7ktgv8bl9ij","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"GP
+  T3M","description":"GP of Trailing 3 months","expression":"CASE \n        WHEN jed
+  >= date_trunc(''month'', current_date) - interval ''3 months''\n             AND
+  jed < date_trunc(''month'', current_date)\n        THEN actual_income - actual_expense\n        ELSE
+  0\n    END","filterable":true,"groupby":true,"id":692,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"GP
+  T3M","optionName":"metric_vvvjiy957i_1og1qx79a03","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"Revenue
+  TTM","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''12 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_income\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":689,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Revenue
+  TTM","optionName":"metric_e8m7br2h0pj_fm704lzc1pa","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"GP
+  TTM","description":null,"expression":"CASE \n        WHEN jed >= date_trunc(''month'',
+  current_date) - interval ''12 months''\n             AND jed < date_trunc(''month'',
+  current_date)\n        THEN actual_gp\n        ELSE 0\n    END","filterable":true,"groupby":true,"id":686,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"GP
+  TTM","optionName":"metric_sbzlo91uykh_jyrbmtoq8s","sqlExpression":null}],"all_columns":[],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"jed"}],"order_by_cols":[],"row_limit":10000,"order_desc":true,"table_timestamp_format":"smart_date","show_cell_bars":true,"color_pn":true,"conditional_formatting":[{"colorScheme":"#ACE1C4","column":"Revenue
+  T3M","operator":"None"},{"colorScheme":"#ACE1C4","column":"Revenue TTM","operator":"None"},{"colorScheme":"#ACE1C4","column":"GP
+  TTM","operator":">","targetValue":0},{"colorScheme":"#EFA1AA","column":"GP TTM","operator":"<","targetValue":0},{"colorScheme":"#EFA1AA","column":"GP
+  T3M","operator":"<","targetValue":0},{"colorScheme":"#ACE1C4","column":"GP T3M","operator":">","targetValue":0}],"extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 46051da1-677a-4d99-bdff-b45b6ff2c162
+version: 1.0.0
+dataset_uuid: ed854b24-dc83-420a-b942-0ac77d1d6be1

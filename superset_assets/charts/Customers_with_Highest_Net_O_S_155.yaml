@@ -1,0 +1,70 @@
+slice_name: Customers with Highest Net O/S
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 15
+  x_axis: customer
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - Net O/S
+  groupby:
+  - Overdue
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: posting_date
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_yqebfbiry0k_hqrsshps1l
+  timeseries_limit_metric: Net O/S
+  order_desc: true
+  row_limit: '5'
+  truncate_metric: true
+  show_empty_columns: true
+  annotation_layers: []
+  orientation: horizontal
+  x_axis_title: ''
+  x_axis_title_margin: 15
+  sort_series_type: max
+  color_scheme: supersetColors
+  stack: Stack
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelRotation: 0
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: false
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"customer","label":"customer","expressionType":"SQL"},"Overdue"],"metrics":["Net
+  O/S"],"orderby":[["Net O/S",false]],"annotation_layers":[],"row_limit":5,"series_columns":["Overdue"],"series_limit":0,"series_limit_metric":"Net
+  O/S","order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["customer"],"columns":["Overdue"],"aggregates":{"Net
+  O/S":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"Net
+  O/S":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":15,"x_axis":"customer","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["Net
+  O/S"],"groupby":["Overdue"],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"posting_date","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_yqebfbiry0k_hqrsshps1l"}],"timeseries_limit_metric":"Net
+  O/S","order_desc":true,"row_limit":"5","truncate_metric":true,"show_empty_columns":true,"annotation_layers":[],"orientation":"horizontal","x_axis_title":"","x_axis_title_margin":15,"sort_series_type":"max","color_scheme":"supersetColors","stack":"Stack","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelRotation":0,"truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipSortByMetric":false,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: f1c71ec8-50b5-4aea-9011-1c6a79cf91c5
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

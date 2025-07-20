@@ -1,0 +1,37 @@
+slice_name: Overdue %
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 5__table
+  viz_type: big_number_total
+  slice_id: 154
+  metric: Overdue %
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_o3cwgtxxc4_83rc8axyvfs
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  header_font_size: 0.6
+  subheader_font_size: 0.4
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+  - 19
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":["Overdue
+  %"],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"5__table","viz_type":"big_number_total","slice_id":154,"metric":"Overdue
+  %","adhoc_filters":[{"clause":"WHERE","comparator":"No filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_o3cwgtxxc4_83rc8axyvfs","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"posting_date"}],"header_font_size":0.6,"subheader_font_size":0.4,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","extra_form_data":{},"dashboards":[3,19],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 7792c336-733b-4b91-8404-c2addd21e982
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

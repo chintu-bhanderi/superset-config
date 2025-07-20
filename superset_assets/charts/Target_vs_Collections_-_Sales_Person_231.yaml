@@ -1,0 +1,115 @@
+slice_name: Target vs Collections - Sales Person
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 37__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 227
+  x_axis: start_date
+  time_grain_sqla: P1W
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-03T12:55:16.541759'
+      column_name: target_amount
+      created_on: '2024-10-03T12:55:16.541758'
+      description: null
+      expression: null
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1240
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      uuid: eb3dd3c1-fb1f-4ef9-9f25-c4b4e63b5937
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Target
+    optionName: metric_lngb2u45aif_amfiev3ij9q
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-03T12:56:20.628043'
+      column_name: Shortfall
+      created_on: '2024-10-03T12:56:20.628039'
+      description: null
+      expression: target_amount-collection
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1242
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: d673bea2-9eba-43d4-a550-3ddff54f561c
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Shortfall
+    optionName: metric_icqaeat8589_ankxza1bga9
+    sqlExpression: null
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: start_date
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: 'DATEADD(DATETIME("now"), -1, month) : DATEADD(DATETIME("now"), 7,
+      day)'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_7rn84syikhf_l128462rwwj
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: supersetColors
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":37,"type":"table"},"force":false,"queries":[{"filters":[{"col":"start_date","op":"TEMPORAL_RANGE","val":"DATEADD(DATETIME(\"now\"),
+  -1, month) : DATEADD(DATETIME(\"now\"), 7, day)"}],"extras":{"time_grain_sqla":"P1W","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1W","columnType":"BASE_AXIS","sqlExpression":"start_date","label":"start_date","expressionType":"SQL"}],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2024-10-03T12:55:16.541759","column_name":"target_amount","created_on":"2024-10-03T12:55:16.541758","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":1240,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"eb3dd3c1-fb1f-4ef9-9f25-c4b4e63b5937","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Target","optionName":"metric_lngb2u45aif_amfiev3ij9q","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2024-10-03T12:56:20.628043","column_name":"Shortfall","created_on":"2024-10-03T12:56:20.628039","description":null,"expression":"target_amount-collection","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":1242,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"d673bea2-9eba-43d4-a550-3ddff54f561c","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shortfall","optionName":"metric_icqaeat8589_ankxza1bga9","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2024-10-03T12:55:16.541759","column_name":"target_amount","created_on":"2024-10-03T12:55:16.541758","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":1240,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"eb3dd3c1-fb1f-4ef9-9f25-c4b4e63b5937","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Target","optionName":"metric_lngb2u45aif_amfiev3ij9q","sqlExpression":null},false]],"annotation_layers":[],"row_limit":10000,"series_columns":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["start_date"],"columns":[],"aggregates":{"Target":{"operator":"mean"},"Shortfall":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"37__table","viz_type":"echarts_timeseries_bar","slice_id":227,"x_axis":"start_date","time_grain_sqla":"P1W","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2024-10-03T12:55:16.541759","column_name":"target_amount","created_on":"2024-10-03T12:55:16.541758","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":1240,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"uuid":"eb3dd3c1-fb1f-4ef9-9f25-c4b4e63b5937","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Target","optionName":"metric_lngb2u45aif_amfiev3ij9q","sqlExpression":null},{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2024-10-03T12:56:20.628043","column_name":"Shortfall","created_on":"2024-10-03T12:56:20.628039","description":null,"expression":"target_amount-collection","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":1242,"is_active":true,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"uuid":"d673bea2-9eba-43d4-a550-3ddff54f561c","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":true,"label":"Shortfall","optionName":"metric_icqaeat8589_ankxza1bga9","sqlExpression":null}],"groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"start_date","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"DATEADD(DATETIME(\"now\"),
+  -1, month) : DATEADD(DATETIME(\"now\"), 7, day)","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_7rn84syikhf_l128462rwwj"}],"order_desc":true,"row_limit":10000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"supersetColors","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: eacba3b2-d5e3-4d2a-b5b6-e66892dd9c0e
+version: 1.0.0
+dataset_uuid: b339d4ea-323e-49e3-9703-55c64489f65d

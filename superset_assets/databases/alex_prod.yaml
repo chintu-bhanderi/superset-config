@@ -1,0 +1,13 @@
+database_name: alex_prod
+sqlalchemy_uri: postgresql+psycopg2://read_user:XXXXXXXXXX@production-replicas.stackgres.svc:5432/alex_production?sslmode=require
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_dml: false
+allow_file_upload: false
+extra:
+  allows_virtual_table_explore: true
+uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d
+version: 1.0.0

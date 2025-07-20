@@ -1,0 +1,71 @@
+slice_name: O/S and Collections - WoW
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 15
+  x_axis: posting_date
+  time_grain_sqla: P1W
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - Invoiced Amount
+  - Collections
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: posting_date
+    operator: TEMPORAL_RANGE
+    comparator: Last quarter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_p7i869gqn_esj48mjwt8l
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: supersetColors
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  logAxis: true
+  minorSplitLine: false
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: false
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"Last
+  quarter"}],"extras":{"time_grain_sqla":"P1W","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1W","columnType":"BASE_AXIS","sqlExpression":"posting_date","label":"posting_date","expressionType":"SQL"}],"metrics":["Invoiced
+  Amount","Collections"],"orderby":[["Invoiced Amount",false]],"annotation_layers":[],"row_limit":10000,"series_columns":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["posting_date"],"columns":[],"aggregates":{"Invoiced
+  Amount":{"operator":"mean"},"Collections":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":15,"x_axis":"posting_date","time_grain_sqla":"P1W","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["Invoiced
+  Amount","Collections"],"groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"posting_date","operator":"TEMPORAL_RANGE","comparator":"Last
+  quarter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_p7i869gqn_esj48mjwt8l"}],"order_desc":true,"row_limit":10000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"supersetColors","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","logAxis":true,"minorSplitLine":false,"truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipSortByMetric":false,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: d4c0d71f-5c24-4be1-86e5-d7c64d775014
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

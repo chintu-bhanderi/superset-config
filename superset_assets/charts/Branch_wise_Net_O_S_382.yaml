@@ -1,0 +1,72 @@
+slice_name: Branch wise Net O/S
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 5__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 155
+  x_axis:
+    label: Branch
+    sqlExpression: cost_center
+    expressionType: SQL
+  metrics:
+  - Net O/S
+  groupby:
+  - Overdue
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_yqebfbiry0k_hqrsshps1l
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  timeseries_limit_metric: Net O/S
+  order_desc: true
+  row_limit: 500
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title: ''
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: max
+  color_scheme: supersetColors
+  stack: Stack
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelRotation: 0
+  y_axis_format: SMART_NUMBER
+  logAxis: true
+  truncateXAxis: true
+  rich_tooltip: true
+  tooltipSortByMetric: false
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","label":"Branch","sqlExpression":"cost_center","expressionType":"SQL"},"Overdue"],"metrics":["Net
+  O/S"],"orderby":[["Net O/S",false]],"annotation_layers":[],"row_limit":500,"series_columns":["Overdue"],"series_limit":0,"series_limit_metric":"Net
+  O/S","order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["Branch"],"columns":["Overdue"],"aggregates":{"Net
+  O/S":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"Net
+  O/S":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"5__table","viz_type":"echarts_timeseries_bar","slice_id":155,"x_axis":{"label":"Branch","sqlExpression":"cost_center","expressionType":"SQL"},"metrics":["Net
+  O/S"],"groupby":["Overdue"],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_yqebfbiry0k_hqrsshps1l","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"posting_date"}],"timeseries_limit_metric":"Net
+  O/S","order_desc":true,"row_limit":500,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"horizontal","x_axis_title":"","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"max","color_scheme":"supersetColors","stack":"Stack","show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelRotation":0,"y_axis_format":"SMART_NUMBER","logAxis":true,"truncateXAxis":true,"rich_tooltip":true,"tooltipSortByMetric":false,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 30208c79-9c49-4b09-8c69-d3b80d58f700
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c

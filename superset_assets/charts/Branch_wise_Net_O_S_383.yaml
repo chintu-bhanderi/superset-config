@@ -1,0 +1,312 @@
+slice_name: Branch wise Net O/S
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 5__table
+  viz_type: pivot_table_v2
+  slice_id: 383
+  groupbyColumns: []
+  groupbyRows:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Branch
+    sqlExpression: cost_center
+  temporal_columns_lookup:
+    due_date: true
+    last_inv_date: true
+    last_payment_date: true
+    posting_date: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: os
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 2218
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      verbose_name: O/S Amount
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Outstanding
+    optionName: metric_2nvwpet8js3_y8ap1nsf0v
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: unallocated_payment_amount
+      description: null
+      expression: ''
+      filterable: true
+      groupby: true
+      id: 253
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      verbose_name: Unallocated Payment Amount
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: On Account
+    optionName: metric_zrslmg293bg_03l3a1mpdylo
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: net_os
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 1063
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: NEWDECIMAL
+      type_generic: null
+      verbose_name: Net O/S
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Net O/S
+    optionName: metric_85ckn7bajk2_tey9s5gloy
+  - O/S Overdue
+  - Overdue %
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: 0-30 O/S
+      description: null
+      expression: CASE WHEN aging_bucket='0-30' THEN net_os else 0 end
+      filterable: true
+      groupby: true
+      id: 2217
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 0-30
+    optionName: metric_89i2zitftig_ey09odvchlc
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: 31-60 Net O/S
+      description: null
+      expression: CASE WHEN aging_bucket='31-60' THEN net_os else 0 end
+      filterable: true
+      groupby: true
+      id: 2216
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 31-60
+    optionName: metric_aczl089jba9_ezxzzi97wyc
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: 61-90 Net O/S
+      description: null
+      expression: CASE WHEN aging_bucket='61-90' THEN net_os else 0 end
+      filterable: true
+      groupby: true
+      id: 2215
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 61-90
+    optionName: metric_ajiz9gnqnnt_jvzlkckaqz8
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: 91-120 Net O/S
+      description: null
+      expression: CASE WHEN aging_bucket='91-120' THEN net_os else 0 end
+      filterable: true
+      groupby: true
+      id: 2214
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 91-120
+    optionName: metric_o42qtg50bt_sim7fyoxz7g
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: 120+ Net O/S
+      description: null
+      expression: CASE WHEN aging_bucket='120+' THEN net_os else 0 end
+      filterable: true
+      groupby: true
+      id: 2213
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: 120+
+    optionName: metric_6r1itt9h5ds_ln97m9er83t
+  - DSO
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_yqebfbiry0k_hqrsshps1l
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: posting_date
+  row_limit: 500
+  order_desc: true
+  aggregateFunction: Sum
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - column: DSO
+    colorScheme: '#FFEF9D'
+    operator: None
+  - column: Outstanding
+    colorScheme: '#FFEF9D'
+    operator: None
+  - column: On Account
+    colorScheme: '#CDFEE1'
+    operator: None
+  - column: Net O/S
+    colorScheme: '#FEDAD9'
+    operator: None
+  - column: O/S Overdue
+    colorScheme: '#FEDAD9'
+    operator: None
+  - column: 0-30
+    colorScheme: '#CDFEE1'
+    operator: None
+  - column: 31-60
+    colorScheme: '#E0F0FF'
+    operator: None
+  - column: 61-90
+    colorScheme: '#FFEF9D'
+    operator: None
+  - column: 91-120
+    colorScheme: '#FEDAD9'
+    operator: None
+  - column: 120+
+    colorScheme: '#FEDAD9'
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 3
+  - 68
+query_context: '{"datasource":{"id":5,"type":"table"},"force":false,"queries":[{"filters":[{"col":"posting_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"datasourceWarning":false,"expressionType":"SQL","label":"Branch","sqlExpression":"cost_center"}],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"os","description":null,"expression":null,"filterable":true,"groupby":true,"id":2218,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"O/S
+  Amount","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Outstanding","optionName":"metric_2nvwpet8js3_y8ap1nsf0v"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"unallocated_payment_amount","description":null,"expression":"","filterable":true,"groupby":true,"id":253,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"Unallocated
+  Payment Amount","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"On
+  Account","optionName":"metric_zrslmg293bg_03l3a1mpdylo"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"net_os","description":null,"expression":null,"filterable":true,"groupby":true,"id":1063,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"Net
+  O/S","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Net
+  O/S","optionName":"metric_85ckn7bajk2_tey9s5gloy"},"O/S Overdue","Overdue %",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"0-30
+  O/S","description":null,"expression":"CASE WHEN aging_bucket=''0-30'' THEN net_os
+  else 0 end","filterable":true,"groupby":true,"id":2217,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"0-30","optionName":"metric_89i2zitftig_ey09odvchlc"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"31-60
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''31-60'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2216,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"31-60","optionName":"metric_aczl089jba9_ezxzzi97wyc"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"61-90
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''61-90'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2215,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"61-90","optionName":"metric_ajiz9gnqnnt_jvzlkckaqz8"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"91-120
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''91-120'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2214,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"91-120","optionName":"metric_o42qtg50bt_sim7fyoxz7g"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"120+
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''120+'' THEN net_os
+  else 0 end","filterable":true,"groupby":true,"id":2213,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"120+","optionName":"metric_6r1itt9h5ds_ln97m9er83t"},"DSO"],"orderby":[[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"os","description":null,"expression":null,"filterable":true,"groupby":true,"id":2218,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"O/S
+  Amount","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Outstanding","optionName":"metric_2nvwpet8js3_y8ap1nsf0v"},false]],"annotation_layers":[],"row_limit":500,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"5__table","viz_type":"pivot_table_v2","slice_id":383,"groupbyColumns":[],"groupbyRows":[{"datasourceWarning":false,"expressionType":"SQL","label":"Branch","sqlExpression":"cost_center"}],"temporal_columns_lookup":{"due_date":true,"last_inv_date":true,"last_payment_date":true,"posting_date":true},"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"os","description":null,"expression":null,"filterable":true,"groupby":true,"id":2218,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"O/S
+  Amount","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Outstanding","optionName":"metric_2nvwpet8js3_y8ap1nsf0v"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"unallocated_payment_amount","description":null,"expression":"","filterable":true,"groupby":true,"id":253,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"Unallocated
+  Payment Amount","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"On
+  Account","optionName":"metric_zrslmg293bg_03l3a1mpdylo"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"net_os","description":null,"expression":null,"filterable":true,"groupby":true,"id":1063,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"NEWDECIMAL","type_generic":null,"verbose_name":"Net
+  O/S","warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"Net
+  O/S","optionName":"metric_85ckn7bajk2_tey9s5gloy"},"O/S Overdue","Overdue %",{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"0-30
+  O/S","description":null,"expression":"CASE WHEN aging_bucket=''0-30'' THEN net_os
+  else 0 end","filterable":true,"groupby":true,"id":2217,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"0-30","optionName":"metric_89i2zitftig_ey09odvchlc"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"31-60
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''31-60'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2216,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"31-60","optionName":"metric_aczl089jba9_ezxzzi97wyc"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"61-90
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''61-90'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2215,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"61-90","optionName":"metric_ajiz9gnqnnt_jvzlkckaqz8"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"91-120
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''91-120'' THEN
+  net_os else 0 end","filterable":true,"groupby":true,"id":2214,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"91-120","optionName":"metric_o42qtg50bt_sim7fyoxz7g"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"120+
+  Net O/S","description":null,"expression":"CASE WHEN aging_bucket=''120+'' THEN net_os
+  else 0 end","filterable":true,"groupby":true,"id":2213,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":null,"type_generic":null,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":true,"label":"120+","optionName":"metric_6r1itt9h5ds_ln97m9er83t"},"DSO"],"metricsLayout":"COLUMNS","adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_yqebfbiry0k_hqrsshps1l","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"posting_date"}],"row_limit":500,"order_desc":true,"aggregateFunction":"Sum","colTotals":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"value_z_to_a","colOrder":"key_a_to_z","conditional_formatting":[{"column":"DSO","colorScheme":"#FFEF9D","operator":"None"},{"column":"Outstanding","colorScheme":"#FFEF9D","operator":"None"},{"column":"On
+  Account","colorScheme":"#CDFEE1","operator":"None"},{"column":"Net O/S","colorScheme":"#FEDAD9","operator":"None"},{"column":"O/S
+  Overdue","colorScheme":"#FEDAD9","operator":"None"},{"column":"0-30","colorScheme":"#CDFEE1","operator":"None"},{"column":"31-60","colorScheme":"#E0F0FF","operator":"None"},{"column":"61-90","colorScheme":"#FFEF9D","operator":"None"},{"column":"91-120","colorScheme":"#FEDAD9","operator":"None"},{"column":"120+","colorScheme":"#FEDAD9","operator":"None"}],"extra_form_data":{},"dashboards":[3,68],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: e97e049b-9cfa-41c2-9599-d044e9ce2b1f
+version: 1.0.0
+dataset_uuid: 3354e233-093d-4b66-b483-21aeb019e28c
