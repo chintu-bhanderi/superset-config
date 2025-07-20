@@ -3,6 +3,9 @@ import requests
 BASE_URL = "http://localhost:9000"
 USERNAME = "admin"
 PASSWORD = "admin"
+# DELETE_ASSETS = 'dashboard'
+# DELETE_ASSETS = 'chart'
+DELETE_ASSETS = 'dataset'
 
 session = requests.Session()
 
@@ -43,7 +46,7 @@ while True:
     params = {
         "q": f"(order_column:changed_on_delta_humanized,order_direction:desc,page:{page},page_size:{page_size})"
     }
-    res = session.get(f"{BASE_URL}/api/v1/dataset", headers=headers, params=params)
+    res = session.get(f"{BASE_URL}/api/v1/{DELETE_ASSETS}", headers=headers, params=params)
     res.raise_for_status()
     result = res.json().get("result", [])
     if not result:
@@ -54,9 +57,9 @@ while True:
 if not chart_ids:
     print("✅ No charts found.")
 else:
-    print(f"🗑️ Deleting {len(chart_ids)} charts...")
+    print(f"🗑️ Deleting {len(chart_ids)} {DELETE_ASSETS}...")
     ids_str = ",".join(chart_ids)
-    delete_url = f"{BASE_URL}/api/v1/dataset?q=!({ids_str})"
+    delete_url = f"{BASE_URL}/api/v1/{DELETE_ASSETS}?q=!({ids_str})"
     delete_res = session.delete(delete_url, headers=headers)
     if delete_res.status_code == 200:
         print("✅ Bulk delete successful!")

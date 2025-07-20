@@ -17,8 +17,8 @@ ASSETS_BASE_DIR = "superset_assets"
 
 # --- Type to API path mapping ---
 type_url_map = {
-    # "Dashboard": "dashboard",
-    # "Slice": "chart",
+    "Dashboard": "dashboard",
+    "Slice": "chart",
     "SqlaTable": "dataset",
 }
 
