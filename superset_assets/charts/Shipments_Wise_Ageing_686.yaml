@@ -1,0 +1,78 @@
+slice_name: Shipments Wise Ageing
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 95__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 686
+  x_axis: Days to Bill - Ageing
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - count
+  groupby: []
+  adhoc_filters:
+  - expressionType: SQL
+    sqlExpression: first_bill_date is NOT NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_wcrz3cn0z4k_0kag3ul82ktm
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_2t535shmw2r_gua67t4tqq
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: d3Category20c
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":95,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":"(first_bill_date is NOT NULL)"},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"Days
+  to Bill - Ageing","label":"Days to Bill - Ageing","expressionType":"SQL"}],"metrics":["count"],"orderby":[["count",false]],"annotation_layers":[],"row_limit":10000,"series_columns":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["Days
+  to Bill - Ageing"],"columns":[],"aggregates":{"count":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"95__table","viz_type":"echarts_timeseries_bar","slice_id":686,"x_axis":"Days
+  to Bill - Ageing","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":["count"],"groupby":[],"adhoc_filters":[{"expressionType":"SQL","sqlExpression":"first_bill_date
+  is NOT NULL","clause":"WHERE","subject":null,"operator":null,"comparator":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_wcrz3cn0z4k_0kag3ul82ktm"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_2t535shmw2r_gua67t4tqq"}],"order_desc":true,"row_limit":10000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"d3Category20c","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: b1d7debf-b170-4dcd-b281-1927a0c310fc
+version: 1.0.0
+dataset_uuid: 11970769-8fd3-4534-91da-43ae4de7cb7f

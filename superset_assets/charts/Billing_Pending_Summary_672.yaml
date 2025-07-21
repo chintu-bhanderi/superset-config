@@ -1,0 +1,180 @@
+slice_name: Billing Pending Summary
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 94__table
+  viz_type: table
+  slice_id: 672
+  query_mode: aggregate
+  groupby:
+  - job_number_hyperlink
+  - business_vertical
+  - customer
+  - branch
+  - sales_person
+  - mbl_number
+  - hbl_number
+  - carrier
+  - pol
+  - pod
+  - jed
+  - vessel_name
+  - voyage_number
+  - service_sow
+  - teu_count
+  - tonnage
+  - cbm
+  - Billing Closed
+  - Days Since JED
+  - num_of_estimates
+  - num_of_sell_unbilled
+  - Total Sell Unbilled (CC)
+  - Total Estimated Sell (CC)
+  - Total Estimated Buy (CC)
+  - Total Estimated GP (CC)
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    customer_created_at: true
+    jed: true
+    job_close_date: true
+    onboarded_on: true
+  all_columns:
+  - job_number
+  - job_number_hyperlink
+  - jed
+  - teu_count
+  - container_count
+  - cbm
+  - tonnage
+  - freight_type
+  - load_type
+  - trade_type
+  - shipment_type
+  - vessel_name
+  - voyage_number
+  - status
+  - business_vertical
+  - accounting_status
+  - job_close_date
+  - sales_person
+  - pol
+  - pod
+  - carrier
+  - lop
+  - trade_lane
+  - mbl_number
+  - hbl_number
+  - customer
+  - c_id
+  - onboarded_on
+  - customer_created_at
+  - service_sow
+  - num_of_estimates
+  - num_of_buy_unbilled
+  - num_of_sell_unbilled
+  - num_of_buy_billed
+  - num_of_sell_billed
+  - total_estimated_buy_base_currency
+  - total_estimated_sell_base_currency
+  - total_actual_sell
+  - total_actual_buy
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: Billing Closed
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Open
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_c9q4s8y3b8q_utxhljbrwb
+  - expressionType: SIMPLE
+    subject: Sales Status
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Open
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_t1inz521w1c_bqnv0ykx289
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_tx9t5mj5l68_4ctcg0rsvid
+  timeseries_limit_metric:
+    aggregate: MIN
+    column:
+      advanced_data_type: null
+      changed_on: '2025-05-07T12:17:52.912391'
+      column_name: jed
+      created_on: '2025-05-07T12:17:52.912390'
+      description: null
+      expression: null
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 3690
+      is_active: true
+      is_dttm: true
+      python_date_format: null
+      type: DATE
+      type_generic: 2
+      uuid: 54429aaf-181a-4a89-a196-30866757a381
+      verbose_name: Job Execution Date
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: MIN(Job Execution Date)
+    optionName: metric_cgu08e0gptf_gho7ti96lej
+    sqlExpression: null
+  order_by_cols: []
+  row_limit: 10000
+  order_desc: false
+  table_timestamp_format: '%d-%m-%Y'
+  show_cell_bars: true
+  align_pn: true
+  color_pn: true
+  column_config:
+    jed:
+      d3TimeFormat: '%d/%m/%Y'
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":94,"type":"table"},"force":false,"queries":[{"filters":[{"col":"Billing
+  Closed","op":"IN","val":["Open"]},{"col":"Sales Status","op":"IN","val":["Open"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["job_number_hyperlink","business_vertical","customer","branch","sales_person","mbl_number","hbl_number","carrier","pol","pod",{"timeGrain":"P1D","columnType":"BASE_AXIS","sqlExpression":"jed","label":"jed","expressionType":"SQL"},"vessel_name","voyage_number","service_sow","teu_count","tonnage","cbm","Billing
+  Closed","Days Since JED","num_of_estimates","num_of_sell_unbilled","Total Sell Unbilled
+  (CC)","Total Estimated Sell (CC)","Total Estimated Buy (CC)","Total Estimated GP
+  (CC)"],"metrics":[],"orderby":[[{"aggregate":"MIN","column":{"advanced_data_type":null,"changed_on":"2025-05-07T12:17:52.912391","column_name":"jed","created_on":"2025-05-07T12:17:52.912390","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":3690,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"54429aaf-181a-4a89-a196-30866757a381","verbose_name":"Job
+  Execution Date"},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MIN(Job
+  Execution Date)","optionName":"metric_cgu08e0gptf_gho7ti96lej","sqlExpression":null},true]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"series_limit_metric":{"aggregate":"MIN","column":{"advanced_data_type":null,"changed_on":"2025-05-07T12:17:52.912391","column_name":"jed","created_on":"2025-05-07T12:17:52.912390","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":3690,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"54429aaf-181a-4a89-a196-30866757a381","verbose_name":"Job
+  Execution Date"},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MIN(Job
+  Execution Date)","optionName":"metric_cgu08e0gptf_gho7ti96lej","sqlExpression":null},"order_desc":false,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"94__table","viz_type":"table","slice_id":672,"query_mode":"aggregate","groupby":["job_number_hyperlink","business_vertical","customer","branch","sales_person","mbl_number","hbl_number","carrier","pol","pod","jed","vessel_name","voyage_number","service_sow","teu_count","tonnage","cbm","Billing
+  Closed","Days Since JED","num_of_estimates","num_of_sell_unbilled","Total Sell Unbilled
+  (CC)","Total Estimated Sell (CC)","Total Estimated Buy (CC)","Total Estimated GP
+  (CC)"],"time_grain_sqla":"P1D","temporal_columns_lookup":{"customer_created_at":true,"jed":true,"job_close_date":true,"onboarded_on":true},"all_columns":["job_number","job_number_hyperlink","jed","teu_count","container_count","cbm","tonnage","freight_type","load_type","trade_type","shipment_type","vessel_name","voyage_number","status","business_vertical","accounting_status","job_close_date","sales_person","pol","pod","carrier","lop","trade_lane","mbl_number","hbl_number","customer","c_id","onboarded_on","customer_created_at","service_sow","num_of_estimates","num_of_buy_unbilled","num_of_sell_unbilled","num_of_buy_billed","num_of_sell_billed","total_estimated_buy_base_currency","total_estimated_sell_base_currency","total_actual_sell","total_actual_buy"],"percent_metrics":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"Billing
+  Closed","operator":"IN","operatorId":"IN","comparator":["Open"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_c9q4s8y3b8q_utxhljbrwb"},{"expressionType":"SIMPLE","subject":"Sales
+  Status","operator":"IN","operatorId":"IN","comparator":["Open"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_t1inz521w1c_bqnv0ykx289"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_tx9t5mj5l68_4ctcg0rsvid"}],"timeseries_limit_metric":{"aggregate":"MIN","column":{"advanced_data_type":null,"changed_on":"2025-05-07T12:17:52.912391","column_name":"jed","created_on":"2025-05-07T12:17:52.912390","description":null,"expression":null,"extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":3690,"is_active":true,"is_dttm":true,"python_date_format":null,"type":"DATE","type_generic":2,"uuid":"54429aaf-181a-4a89-a196-30866757a381","verbose_name":"Job
+  Execution Date"},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"MIN(Job
+  Execution Date)","optionName":"metric_cgu08e0gptf_gho7ti96lej","sqlExpression":null},"order_by_cols":[],"row_limit":10000,"order_desc":false,"table_timestamp_format":"%d-%m-%Y","show_cell_bars":true,"align_pn":true,"color_pn":true,"column_config":{"jed":{"d3TimeFormat":"%d/%m/%Y"}},"conditional_formatting":[],"extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 7d2ae01c-0807-47ab-97d2-8e98b63827f0
+version: 1.0.0
+dataset_uuid: ad890754-bd23-4cc2-8777-4882be59d206

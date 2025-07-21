@@ -1,0 +1,86 @@
+slice_name: Sales Billing Pending - Ageing
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 94__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 674
+  x_axis: Days Since JED Ageing
+  metrics:
+  - Shipments
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: Billing Closed
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Open
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_ho7nv4pkoli_m7uv9p3aqqo
+  - expressionType: SIMPLE
+    subject: Sales Status
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Open
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_gcpt6cb98bg_zp16vkkpx6q
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_tx9t5mj5l68_4ctcg0rsvid
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  annotation_layers: []
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: shipmnts_colors
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":94,"type":"table"},"force":false,"queries":[{"filters":[{"col":"Billing
+  Closed","op":"IN","val":["Open"]},{"col":"Sales Status","op":"IN","val":["Open"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"columnType":"BASE_AXIS","sqlExpression":"Days
+  Since JED Ageing","label":"Days Since JED Ageing","expressionType":"SQL"}],"metrics":["Shipments"],"orderby":[["Shipments",false]],"annotation_layers":[],"row_limit":10000,"series_columns":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["Days
+  Since JED Ageing"],"columns":[],"aggregates":{"Shipments":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"94__table","viz_type":"echarts_timeseries_bar","slice_id":674,"x_axis":"Days
+  Since JED Ageing","metrics":["Shipments"],"groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"Billing
+  Closed","operator":"IN","operatorId":"IN","comparator":["Open"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_ho7nv4pkoli_m7uv9p3aqqo"},{"expressionType":"SIMPLE","subject":"Sales
+  Status","operator":"IN","operatorId":"IN","comparator":["Open"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_gcpt6cb98bg_zp16vkkpx6q"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_tx9t5mj5l68_4ctcg0rsvid"}],"row_limit":10000,"truncate_metric":true,"show_empty_columns":true,"annotation_layers":[],"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"shipmnts_colors","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","truncateXAxis":true,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 032a5eb8-35fc-4f89-b158-c80606c29ac8
+version: 1.0.0
+dataset_uuid: ad890754-bd23-4cc2-8777-4882be59d206

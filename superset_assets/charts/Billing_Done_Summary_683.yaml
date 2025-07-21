@@ -1,0 +1,79 @@
+slice_name: Billing Done Summary
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 95__table
+  viz_type: table
+  slice_id: 683
+  query_mode: raw
+  groupby: []
+  temporal_columns_lookup:
+    first_bill_date: true
+    jed: true
+  all_columns:
+  - job_number
+  - business_vertical_code
+  - customer
+  - cost_center
+  - sales_person
+  - master_shipment_number
+  - house_shipment_number
+  - carrier_name
+  - port_of_loading_name
+  - port_of_discharge_name
+  - jed
+  - first_bill_date
+  - vessel
+  - voyage_number
+  - teu
+  - tonnage
+  - gross_volume
+  - Days To Bill
+  - Total Sell Billed
+  - Total Buy Billed
+  - Total Actual GP
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_3pdsj1movz9_l6ln636wfji
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: first_bill_date is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_mjft9cmhubc_gg7m5punm7f
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  order_by_cols: []
+  row_limit: 10000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: '%d/%m/%Y'
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":95,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":"(first_bill_date is not NULL)"},"applied_time_extras":{},"columns":["job_number","business_vertical_code","customer","cost_center","sales_person","master_shipment_number","house_shipment_number","carrier_name","port_of_loading_name","port_of_discharge_name","jed","first_bill_date","vessel","voyage_number","teu","tonnage","gross_volume","Days
+  To Bill","Total Sell Billed","Total Buy Billed","Total Actual GP"],"orderby":[],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"95__table","viz_type":"table","slice_id":683,"query_mode":"raw","groupby":[],"temporal_columns_lookup":{"first_bill_date":true,"jed":true},"all_columns":["job_number","business_vertical_code","customer","cost_center","sales_person","master_shipment_number","house_shipment_number","carrier_name","port_of_loading_name","port_of_discharge_name","jed","first_bill_date","vessel","voyage_number","teu","tonnage","gross_volume","Days
+  To Bill","Total Sell Billed","Total Buy Billed","Total Actual GP"],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_3pdsj1movz9_l6ln636wfji","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"first_bill_date
+  is not NULL","subject":null},{"clause":"WHERE","comparator":"No filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_mjft9cmhubc_gg7m5punm7f","isExtra":true,"isNew":false,"operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"}],"order_by_cols":[],"row_limit":10000,"server_page_length":10,"order_desc":true,"table_timestamp_format":"%d/%m/%Y","show_cell_bars":true,"color_pn":true,"conditional_formatting":[],"extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full","include_time":false},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 06523d84-e7d2-4b91-9e9b-525eaf28f3ce
+version: 1.0.0
+dataset_uuid: 11970769-8fd3-4534-91da-43ae4de7cb7f

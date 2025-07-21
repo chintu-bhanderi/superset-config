@@ -1,0 +1,66 @@
+slice_name: 'Customer Wise Billing Summary - # Shipments'
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 95__table
+  viz_type: pivot_table_v2
+  slice_id: 685
+  groupbyColumns:
+  - Days to Bill - Ageing
+  groupbyRows:
+  - customer
+  temporal_columns_lookup:
+    first_bill_date: true
+    jed: true
+  metrics:
+  - count
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SQL
+    sqlExpression: first_bill_date is NOT NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_nan7vy5hj8h_pkckfu5aqx
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_ty68ep05vfj_m947wbwjnzl
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: count
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":95,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":"(first_bill_date is NOT NULL)"},"applied_time_extras":{},"columns":["Days
+  to Bill - Ageing","customer"],"metrics":["count"],"orderby":[["count",false]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"95__table","viz_type":"pivot_table_v2","slice_id":685,"groupbyColumns":["Days
+  to Bill - Ageing"],"groupbyRows":["customer"],"temporal_columns_lookup":{"first_bill_date":true,"jed":true},"metrics":["count"],"metricsLayout":"COLUMNS","adhoc_filters":[{"expressionType":"SQL","sqlExpression":"first_bill_date
+  is NOT NULL","clause":"WHERE","subject":null,"operator":null,"comparator":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_nan7vy5hj8h_pkckfu5aqx"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","operatorId":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_ty68ep05vfj_m947wbwjnzl"}],"row_limit":10000,"order_desc":true,"aggregateFunction":"Sum","colTotals":true,"valueFormat":"SMART_NUMBER","date_format":"smart_date","rowOrder":"key_a_to_z","colOrder":"key_a_to_z","conditional_formatting":[{"colorScheme":"#E8EBFE","column":"count","operator":"None"}],"extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: bf28017e-aca0-4b7c-9c7a-2f0eb8adefe2
+version: 1.0.0
+dataset_uuid: 11970769-8fd3-4534-91da-43ae4de7cb7f

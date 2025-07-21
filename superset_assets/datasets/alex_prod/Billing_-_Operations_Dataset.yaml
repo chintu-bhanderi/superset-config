@@ -1,0 +1,895 @@
+table_name: Billing - Operations Dataset
+main_dttm_col: jed
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: null
+sql:
+  "WITH\nfiltered_shipments AS (\n  SELECT\n    s.id,\n    COALESCE(s.job_number,\
+  \ s.shipment_booking_number) as job_number,\n    s.job_execution_date::DATE AS jed,\n\
+  \    s.gross_volume  AS cbm,\n    s.chargeable_weight/1000.0 AS tonnage,\n    s.freight_type,\n\
+  \    s.load_type,\n    s.trade_type,\n    s.services,\n    s.port_of_loading_id,\n\
+  \    s.port_of_discharge_id,\n    s.sales_agent_id,\n    s.customer_company_id,\n\
+  \    s.involved_branch_id,\n    s.status,\n    s.accounting_status,\n    s.shipment_type,\n\
+  \    s.business_vertical_id,\n    s.master_shipment_id,\n    s.vessel_name,\n  \
+  \  s.voyage_number,\n    s.tenant_id,\n    s.carrier_id\n  FROM shipments s\n  WHERE\
+  \ \n  s.deleted_at is NULL AND\n  s.tenant_id = {{ url_param('tenant_id') or 10\
+  \ }}\n    AND (\n      {% if url_param('allowed_doctypes') %}\n        'Shipment::Shipment'\
+  \ IN {{ parse_url_param(url_param('allowed_doctypes')) }}\n      {% else %} TRUE\
+  \ {% endif %}\n    )\n    AND (\n      CASE\n        WHEN {{ url_param('is_collaborator')\
+  \ or false }}\n        THEN {{ url_param('user_contact_id') or 1 }} = ANY(s.collaborator_ids)\n\
+  \        ELSE TRUE\n      END\n    )\n    AND (\n      {% if url_param('allowed_cost_centers')\
+  \ %}\n        s.involved_branch_id IN (\n          SELECT id\n          FROM branch_accounts\n\
+  \          WHERE erp_cost_center_id IN {{ parse_url_param(url_param('allowed_cost_centers'))\
+  \ }}\n        )\n      {% else %} TRUE {% endif %}\n    )\n    AND (\n      {% if\
+  \ url_param('company') %}\n        s.customer_company_id = {{ url_param('company')\
+  \ }}\n      {% else %} TRUE {% endif %}\n    )\n    AND (\n      {% if url_param('business_verticals')\
+  \ %}\n        s.business_vertical_id IN {{ parse_url_param(url_param('business_verticals'))\
+  \ }}\n      {% else %} TRUE {% endif %}\n    )\n),\n\nShipmentFinancials AS (\n\
+  \  SELECT\n    se.shipment_id,\n    COUNT(se.id) as num_of_estimates,\n    SUM(CASE\
+  \ WHEN total_buy_amount >0 and buy_status='unbilled' THEN 1 ELSE 0 END ) as num_of_buy_unbilled,\n\
+  \    SUM(CASE WHEN total_sell_amount > 0 and sell_status='unbilled' THEN 1 ELSE\
+  \ 0 END ) as num_of_sell_unbilled,\n    SUM(CASE WHEN buy_status='billed' THEN 1\
+  \ ELSE 0 END) as num_of_buy_billed,\n    SUM(CASE WHEN sell_status='billed' THEN\
+  \ 1 ELSE 0 END) as num_of_sell_billed,\n    ROUND(SUM(CASE WHEN total_buy_amount\
+  \ >0 and buy_status='unbilled' THEN total_buy_amount ELSE 0 END ), 0) as total_buy_unbilled_amount_base_currency,\n\
+  \    ROUND(SUM(CASE WHEN total_sell_amount > 0 and sell_status='unbilled' THEN total_sell_amount\
+  \ ELSE 0 END ), 0) as total_sell_unbilled_amount_base_currency,\n    ROUND(SUM(se.total_buy_amount),\
+  \ 0) as total_estimated_buy_base_currency,\n    ROUND(SUM(se.total_sell_amount),\
+  \ 0) as total_estimated_sell_base_currency,\n    ROUND(SUM(se.total_sell_billed_amount),\
+  \ 0) AS total_actual_sell,\n    ROUND(SUM(se.total_buy_billed_amount), 0) AS total_actual_buy,\n\
+  \    ROUND(SUM((se.total_sell_amount)-(se.total_buy_amount)), 0) AS total_estimated_gp,\n\
+  \    ROUND(SUM(se.total_sell_billed_amount - se.total_buy_billed_amount), 0)  AS\
+  \ total_actual_gp\n  FROM shipment_estimates se\n  JOIN filtered_shipments fs ON\
+  \ se.shipment_id = fs.id\n  GROUP BY se.shipment_id\n)\n\n-- ChargeWiseDetails AS(\n\
+  --   SELECT\n--   se.shipment_id,\n--   se.item,\n--   se.buy_currency,\n--   se.sell_currency,\n\
+  --   se.quantity,\n--   se.uom,\n--   se.buy_status,\n--   se.sell_status,\n-- \
+  \  CONCAT(se.buy_currency,' ',se.buy_rate) as buy_rate_curr,\n--   CONCAT(se.sell_currency,'\
+  \ ',se.sell_rate) as sell_rate_curr,\n--   CONCAT(se.buy_currency, ' ',total_buy_amount\
+  \ ) as buy_amount_curr,\n--   CONCAT(se.sell_currency,' ',total_sell_amount ) as\
+  \ sell_amount_curr,\n--   ROUND(se.total_buy_amount, 0) as estimated_buy_base_currency,\n\
+  --   ROUND(se.total_sell_amount, 0) as estimated_sell_base_currency,\n--   ROUND(CASE\
+  \ WHEN total_buy_amount >0 and buy_status='unbilled' THEN total_buy_amount ELSE\
+  \ 0 END, 0) as buy_unbilled_amount,\n--   ROUND(CASE WHEN total_sell_amount > 0\
+  \ and sell_status='unbilled' THEN total_sell_amount ELSE 0 END, 0) as sell_unbilled_amount,\n\
+  --   ROUND(se.total_sell_billed_amount, 0) AS actual_sell_base_currency,\n--   ROUND(se.total_buy_billed_amount,\
+  \ 0) AS actual_buy_base_currency,\n--   ROUND((se.total_sell_amount)-(se.total_buy_amount),\
+  \ 0) AS estimated_gp_base_currency,\n--   ROUND(se.total_sell_billed_amount - se.total_buy_billed_amount,\
+  \ 0)  AS actual_gp_base_currency,\n--   se.buy_transaction_identifier as pi_dn,\n\
+  --   se.sell_transaction_identifier as si_cn\n--   FROM shipment_estimates se \n\
+  --   JOIN filtered_shipments fs on se.shipment_id = fs.id\n-- )\n\nSELECT\n  fs.job_number,\n\
+  \  CONCAT('<a href=\"https://booking.shipmnts.com/view/shipment/', fs.id, '\" target=\"\
+  _blank\">', fs.job_number, '</a>') AS job_number_hyperlink,\n  fs.jed,\n  asr.teu_count,\n\
+  \  asr.container_count,\n  fs.cbm,\n  fs.tonnage,\n  fs.freight_type,\n  fs.load_type,\n\
+  \  fs.trade_type,\n  fs.shipment_type,\n  fs.vessel_name,\n  fs.voyage_number,\n\
+  \  fs.status,\n  bv.name as business_vertical,\n  branch.name as branch,\n  fs.accounting_status,\n\
+  \  asr.job_close_date::DATE,\n  sp.name AS sales_person,\n  pol.name AS pol,\n \
+  \ pod.name AS pod,\n  carrier.name as carrier,\n  UPPER(fs.freight_type) || ' -\
+  \ ' || UPPER(fs.trade_type)  AS lop,\n  UPPER(pol.country)      || '-' || UPPER(pod.country)\
+  \     AS trade_lane,\n  CASE \n  WHEN fs.shipment_type IN ('direct', 'back_to_back',\
+  \ 'consol') THEN sd.shipment_number\n  WHEN fs.shipment_type = 'house' THEN (\n\
+  \    SELECT sd1.shipment_number\n    FROM shipments h \n    LEFT JOIN shipment_documents\
+  \ sd1 ON sd1.shipment_id = h.id\n    WHERE h.id = fs.master_shipment_id\n    LIMIT\
+  \ 1\n  )\n  ELSE ''\n  END AS mbl_number,\n  CASE when fs.shipment_type = 'house'\
+  \ THEN sd.shipment_number ELSE '' END as hbl_number,\n  cust.registered_name AS\
+  \ customer,\n  cust.id AS c_id,\n  cust.onboarded_on::DATE,\n  cust.created_at::DATE\
+  \ AS customer_created_at,\n  CASE\n    WHEN fs.services @> '{\"freight_forwarding\"\
+  :\"true\"}' THEN 'Forwarding'\n    WHEN fs.services @> '{\"origin\":{\"clearance\"\
+  :\"true\"}}'\n      OR fs.services @> '{\"destination\":{\"clearance\":\"true\"\
+  }}'THEN 'Clearance'\n    ELSE 'General'\n  END AS service_sow,\n  tenant.registered_name\
+  \ as tenant,\n  tenant.default_currency,\n  sf.num_of_estimates as num_of_estimates,\n\
+  \  sf.num_of_buy_unbilled,\n  sf.num_of_sell_unbilled,\n  sf.num_of_buy_billed,\n\
+  \  sf.num_of_sell_billed,\n  sf.total_estimated_buy_base_currency,\n  sf.total_estimated_sell_base_currency,\n\
+  \  sf.total_actual_buy,\n  sf.total_actual_sell,\n  sf.total_buy_unbilled_amount_base_currency,\n\
+  \  sf.total_sell_unbilled_amount_base_currency,\n  sf.total_estimated_gp,\n  sf.total_actual_gp\n\
+  \  -- cwd.item,\n  -- cwd.buy_currency,\n  -- cwd.sell_currency,\n  -- cwd.quantity,\n\
+  \  -- cwd.uom,\n  -- cwd.buy_status,\n  -- cwd.sell_status,\n  -- cwd.buy_rate_curr,\n\
+  \  -- cwd.sell_rate_curr,\n  -- cwd.buy_amount_curr,\n  -- cwd.sell_amount_curr,\n\
+  \  -- cwd.estimated_buy_base_currency,\n  -- cwd.estimated_sell_base_currency,\n\
+  \  -- cwd.actual_buy_base_currency,\n  -- cwd.actual_sell_base_currency,\n  -- cwd.estimated_gp_base_currency,\n\
+  \  -- cwd.actual_gp_base_currency,\n  -- cwd.buy_unbilled_amount,\n  -- cwd.sell_unbilled_amount,\n\
+  \  -- cwd.pi_dn,\n  -- cwd.si_cn\nFROM filtered_shipments fs\nLEFT JOIN ShipmentFinancials\
+  \ sf ON sf.shipment_id = fs.id\n-- LEFT JOIN ChargeWiseDetails as cwd ON CWD.shipment_id=fs.id\n\
+  LEFT JOIN analytics_shipment_reports asr ON asr.id = fs.id\nLEFT OUTER JOIN shipment_documents\
+  \ AS sd ON fs.id = sd.shipment_id\nLEFT OUTER JOIN analytics_shipment_document_reports\
+  \ AS asdr ON sd.id = asdr.id\nLEFT JOIN sales_people sp ON sp.id = fs.sales_agent_id\n\
+  LEFT JOIN business_verticals bv on bv.id = fs.business_vertical_id\nLEFT JOIN branch_accounts\
+  \ as branch on branch.id=fs.involved_branch_id\nLEFT JOIN companies  cust ON cust.id\
+  \ = fs.customer_company_id\nLEFT JOIN locations pol  ON pol.id  = fs.port_of_loading_id\n\
+  LEFT JOIN locations pod  ON pod.id  = fs.port_of_discharge_id\nLEFT JOIN carriers\
+  \  carrier ON carrier.id = fs.carrier_id\nLEFT JOIN company_accounts as tenant ON\
+  \ tenant.id = fs.tenant_id\nWHERE fs.accounting_status <> 'closed'"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: ad890754-bd23-4cc2-8777-4882be59d206
+metrics:
+  - metric_name: Shipments
+    verbose_name: Shipments
+    metric_type: null
+    expression: COUNT(DISTINCT job_number)
+    description: null
+    d3format: null
+    currency: null
+    extra:
+      warning_markdown: ""
+    warning_text: null
+  - metric_name: count
+    verbose_name: COUNT(*)
+    metric_type: count
+    expression: COUNT(*)
+    description: null
+    d3format: null
+    currency: null
+    extra:
+      warning_markdown: ""
+    warning_text: null
+columns:
+  - column_name: Days Since JED Ageing
+    verbose_name: Days Since ETD - Ageing
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE WHEN CURRENT_DATE - jed > 0 and CURRENT_DATE - jed <= 3 THEN '0-3'
+
+      WHEN CURRENT_DATE - jed > 3 and CURRENT_DATE - jed <= 5 THEN '3-5'
+
+      WHEN CURRENT_DATE - jed > 5 and CURRENT_DATE - jed <= 7 THEN '5-7'
+
+      ELSE '7+'
+
+      END"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Buy Unbilled (CC)
+    verbose_name: Total Buy Unbilled
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_buy_unbilled_amount_base_currency::BIGINT, '99,99,99,999')"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Actual Buy (CC)
+    verbose_name: Total Actual Buy
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_actual_buy, '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Actual GP (CC)
+    verbose_name: Total Actual GP
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_actual_gp, '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Actual Sell (CC)
+    verbose_name: Total Actual Sell
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_actual_sell, '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Estimated Buy (CC)
+    verbose_name: Total Estimated Buy
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_estimated_buy_base_currency, '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Estimated GP (CC)
+    verbose_name: Total Estimated GP
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_estimated_gp, '99,99,99,999')"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Estimated Sell (CC)
+    verbose_name: Total Estimated Sell
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  -- \u20B9\n\
+      \  WHEN default_currency = 'USD' THEN U&'\\0024'  -- $\n  ELSE default_currency\n\
+      END || ' ' || TO_CHAR(total_estimated_sell_base_currency, '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Total Sell Unbilled (CC)
+    verbose_name: Total Sell Unbilled
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      "CASE\n  WHEN default_currency = 'INR' THEN U&'\\20B9'  \n  WHEN default_currency\
+      \ = 'USD' THEN U&'\\0024'\n  ELSE default_currency\nEND || ' ' || TO_CHAR(total_sell_unbilled_amount_base_currency,\
+      \ '99,99,99,999')\n"
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Billing Closed
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      CASE WHEN total_actual_buy > 0 and total_actual_sell > 0 and num_of_buy_unbilled=0
+      and num_of_sell_unbilled=0 THEN 'Closed' ELSE 'Open' END
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Purchase Status
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      CASE WHEN total_actual_buy > 0 and num_of_buy_unbilled=0 THEN 'Closed'
+      ELSE 'Open' END
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Sales Status
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression:
+      CASE WHEN total_actual_sell > 0 and num_of_sell_unbilled=0 THEN 'Closed'
+      ELSE 'Open' END
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Estimate Open
+    verbose_name:
+      <!--CASE WHEN --> <!--(buy_unbilled_amount>0) OR (sell_unbilled_amount>0)-->
+      <!--THEN 'EO' ELSE 'EC' END-->
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: job_number
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: Days Since JED
+    verbose_name: Days Since JED
+    is_dttm: false
+    is_active: true
+    type: null
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: CURRENT_DATE - jed
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_actual_buy
+    verbose_name: Total Actual Buy (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_actual_gp
+    verbose_name: Total Actual GP (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_actual_sell
+    verbose_name: Total Actual Sell (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_estimated_buy_base_currency
+    verbose_name: Total Estimated Buy (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_buy_unbilled_amount_base_currency
+    verbose_name: Total Buy Unbilled (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_estimated_gp
+    verbose_name: Total Estimated GP (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_estimated_sell_base_currency
+    verbose_name: Total Estimated Sell (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: total_sell_unbilled_amount_base_currency
+    verbose_name: Total Sell Unbilled (Base Curr)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: hbl_number
+    verbose_name: "HBL / HAWB #"
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: mbl_number
+    verbose_name: "MBL / MAWB #"
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: num_of_buy_billed
+    verbose_name: Estimates - Buy Billed
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: num_of_sell_billed
+    verbose_name: Estimates - Sell Billed
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: num_of_buy_unbilled
+    verbose_name: Estimates - Buy Unbilled
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: num_of_sell_unbilled
+    verbose_name: Estimates - Sell Unbilled
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: voyage_number
+    verbose_name: Voyage / Flight
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: customer_created_at
+    verbose_name: Customer Created At
+    is_dttm: true
+    is_active: true
+    type: DATE
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: job_close_date
+    verbose_name: Job Close Date
+    is_dttm: true
+    is_active: true
+    type: DATE
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: onboarded_on
+    verbose_name: Customer Onboarded On
+    is_dttm: true
+    is_active: true
+    type: DATE
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: jed
+    verbose_name: Job Execution Date
+    is_dttm: true
+    is_active: true
+    type: DATE
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: service_sow
+    verbose_name: Scope Of Work
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: container_count
+    verbose_name: "# Containers"
+    is_dttm: false
+    is_active: true
+    type: INTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: num_of_estimates
+    verbose_name: "# Estimates"
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: teu_count
+    verbose_name: "# TEUs"
+    is_dttm: false
+    is_active: true
+    type: INTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: job_number
+    verbose_name: "Job #"
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: cbm
+    verbose_name: Volume (CBM)
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: accounting_status
+    verbose_name: Accounting Status
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: business_vertical
+    verbose_name: Business Vertical
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: freight_type
+    verbose_name: Freight Type
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: job_number_hyperlink
+    verbose_name: Job Number
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: trade_lane
+    verbose_name: Trade Lane
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: load_type
+    verbose_name: Load Type
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: vessel_name
+    verbose_name: Vessel Name
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: sales_person
+    verbose_name: Sales Person
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: shipment_type
+    verbose_name: Shipment Type
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: trade_type
+    verbose_name: Trade Type
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: tonnage
+    verbose_name: Tonnage
+    is_dttm: false
+    is_active: true
+    type: DECIMAL
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: branch
+    verbose_name: Branch
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: carrier
+    verbose_name: Carrier
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: customer
+    verbose_name: Customer
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: pod
+    verbose_name: POD
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: lop
+    verbose_name: LOP
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: pol
+    verbose_name: POL
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: status
+    verbose_name: Status
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: c_id
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: LONGINTEGER
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: default_currency
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+  - column_name: tenant
+    verbose_name: null
+    is_dttm: false
+    is_active: true
+    type: STRING
+    advanced_data_type: null
+    groupby: true
+    filterable: true
+    expression: null
+    description: null
+    python_date_format: null
+    extra: {}
+version: 1.0.0
+database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d

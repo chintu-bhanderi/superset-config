@@ -1,0 +1,61 @@
+slice_name: Transport Billing Pending
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 94__table
+  viz_type: big_number_total
+  slice_id: 680
+  metric: Shipments
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: freight_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - road
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_5tfxi65rsju_ezk167peg99
+  - expressionType: SIMPLE
+    subject: Billing Closed
+    operator: IN
+    operatorId: IN
+    comparator:
+    - Open
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_8g4chge007_y7q3fsnawqq
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_2mceg9wq13l_02uzggq46ezb
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 59
+query_context: '{"datasource":{"id":94,"type":"table"},"force":false,"queries":[{"filters":[{"col":"freight_type","op":"IN","val":["road"]},{"col":"Billing
+  Closed","op":"IN","val":["Open"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":["Shipments"],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"94__table","viz_type":"big_number_total","slice_id":680,"metric":"Shipments","adhoc_filters":[{"expressionType":"SIMPLE","subject":"freight_type","operator":"IN","operatorId":"IN","comparator":["road"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_5tfxi65rsju_ezk167peg99"},{"expressionType":"SIMPLE","subject":"Billing
+  Closed","operator":"IN","operatorId":"IN","comparator":["Open"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_8g4chge007_y7q3fsnawqq"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_2mceg9wq13l_02uzggq46ezb"}],"header_font_size":0.5,"subheader_font_size":0.3,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","conditional_formatting":[],"extra_form_data":{},"dashboards":[59],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 90d4e881-bbc3-4e3e-9d4c-e322c647186c
+version: 1.0.0
+dataset_uuid: ad890754-bd23-4cc2-8777-4882be59d206

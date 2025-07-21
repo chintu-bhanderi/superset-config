@@ -1,0 +1,1102 @@
+dashboard_title: Billing Dashboard
+description: null
+css: ''
+slug: null
+certified_by: null
+certification_details: null
+published: true
+uuid: 87c5cc91-b675-405b-b05d-02c3a5d825d8
+position:
+  CHART-1uEMCycBbD:
+    children: []
+    id: CHART-1uEMCycBbD
+    meta:
+      chartId: 681
+      height: 15
+      sliceName: Others - Billing Pending
+      uuid: 447eb20c-aa5e-44bb-812b-9ed9a1154740
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-2nTWcD8vdO
+    type: CHART
+  CHART-2mEeHmnjeG:
+    children: []
+    id: CHART-2mEeHmnjeG
+    meta:
+      chartId: 674
+      height: 50
+      sliceName: Sales Billing Pending - Ageing
+      uuid: 032a5eb8-35fc-4f89-b158-c80606c29ac8
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-JPMnXmJC6i
+    type: CHART
+  CHART-3EVsd9uSe2:
+    children: []
+    id: CHART-3EVsd9uSe2
+    meta:
+      chartId: 672
+      height: 85
+      sliceName: Billing Pending Summary
+      uuid: 7d2ae01c-0807-47ab-97d2-8e98b63827f0
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-ki4j1smU16
+    type: CHART
+  CHART-4LSBgowdxd:
+    children: []
+    id: CHART-4LSBgowdxd
+    meta:
+      chartId: 685
+      height: 37
+      sliceName: 'Customer Wise Billing Summary - # Shipments'
+      uuid: bf28017e-aca0-4b7c-9c7a-2f0eb8adefe2
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-XnB0E3YCIs
+    type: CHART
+  CHART-EVBCtHOU-D:
+    children: []
+    id: CHART-EVBCtHOU-D
+    meta:
+      chartId: 677
+      height: 16
+      sliceName: Ocean Import Billing Pending
+      uuid: 3b244ad8-ca9c-4a39-adb0-e5f816030517
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-Oeq5hPnszO
+    type: CHART
+  CHART-EZyAVK6gwL:
+    children: []
+    id: CHART-EZyAVK6gwL
+    meta:
+      chartId: 689
+      height: 14
+      sliceName: Billed - Air Export
+      uuid: d8d2e5bf-503a-4977-997e-6aab4ddcf58e
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-2kQHSalDow
+    type: CHART
+  CHART-FwrksrisDO:
+    children: []
+    id: CHART-FwrksrisDO
+    meta:
+      chartId: 693
+      height: 15
+      sliceName: Billed - Others
+      uuid: 1a9c98a1-9cf4-4454-a291-35e730bf3cd8
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-28PI28eml4
+    type: CHART
+  CHART-PQdW8hbToB:
+    children: []
+    id: CHART-PQdW8hbToB
+    meta:
+      chartId: 675
+      height: 16
+      sliceName: '# Shipments - Billing Pending'
+      uuid: ec973e85-8969-47a0-a712-02db27b8deba
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-Oeq5hPnszO
+    type: CHART
+  CHART-R2HL1SSh_I:
+    children: []
+    id: CHART-R2HL1SSh_I
+    meta:
+      chartId: 691
+      height: 14
+      sliceName: Billed - Ocean Import
+      uuid: 41f0e473-4338-430a-8813-a8daee680d02
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-2kQHSalDow
+    type: CHART
+  CHART-R4APm6sGxM:
+    children: []
+    id: CHART-R4APm6sGxM
+    meta:
+      chartId: 683
+      height: 72
+      sliceName: Billing Done Summary
+      uuid: 06523d84-e7d2-4b91-9e9b-525eaf28f3ce
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-L6ziDcuylN
+    type: CHART
+  CHART-RO3HKJvLvv:
+    children: []
+    id: CHART-RO3HKJvLvv
+    meta:
+      chartId: 690
+      height: 15
+      sliceName: Billed - Air Import
+      uuid: dccbe550-3272-47e9-bf8a-42ecfbd1dc1d
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-28PI28eml4
+    type: CHART
+  CHART-VrIphLZmHb:
+    children: []
+    id: CHART-VrIphLZmHb
+    meta:
+      chartId: 686
+      height: 50
+      sliceName: Shipments Wise Ageing
+      uuid: b1d7debf-b170-4dcd-b281-1927a0c310fc
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-ZDZHFpSpGK
+    type: CHART
+  CHART-ZZoDOqWqzR:
+    children: []
+    id: CHART-ZZoDOqWqzR
+    meta:
+      chartId: 684
+      height: 38
+      sliceName: Customer Wise Billing Summary -Revenue
+      uuid: ef37b25c-c969-4c41-bc66-be6c276652f6
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-QM1-42jBXK
+    type: CHART
+  CHART-eQxzRtFe1s:
+    children: []
+    id: CHART-eQxzRtFe1s
+    meta:
+      chartId: 676
+      height: 16
+      sliceName: Ocean Export Billing Pending
+      uuid: ae377095-6be9-467f-a2c0-7b0b6ad751ec
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-Oeq5hPnszO
+    type: CHART
+  CHART-jUgdLYVNEr:
+    children: []
+    id: CHART-jUgdLYVNEr
+    meta:
+      chartId: 679
+      height: 16
+      sliceName: Air Export Billing Pending
+      uuid: 1c25785d-44a8-4ba1-b304-a8f9432e3296
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-Oeq5hPnszO
+    type: CHART
+  CHART-sEnsPXrVb9:
+    children: []
+    id: CHART-sEnsPXrVb9
+    meta:
+      chartId: 680
+      height: 15
+      sliceName: Transport Billing Pending
+      uuid: 90d4e881-bbc3-4e3e-9d4c-e322c647186c
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-2nTWcD8vdO
+    type: CHART
+  CHART-tpGvXfZ29N:
+    children: []
+    id: CHART-tpGvXfZ29N
+    meta:
+      chartId: 692
+      height: 15
+      sliceName: Billed - Road Shipments
+      uuid: 37bc8585-18b1-4659-92cf-1a7fbbc97da7
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-28PI28eml4
+    type: CHART
+  CHART-tq4p7dT6aZ:
+    children: []
+    id: CHART-tq4p7dT6aZ
+    meta:
+      chartId: 678
+      height: 15
+      sliceName: Air Import Billing Pending
+      uuid: 7f636074-b236-44af-af8d-a4d6417e84b1
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    - ROW-2nTWcD8vdO
+    type: CHART
+  CHART-z1OuLxq-kQ:
+    children: []
+    id: CHART-z1OuLxq-kQ
+    meta:
+      chartId: 688
+      height: 14
+      sliceName: Billed - Ocean Export
+      uuid: 79346a56-7746-4383-a2fe-990e56a83361
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-2kQHSalDow
+    type: CHART
+  CHART-zzkwmAuQwV:
+    children: []
+    id: CHART-zzkwmAuQwV
+    meta:
+      chartId: 687
+      height: 14
+      sliceName: Shipments Billed
+      uuid: b5c22c2e-e4af-407a-b60e-48a04cffc215
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    - ROW-2kQHSalDow
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - TABS-6p7Zj-GwhV
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Billing Dashboard
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-28PI28eml4:
+    children:
+    - CHART-RO3HKJvLvv
+    - CHART-tpGvXfZ29N
+    - CHART-FwrksrisDO
+    id: ROW-28PI28eml4
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    type: ROW
+  ROW-2kQHSalDow:
+    children:
+    - CHART-zzkwmAuQwV
+    - CHART-z1OuLxq-kQ
+    - CHART-R2HL1SSh_I
+    - CHART-EZyAVK6gwL
+    id: ROW-2kQHSalDow
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    type: ROW
+  ROW-2nTWcD8vdO:
+    children:
+    - CHART-tq4p7dT6aZ
+    - CHART-sEnsPXrVb9
+    - CHART-1uEMCycBbD
+    id: ROW-2nTWcD8vdO
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    type: ROW
+  ROW-JPMnXmJC6i:
+    children:
+    - CHART-2mEeHmnjeG
+    id: ROW-JPMnXmJC6i
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    type: ROW
+  ROW-L6ziDcuylN:
+    children:
+    - CHART-R4APm6sGxM
+    id: ROW-L6ziDcuylN
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    type: ROW
+  ROW-Oeq5hPnszO:
+    children:
+    - CHART-PQdW8hbToB
+    - CHART-eQxzRtFe1s
+    - CHART-EVBCtHOU-D
+    - CHART-jUgdLYVNEr
+    id: ROW-Oeq5hPnszO
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    type: ROW
+  ROW-XnB0E3YCIs:
+    children:
+    - CHART-4LSBgowdxd
+    - CHART-ZZoDOqWqzR
+    id: ROW-XnB0E3YCIs
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    type: ROW
+  ROW-ZDZHFpSpGK:
+    children:
+    - CHART-VrIphLZmHb
+    id: ROW-ZDZHFpSpGK
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-44dbgsoVi
+    type: ROW
+  ROW-ki4j1smU16:
+    children:
+    - CHART-3EVsd9uSe2
+    id: ROW-ki4j1smU16
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    - TAB-7vKiK1Lc-J
+    type: ROW
+  TAB-44dbgsoVi:
+    children:
+    - ROW-2kQHSalDow
+    - ROW-28PI28eml4
+    - ROW-ZDZHFpSpGK
+    - ROW-XnB0E3YCIs
+    - ROW-L6ziDcuylN
+    id: TAB-44dbgsoVi
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Billing Done
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    type: TAB
+  TAB-7vKiK1Lc-J:
+    children:
+    - ROW-Oeq5hPnszO
+    - ROW-2nTWcD8vdO
+    - ROW-JPMnXmJC6i
+    - ROW-ki4j1smU16
+    id: TAB-7vKiK1Lc-J
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Billing Pending
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-6p7Zj-GwhV
+    type: TAB
+  TABS-6p7Zj-GwhV:
+    children:
+    - TAB-7vKiK1Lc-J
+    - TAB-44dbgsoVi
+    id: TABS-6p7Zj-GwhV
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: TABS
+metadata:
+  chart_configuration:
+    '672':
+      id: 672
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 674
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 683
+        - 684
+        - 685
+        - 686
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+    '674':
+      id: 674
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 672
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 683
+        - 684
+        - 685
+        - 686
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+    '683':
+      id: 683
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 672
+        - 674
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 684
+        - 685
+        - 686
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+    '684':
+      id: 684
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 672
+        - 674
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 683
+        - 685
+        - 686
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+    '685':
+      id: 685
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 672
+        - 674
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 683
+        - 684
+        - 686
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+    '686':
+      id: 686
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 672
+        - 674
+        - 675
+        - 676
+        - 677
+        - 678
+        - 679
+        - 680
+        - 681
+        - 683
+        - 684
+        - 685
+        - 687
+        - 688
+        - 689
+        - 690
+        - 691
+        - 692
+        - 693
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    - 684
+    - 685
+    - 686
+    - 687
+    - 688
+    - 689
+    - 690
+    - 691
+    - 692
+    - 693
+  color_scheme: d3Category20c
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  native_filter_configuration:
+  - id: NATIVE_FILTER-6ockQM-Kn
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Branch
+    filterType: filter_select
+    targets:
+    - column:
+        name: branch
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-6oKG57Ei3
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Customer
+    filterType: filter_select
+    targets:
+    - column:
+        name: customer
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-X5M8hfnxN
+    controlValues:
+      enableEmptyFilter: false
+    name: Job Execution Date
+    filterType: filter_time
+    targets:
+    - {}
+    defaultDataMask:
+      extraFormData:
+        time_range: Last Month
+      filterState:
+        value: Last Month
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-33q9PY19l
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Business Vertical
+    filterType: filter_select
+    targets:
+    - column:
+        name: business_vertical
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-kXOKmu0cO
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Sales Person
+    filterType: filter_select
+    targets:
+    - column:
+        name: sales_person
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-7u27wuHsF
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: POL
+    filterType: filter_select
+    targets:
+    - column:
+        name: pol
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-CyqQt3rJr
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: POD
+    filterType: filter_select
+    targets:
+    - column:
+        name: pod
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-ihAqOAjpD
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Shipment Status
+    filterType: filter_select
+    targets:
+    - column:
+        name: status
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - TAB-7vKiK1Lc-J
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-IH47N8iuB
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: 'Job #'
+    filterType: filter_select
+    targets:
+    - column:
+        name: job_number
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  - id: NATIVE_FILTER-_EfpOFh5h
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Shipment Type
+    filterType: filter_select
+    targets:
+    - column:
+        name: shipment_type
+      datasetUuid: ad890754-bd23-4cc2-8777-4882be59d206
+    defaultDataMask:
+      extraFormData:
+        filters:
+        - col: shipment_type
+          op: IN
+          val:
+          - direct
+          - back_to_back
+          - house
+          - general
+      filterState:
+        validateMessage: false
+        validateStatus: false
+        label: direct, back_to_back, house, general
+        value:
+        - direct
+        - back_to_back
+        - house
+        - general
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 672
+    - 674
+    - 675
+    - 676
+    - 677
+    - 678
+    - 679
+    - 680
+    - 681
+    - 683
+    tabsInScope:
+    - TAB-44dbgsoVi
+    - TAB-7vKiK1Lc-J
+  shared_label_colors: {}
+  color_scheme_domain:
+  - '#3182bd'
+  - '#6baed6'
+  - '#9ecae1'
+  - '#c6dbef'
+  - '#e6550d'
+  - '#fd8d3c'
+  - '#fdae6b'
+  - '#fdd0a2'
+  - '#31a354'
+  - '#74c476'
+  - '#a1d99b'
+  - '#c7e9c0'
+  - '#756bb1'
+  - '#9e9ac8'
+  - '#bcbddc'
+  - '#dadaeb'
+  - '#636363'
+  - '#969696'
+  - '#bdbdbd'
+  - '#d9d9d9'
+version: 1.0.0
