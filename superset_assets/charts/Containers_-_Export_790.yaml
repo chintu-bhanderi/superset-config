@@ -6,7 +6,7 @@ viz_type: big_number_total
 params:
   datasource: 70__table
   viz_type: big_number_total
-  slice_id: 534
+  slice_id: 790
   metric:
     aggregate: SUM
     column:
@@ -33,28 +33,28 @@ params:
     optionName: metric_wnhsz9fo5m_aafkpepw7ll
     sqlExpression: null
   adhoc_filters:
-  - clause: WHERE
-    comparator:
-    - export
-    datasourceWarning: false
-    expressionType: SIMPLE
-    filterOptionName: filter_zlfuusvho2b_m3bpvq5ktte
-    isExtra: false
-    isNew: false
+  - expressionType: SIMPLE
+    subject: trade
     operator: IN
     operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
     sqlExpression: null
-    subject: trade
-  - clause: WHERE
-    comparator: No filter
+    isExtra: false
+    isNew: false
     datasourceWarning: false
-    expressionType: SIMPLE
-    filterOptionName: filter_igznorw43se_4fppa15kzsx
+    filterOptionName: filter_zlfuusvho2b_m3bpvq5ktte
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
     isExtra: true
     isNew: false
-    operator: TEMPORAL_RANGE
-    sqlExpression: null
-    subject: jed
+    datasourceWarning: false
+    filterOptionName: filter_igznorw43se_4fppa15kzsx
   header_font_size: 0.4
   subheader_font_size: 0.15
   y_axis_format: ',d'
@@ -62,10 +62,11 @@ params:
   conditional_formatting: []
   extra_form_data: {}
   dashboards:
-  - 6
-  - 64
-  annotation_layers: []
-query_context: null
+  - 38
+  - 62
+query_context: '{"datasource":{"id":70,"type":"table"},"force":false,"queries":[{"filters":[{"col":"trade","op":"IN","val":["export"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"container_count","description":null,"expression":"","filterable":true,"groupby":true,"id":377,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(container_count)","optionName":"metric_wnhsz9fo5m_aafkpepw7ll","sqlExpression":null}],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"70__table","viz_type":"big_number_total","slice_id":790,"metric":{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"container_count","description":null,"expression":"","filterable":true,"groupby":true,"id":377,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"INTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(container_count)","optionName":"metric_wnhsz9fo5m_aafkpepw7ll","sqlExpression":null},"adhoc_filters":[{"expressionType":"SIMPLE","subject":"trade","operator":"IN","operatorId":"IN","comparator":["export"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_zlfuusvho2b_m3bpvq5ktte"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_igznorw43se_4fppa15kzsx"}],"header_font_size":0.4,"subheader_font_size":0.15,"y_axis_format":",d","time_format":"smart_date","conditional_formatting":[],"extra_form_data":{},"dashboards":[38,62],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
 cache_timeout: null
 uuid: 55c5cf7e-7d04-4c2c-b41a-3d79e77ea0c5
 version: 1.0.0
