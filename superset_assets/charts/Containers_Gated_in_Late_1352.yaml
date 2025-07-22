@@ -1,0 +1,117 @@
+slice_name: Containers Gated in Late
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 78__table
+  viz_type: table
+  slice_id: 243
+  query_mode: aggregate
+  groupby:
+  - container_number
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POL
+    sqlExpression: pol
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel
+    sqlExpression: vessel_name
+  - expressionType: SQL
+    label: Cutoff Date
+    sqlExpression: gate_close_cutoff
+    datasourceWarning: false
+  - pol_gated_in_date
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    shipment_created: true
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_dlkbyqqitr_m5hc7svkg8a
+  - expressionType: SIMPLE
+    subject: freight_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - ocean
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_n3lvql7e17h_iudjzyfmtvq
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_7ih66jv802w_smr1z1d4djc
+  - expressionType: SQL
+    sqlExpression: pol_gated_in_date > gate_close_cutoff and pol_gated_in_date is
+      not NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_9ta9oy5jqg9_7y310rf2v4n
+  order_by_cols: []
+  row_limit: 1000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 0c6e1334-2ef3-40c7-9699-70a7a2c747ef
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

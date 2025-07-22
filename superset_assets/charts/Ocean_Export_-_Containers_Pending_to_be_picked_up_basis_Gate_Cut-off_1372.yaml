@@ -1,0 +1,67 @@
+slice_name: Ocean Export - Containers Pending to be picked up basis Gate Cut-off
+description: null
+certified_by: null
+certification_details: null
+viz_type: shipmnts-swimlane
+params:
+  datasource: 78__table
+  viz_type: shipmnts-swimlane
+  slice_id: 603
+  date_column:
+  - gate_close_cutoff
+  cols:
+  - gate_close_cutoff
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job Number
+    sqlExpression: job_number
+  - customer
+  - carrier
+  - container_type
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_z17mdk86xnf_udeda2yy4e9
+  - expressionType: SQL
+    sqlExpression: quantity_pickup_pending > 0
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_c7twd9pdkm_u9jg3si1rho
+  - expressionType: SIMPLE
+    subject: gate_close_cutoff
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_zwxd8qgd4e_26rp0kc6xqz
+  time_grain_sqla: P1W
+  row_limit: 10000
+  header_text: Hello, World!
+  bold_text: true
+  header_font_size: xl
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 39f3153c-8bd7-4553-8ce7-87f8fd8744c3
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

@@ -1,0 +1,164 @@
+slice_name: What is our trade-lane wise and carrier wise departure metrics ?
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 78__table
+  viz_type: pivot_table_v2
+  slice_id: 248
+  groupbyColumns: []
+  groupbyRows:
+  - expressionType: SQL
+    label: POL
+    sqlExpression: pol
+    datasourceWarning: false
+  - carrier
+  - vessel_name
+  - etd
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loaded_on_vessel_date: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    routing_updated_at: true
+    shipment_created: true
+  metrics:
+  - count
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:01:17.293087'
+      column_name: Average Delay
+      created_on: '2025-06-13T12:01:17.293086'
+      description: null
+      expression: (CASE WHEN ata > eta THEN ata::date - eta::date ELSE 0 END)
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3356
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: f972e95d-7bd5-4603-9aa1-f02edeb00824
+      verbose_name: null
+    aggregate: AVG
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Average Delays
+    optionName: metric_vo1g4pc9og_9vmabod3k3
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:01:17.291311'
+      column_name: On Time Departures
+      created_on: '2025-06-13T12:01:17.291308'
+      description: null
+      expression: 'CASE WHEN atd>etd THEN 0 ELSE 1 END '
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4458
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: f4a78b7c-c30a-4da7-97bb-8d80fac1a1cf
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: On Time Departures
+    optionName: metric_u5f2ym0st7b_gi94mg8sbvk
+  - On Time Departures %
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_rhhxefjpxx_3xahg09tmy
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_2zzi6dp2j8s_7i9ltpkhc9o
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  - clause: WHERE
+    comparator:
+    - ocean
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_w3hk5uj9pg_sgrf579jf2r
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight_type
+  row_limit: 1000
+  order_desc: true
+  aggregateFunction: Sum
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#CDFEE1'
+    column: On Time departure %
+    operator: None
+  - colorScheme: '#E8EBFE'
+    column: count
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: On Time Departures
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Late departures
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Average Delays
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f40e9b4c-4cd4-459c-af7f-86e08a4fd589
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

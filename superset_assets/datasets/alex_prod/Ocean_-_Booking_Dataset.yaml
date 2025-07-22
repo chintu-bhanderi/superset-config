@@ -1,0 +1,530 @@
+table_name: Ocean - Booking Dataset
+main_dttm_col: booking_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: null
+sql: "select \noto.load_type,\noto.booking_number,\noto.booking_date,\noto.valid_till_date,\n\
+  sp.name as sales_person,\nCONCAT(cs.first_name,'-',cs.last_name) as cs_person,\n\
+  oto.status,\noto.created_at,\noto.si_cutoff_date,\noto.doc_cutoff_date,\noto.is_independent,\n\
+  oto.requested_containers_count,\noto.picked_up_containers_count,\noto.estimated_time_of_departure,\n\
+  oto.tenant_id,\noto.shipment_id,\npol.name as pol,\npod.name as pod,\ncarrier.name\
+  \ as shipping_line,\nconcat(vessel.name, '-', aotor.voyage_number) as vessel_voyage,\n\
+  concat(vessel.name, '-', concat(aotor.voyage_number,' ', to_char(oto.estimated_time_of_departure,\
+  \ 'DD-MM'))) as vessel_voyage_etd,\ncr.container_type as container_type,\naotor.quantity_requested\
+  \ as received,\naotor.quantity_fulfilled as alloted,\naotor,quantity_allocation_pending\
+  \ as pending,\naotor.quantity_origin_port_gated_in AS gatedin,\naotor.quantity_origin_port_gate_in_pending\
+  \ AS gatein_pending,\naotor.quantity_pick_up_pending AS pickup_pending,\naotor.quantity_picked_up\
+  \ AS pickedup,\naotor.quantity_loaded_on_vessel AS loaded,\naotor.quantity_loading_pending\
+  \ AS loading_pending,\n-- aotor.quantity_offloaded as offloaded_quantity,\nc.registered_name\
+  \ as customer,\nvs.service_name as service\nfrom ocean_transport_orders as oto\n\
+  left outer join analytics_ocean_transport_order_reports as aotor on  oto.id = aotor.id\n\
+  left outer join shipments as s on s.id = oto.shipment_id\nleft outer join analytics_shipment_reports\
+  \ asr on asr.id = s.id\nleft outer join user_contacts cs on cs.id = asr.customer_service_person_id\n\
+  left outer join sales_people as sp on sp.id = oto.sales_person_id\nleft outer join\
+  \ container_requests as cr on oto.id = cr.ocean_transport_order_id\nleft outer join\
+  \ locations as pod on aotor.port_of_discharge_location_id = pod.id\nleft outer join\
+  \ locations as pol on aotor.port_of_loading_location_id = pol.id\nleft outer join\
+  \ carriers as carrier on carrier.id = oto.global_carrier_id\nleft outer join ocean_vessels\
+  \ as vessel on aotor.vessel_id = vessel.imo\nleft outer join voyage_schedules as\
+  \ vs on oto.voyage_schedule_id = vs.id\nleft outer join branch_accounts as branch\
+  \ on branch.id = oto.booked_by_branch_id\nleft outer join companies as c on c.id\
+  \ = s.customer_company_id\nwhere oto.deleted_at is null and oto.cancelled_at is\
+  \ null \nand s.deleted_at is null and s.cancelled_at is null\nand oto.tenant_id\
+  \ = {{url_param('tenant_id') or 43}}\nORDER BY oto.estimated_time_of_departure ASC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: d9d11ad6-1020-4592-835f-4399ab9a9647
+metrics:
+- metric_name: count
+  verbose_name: Count(*)
+  metric_type: null
+  expression: count(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: received_sum
+  verbose_name: Sum(Received)
+  metric_type: null
+  expression: SUM(received)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Container Code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n    WHEN container_type = '40 Reefer High Cube' THEN '40 RF'\n\
+    \    WHEN container_type = '20 Standard Dry' THEN '20 STD'\n    WHEN container_type\
+    \ = '20 One Door Open' THEN '20 ODO'\n    WHEN container_type = '40 High Cube'\
+    \ THEN '40 HC'\n    WHEN container_type = '40 One Door Open' THEN '40 ODO'\n \
+    \   WHEN container_type = '40 Standard Dry' THEN '40 STD'\n    ELSE 'Null'\nEND\n"
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Expired Count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN CURRENT_DATE > valid_till_date::DATE AND pending>0 THEN pending
+    ELSE 0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Alloted Count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN shipment_id is not null then requested_containers_count ELSE
+    0 END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: Pending count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CASE WHEN shipment_id is not null then 0 ELSE requested_containers_count
+    END
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: picked_up_containers_count
+  verbose_name: Picked Up Cntrs
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gatein_pending
+  verbose_name: Gate In Pending
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gatedin
+  verbose_name: Gated In Qty
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: loading_pending
+  verbose_name: Loading Pending Qty
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pickup_pending
+  verbose_name: Pickup Pending Qty
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pickedup
+  verbose_name: Picked Up Qty
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: created_at
+  verbose_name: Created At
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: booking_date
+  verbose_name: Booking Date
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: doc_cutoff_date
+  verbose_name: Docs CutOff
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: booking_number
+  verbose_name: Booking Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: cs_person
+  verbose_name: CS Person
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: container_type
+  verbose_name: Container Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pending
+  verbose_name: Pending Qty
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: load_type
+  verbose_name: Load Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vessel_voyage
+  verbose_name: Vessel Voyage
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: is_independent
+  verbose_name: Independent
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: estimated_time_of_departure
+  verbose_name: ETD
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: alloted
+  verbose_name: Alloted
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: customer
+  verbose_name: Customer
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pod
+  verbose_name: POD
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: loaded
+  verbose_name: Loaded
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: received
+  verbose_name: Received
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: pol
+  verbose_name: POL
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: valid_till_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: si_cutoff_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: tenant_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: shipment_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: requested_containers_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: vessel_voyage_etd
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: sales_person
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: shipping_line
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: aotor
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: service
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d

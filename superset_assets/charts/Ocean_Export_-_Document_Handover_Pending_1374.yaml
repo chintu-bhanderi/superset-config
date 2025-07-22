@@ -1,0 +1,66 @@
+slice_name: Ocean Export - Document Handover Pending
+description: null
+certified_by: null
+certification_details: null
+viz_type: shipmnts-swimlane
+params:
+  datasource: 78__table
+  viz_type: shipmnts-swimlane
+  date_column:
+  - docs_cutoff
+  cols:
+  - docs_cutoff
+  - label: Job Number
+    sqlExpression: job_number
+    expressionType: SQL
+  - customer
+  - carrier
+  - pol
+  - container_number
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: docs_cutoff
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_58lavsgdwak_uj9p7shx6o
+  - expressionType: SQL
+    sqlExpression: docs_handover_date is NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_533djn449wb_guxjum0xbrg
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_6gktc65oawe_tjdriti059
+  time_grain_sqla: P1W
+  row_limit: 10000
+  header_text: Hello, World!
+  bold_text: true
+  header_font_size: xl
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 5b5b9be2-83e3-4327-b314-37e2b3f4a565
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

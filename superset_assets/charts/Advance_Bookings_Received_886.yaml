@@ -1,0 +1,61 @@
+slice_name: Advance Bookings Received
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 77__table
+  viz_type: big_number_total
+  slice_id: 449
+  metric:
+    aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: received
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 552
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Booking received
+    optionName: metric_24if5eso799_0wu1773qazr
+    sqlExpression: null
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_k0acw9y1uu8_e6avj1veim8
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: estimated_time_of_departure
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: ~g
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 6
+  - 58
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: c028a4b8-3461-41fa-ab59-e4e360da70a5
+version: 1.0.0
+dataset_uuid: d9d11ad6-1020-4592-835f-4399ab9a9647

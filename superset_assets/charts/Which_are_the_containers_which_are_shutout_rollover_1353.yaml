@@ -1,0 +1,103 @@
+slice_name: Which are the containers which are shutout / rollover ?
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 78__table
+  viz_type: table
+  slice_id: 245
+  query_mode: aggregate
+  groupby:
+  - job_number_hyperlink
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - carrier
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POL
+    sqlExpression: pol
+  - pod
+  - container_number
+  - etd
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loaded_on_vessel_date: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    routing_updated_at: true
+    shipment_created: true
+  all_columns:
+  - container_number
+  - vessel_name
+  - pol
+  - pod
+  - carrier
+  - customer
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_rhhxefjpxx_3xahg09tmy
+  - expressionType: SQL
+    sqlExpression: loading_date is null and etd < CURRENT_DATE
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_pbtpcs2y5b_3e3ix4hbbac
+  - expressionType: SQL
+    sqlExpression: routing_updated_at is not NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_kydp5p7ohhj_mr67zffjbyd
+  order_by_cols: []
+  row_limit: 1000
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: e404c6cc-8af7-41eb-82a5-5b3fdf526bba
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

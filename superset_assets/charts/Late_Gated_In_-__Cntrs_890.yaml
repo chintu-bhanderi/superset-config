@@ -1,0 +1,72 @@
+slice_name: 'Late Gated In - # Cntrs'
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 78__table
+  viz_type: big_number_total
+  slice_id: 458
+  metric: count
+  adhoc_filters:
+  - clause: WHERE
+    comparator:
+    - ocean
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_n3lvql7e17h_iudjzyfmtvq
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight_type
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_7ih66jv802w_smr1z1d4djc
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_9ta9oy5jqg9_7y310rf2v4n
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: pol_gated_in_date> gate_close_cutoff and pol_gated_in_date is not
+      NULL
+    subject: null
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_dlkbyqqitr_m5hc7svkg8a
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: etd
+  header_font_size: 0.5
+  subheader_font_size: 0.3
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards:
+  - 6
+  - 58
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 62ad5d3d-a39b-4193-9bc1-470315044c4e
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

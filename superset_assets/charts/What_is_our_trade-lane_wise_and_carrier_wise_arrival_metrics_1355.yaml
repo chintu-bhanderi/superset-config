@@ -1,0 +1,191 @@
+slice_name: What is our trade-lane wise and carrier wise arrival metrics ?
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 78__table
+  viz_type: pivot_table_v2
+  slice_id: 250
+  groupbyColumns: []
+  groupbyRows:
+  - datasourceWarning: true
+    expressionType: SQL
+    label: POD
+    sqlExpression: pod
+  - carrier
+  - vessel_name
+  - customer
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    shipment_created: true
+  metrics:
+  - count
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-11T07:31:36.451474'
+      column_name: On Time Arrivals
+      created_on: '2024-10-11T07:31:36.451471'
+      description: null
+      expression: 'CASE WHEN ship_ata>ship_eta OR actual_arrival > ship_eta THEN 0
+        ELSE 1 END '
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1447
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 077ab39b-ec26-472f-8a9d-a50fde710bf4
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: On Time Arrivals
+    optionName: metric_5op9iuxoewj_o0wt1e9i9e
+    sqlExpression: null
+  - On Time %
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-11T07:31:36.451504'
+      column_name: Late Arrivals
+      created_on: '2024-10-11T07:31:36.451503'
+      description: null
+      expression: 'CASE WHEN ship_ata>ship_eta OR actual_arrival > ship_eta THEN 1
+        ELSE 0 END '
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1448
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 97ab34e1-5026-48ed-98da-142d3f81717a
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Late arrivals
+    optionName: metric_zt4seqzh9zr_nryk84guskr
+    sqlExpression: null
+  - aggregate: AVG
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-11T07:44:57.544439'
+      column_name: Average Delay
+      created_on: '2024-10-11T07:44:57.544435'
+      description: null
+      expression: (CASE WHEN ship_ata > ship_eta THEN ship_ata::date - ship_eta::date
+        ELSE 0 END)
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1449
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 17a82dc6-7b7e-47c6-b789-3ef3c3bd692e
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Average Delay
+    optionName: metric_lytc0y7ph2e_8t527q3wkb4
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_na2b0uv0ukj_c3nf7megk6i
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_t5o8xiwqgy_t16vddv6se
+  - expressionType: SQL
+    sqlExpression: 'ata is not NULL '
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: true
+    filterOptionName: filter_rrg2o7svawm_df3j0v6kbb
+  row_limit: 1000
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  rowSubTotals: false
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: count
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: On Time Arrivals
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Late arrivals
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: On Time %
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Average Delay
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f2890ed3-162e-4119-8ffb-6e9c62f43ca5
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

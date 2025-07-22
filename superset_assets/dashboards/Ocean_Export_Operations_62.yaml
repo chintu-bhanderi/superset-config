@@ -1,0 +1,1804 @@
+dashboard_title: Ocean Export Operations
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: 66e5018d-cd81-487a-b868-04b2c70a4f3f
+position:
+  CHART--h9rWi1L_1:
+    children: []
+    id: CHART--h9rWi1L_1
+    meta:
+      chartId: 1353
+      height: 53
+      sliceName: Which are the containers which are shutout / rollover ?
+      uuid: e404c6cc-8af7-41eb-82a5-5b3fdf526bba
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-VRfqsNzBZJ
+    type: CHART
+  CHART-0UVLWSNV_x:
+    children: []
+    id: CHART-0UVLWSNV_x
+    meta:
+      chartId: 1364
+      height: 17
+      sliceName: Export CBM
+      uuid: f8704cc3-45fe-4c57-a77d-4ece748bf080
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - ROW-3mJDpEIrUp
+    type: CHART
+  CHART-1UHgK_lDUI:
+    children: []
+    id: CHART-1UHgK_lDUI
+    meta:
+      chartId: 1351
+      height: 66
+      sliceName: How many containers are pending to be gated in ?
+      uuid: a29d26f6-f496-4937-80b9-232278806659
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-P4xqNMCTft
+    type: CHART
+  CHART-1zEPaMIVsz:
+    children: []
+    id: CHART-1zEPaMIVsz
+    meta:
+      chartId: 1358
+      height: 50
+      sliceName: Milestone wise Exceptions
+      uuid: 7b4f6a2d-3013-4b91-b64a-cdea118e0b46
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-vsoK8qmJ-z
+    type: CHART
+  CHART-2YlYqG0ylm:
+    children: []
+    id: CHART-2YlYqG0ylm
+    meta:
+      chartId: 1354
+      height: 67
+      sliceName: What is our trade-lane wise and carrier wise departure metrics ?
+      uuid: f40e9b4c-4cd4-459c-af7f-86e08a4fd589
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-VeGJJ1seUE
+    type: CHART
+  CHART-6gO7kbMmZH:
+    children: []
+    id: CHART-6gO7kbMmZH
+    meta:
+      chartId: 1349
+      height: 57
+      sliceName: Which customer orders have been allocated booking and which are pending
+        ?
+      uuid: 93988169-c02f-4372-9dbd-40225bac0aa6
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-nO4buOYtra
+    type: CHART
+  CHART-7BTtY320La:
+    children: []
+    id: CHART-7BTtY320La
+    meta:
+      chartId: 790
+      height: 17
+      sliceName: Export Containers
+      uuid: 55c5cf7e-7d04-4c2c-b41a-3d79e77ea0c5
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - ROW-3mJDpEIrUp
+    type: CHART
+  CHART-7XQ1iyn_Kv:
+    children: []
+    id: CHART-7XQ1iyn_Kv
+    meta:
+      chartId: 891
+      height: 68
+      sliceName: Allocation from Advance Booking - Customer Wise
+      uuid: bfbd2e14-bae2-4346-94c1-1e98da0cfa2b
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    - ROW-uGoVtBSk8
+    type: CHART
+  CHART-8eYCZjSa95:
+    children: []
+    id: CHART-8eYCZjSa95
+    meta:
+      chartId: 1360
+      height: 50
+      sliceName: Trade Lane wise ETA Performance
+      uuid: 3dad6c9d-7562-4812-8d68-5744a9041e75
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-_-VTpm2cxY
+    type: CHART
+  CHART-9z2dha5JvZ:
+    children: []
+    id: CHART-9z2dha5JvZ
+    meta:
+      chartId: 1371
+      height: 74
+      sliceName: Allocation from Advance Booking
+      uuid: 6a474714-3b9b-4a54-8e7b-0d19465054c0
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    - ROW-mujg2nGzs
+    type: CHART
+  CHART-CtStW1CWOn:
+    children: []
+    id: CHART-CtStW1CWOn
+    meta:
+      chartId: 1369
+      height: 59
+      sliceName: How many containers are pending to be loaded on the vessel?
+      uuid: addebb7d-c6a0-40b5-8ddb-a4fa7d91eb55
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-U_AA_DCzXM
+    type: CHART
+  CHART-ETKnunT0-6:
+    children: []
+    id: CHART-ETKnunT0-6
+    meta:
+      chartId: 1350
+      height: 74
+      sliceName: Milestone analysis for active customer orders
+      uuid: a8a088b9-0647-48e3-ade7-89930e41c463
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-0lZMk5cbKM
+    type: CHART
+  CHART-Fmuko8Ypi-:
+    children: []
+    id: CHART-Fmuko8Ypi-
+    meta:
+      chartId: 1352
+      height: 53
+      sliceName: Containers Gated in Late
+      uuid: 0c6e1334-2ef3-40c7-9699-70a7a2c747ef
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-VRfqsNzBZJ
+    type: CHART
+  CHART-GD1t7GWSSB:
+    children: []
+    id: CHART-GD1t7GWSSB
+    meta:
+      chartId: 1357
+      height: 50
+      sliceName: Month on month ETA Trend
+      uuid: c04eea8a-1860-4ecf-96c6-ec419a8d499b
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-vsoK8qmJ-z
+    type: CHART
+  CHART-H45m9vkhEl:
+    children: []
+    id: CHART-H45m9vkhEl
+    meta:
+      chartId: 1372
+      height: 61
+      sliceName: Ocean Export - Containers Pending to be picked up basis Gate Cut-off
+      uuid: 39f3153c-8bd7-4553-8ce7-87f8fd8744c3
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-AQ7lcV_wlI
+    type: CHART
+  CHART-HcfktqC2-z:
+    children: []
+    id: CHART-HcfktqC2-z
+    meta:
+      chartId: 1374
+      height: 61
+      sliceName: Ocean Export - Document Handover Pending
+      uuid: 5b5b9be2-83e3-4327-b314-37e2b3f4a565
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-KGaNRprMAA
+    type: CHART
+  CHART-M5r2iDDgny:
+    children: []
+    id: CHART-M5r2iDDgny
+    meta:
+      chartId: 1361
+      height: 64
+      sliceName: Which are the containers which have undergone destination demurrage?
+      uuid: 014fc07d-87bc-4e82-8456-4e7c478973e6
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-IBQdvO4FLT
+    type: CHART
+  CHART-McwI9H9rgF:
+    children: []
+    id: CHART-McwI9H9rgF
+    meta:
+      chartId: 887
+      height: 15
+      sliceName: Containers alloted from advance booking
+      uuid: a432a0d5-da21-406d-8735-8427cfdc11c5
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    - ROW-Vb9IvHfNKy
+    type: CHART
+  CHART-N-8z3lknAR:
+    children: []
+    id: CHART-N-8z3lknAR
+    meta:
+      chartId: 1362
+      height: 50
+      sliceName: Which containers have incurred detention ?
+      uuid: eef8a2f5-a8af-44b5-9b59-b24de732cce4
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-k8WvOJZLco
+    type: CHART
+  CHART-QWtuC8VoRO:
+    children: []
+    id: CHART-QWtuC8VoRO
+    meta:
+      chartId: 1359
+      height: 50
+      sliceName: Carrier wise ETA Performance - TTM
+      uuid: 38efbf4e-c63c-4aba-8566-03617e00aad8
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-_-VTpm2cxY
+    type: CHART
+  CHART-VkSJoEbxor:
+    children: []
+    id: CHART-VkSJoEbxor
+    meta:
+      chartId: 888
+      height: 15
+      sliceName: Allocation Pending
+      uuid: 09fdd18e-fad3-4230-898e-1470a588655d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    - ROW-Vb9IvHfNKy
+    type: CHART
+  CHART-XEkqmQuoCa:
+    children: []
+    id: CHART-XEkqmQuoCa
+    meta:
+      chartId: 1356
+      height: 57
+      sliceName: What is our trade-lane wise and carrier wise transit metrics ?
+      uuid: 26d1b3fc-7c87-4fd9-a40a-e5fd73b86cac
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-f56xpPH4GE
+    type: CHART
+  CHART-Z0VaV0RkLY:
+    children: []
+    id: CHART-Z0VaV0RkLY
+    meta:
+      chartId: 890
+      height: 13
+      sliceName: Containers - Late Gated In
+      uuid: 62ad5d3d-a39b-4193-9bc1-470315044c4e
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-z_tGncIySH
+    type: CHART
+  CHART-cCfVhDM066:
+    children: []
+    id: CHART-cCfVhDM066
+    meta:
+      chartId: 1367
+      height: 16
+      sliceName: Allocation Pending
+      uuid: c646678d-4ca0-4633-ba7c-e2b28d3fa741
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-fgUQ7BSSdj
+    type: CHART
+  CHART-fZ0xC4EZtP:
+    children: []
+    id: CHART-fZ0xC4EZtP
+    meta:
+      chartId: 886
+      height: 15
+      sliceName: Advance Booking from Shipping line
+      uuid: c028a4b8-3461-41fa-ab59-e4e360da70a5
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    - ROW-Vb9IvHfNKy
+    type: CHART
+  CHART-jO0NTZuZWg:
+    children: []
+    id: CHART-jO0NTZuZWg
+    meta:
+      chartId: 1365
+      height: 16
+      sliceName: Bookings Allocated
+      uuid: 01057e87-3773-43ed-be1f-18d62e02631c
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-fgUQ7BSSdj
+    type: CHART
+  CHART-lP126bPzqx:
+    children: []
+    id: CHART-lP126bPzqx
+    meta:
+      chartId: 1366
+      height: 16
+      sliceName: Containers ordered
+      uuid: f526ce9d-45ff-4568-bc46-3721dda6e6b9
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-fgUQ7BSSdj
+    type: CHART
+  CHART-m_A9ZGuX-s:
+    children: []
+    id: CHART-m_A9ZGuX-s
+    meta:
+      chartId: 889
+      height: 16
+      sliceName: Active customer orders
+      uuid: 964723ee-5560-4362-adca-c9a7dd23a81d
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    - ROW-fgUQ7BSSdj
+    type: CHART
+  CHART-pLxTi9_bWr:
+    children: []
+    id: CHART-pLxTi9_bWr
+    meta:
+      chartId: 1363
+      height: 17
+      sliceName: Export Shipments
+      uuid: 8789ab0c-8ef8-4301-a370-11fc2a5f4fea
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - ROW-3mJDpEIrUp
+    type: CHART
+  CHART-pPZcnfnqcX:
+    children: []
+    id: CHART-pPZcnfnqcX
+    meta:
+      chartId: 1368
+      height: 55
+      sliceName: How many containers are pending to be loaded on basis ETD ?
+      uuid: 94f5bdd0-0fc0-4219-8ae3-626a635f0391
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-DCEHkio6yn
+    type: CHART
+  CHART-rciB5eDCd8:
+    children: []
+    id: CHART-rciB5eDCd8
+    meta:
+      chartId: 1373
+      height: 64
+      sliceName: Ocean Export - Containers Pending to be Gated In
+      uuid: f87f88be-25b8-4906-8dee-433018dbbc51
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    - ROW-AQ7lcV_wlI
+    type: CHART
+  CHART-taU1daLA8k:
+    children: []
+    id: CHART-taU1daLA8k
+    meta:
+      chartId: 1370
+      height: 13
+      sliceName: Roll over / Shutout containers
+      uuid: a9fee8d1-1d63-4fd2-9296-c1c614810033
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    - ROW-z_tGncIySH
+    type: CHART
+  CHART-y2LJqGbVZS:
+    children: []
+    id: CHART-y2LJqGbVZS
+    meta:
+      chartId: 789
+      height: 17
+      sliceName: Export TEUs
+      uuid: 8be06916-5391-4d11-917c-ac9b51ed68fd
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - ROW-3mJDpEIrUp
+    type: CHART
+  CHART-zuk2hFsSyY:
+    children: []
+    id: CHART-zuk2hFsSyY
+    meta:
+      chartId: 1355
+      height: 58
+      sliceName: What is our trade-lane wise and carrier wise arrival metrics ?
+      uuid: f2890ed3-162e-4119-8ffb-6e9c62f43ca5
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    - ROW-Df20VvtLVV
+    type: CHART
+  COLUMN-AgyUJGfhAA:
+    children:
+    - ROW-3mJDpEIrUp
+    - TABS-cMZjGMqncN
+    id: COLUMN-AgyUJGfhAA
+    meta:
+      background: BACKGROUND_TRANSPARENT
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    type: COLUMN
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - ROW--YxOG5tmuM
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Ocean Export Operations
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW--YxOG5tmuM:
+    children:
+    - COLUMN-AgyUJGfhAA
+    id: ROW--YxOG5tmuM
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-0lZMk5cbKM:
+    children:
+    - CHART-ETKnunT0-6
+    id: ROW-0lZMk5cbKM
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    type: ROW
+  ROW-3mJDpEIrUp:
+    children:
+    - CHART-pLxTi9_bWr
+    - CHART-y2LJqGbVZS
+    - CHART-7BTtY320La
+    - CHART-0UVLWSNV_x
+    id: ROW-3mJDpEIrUp
+    meta:
+      background: BACKGROUND_WHITE
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    type: ROW
+  ROW-AQ7lcV_wlI:
+    children:
+    - CHART-H45m9vkhEl
+    id: ROW-AQ7lcV_wlI
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-DCEHkio6yn:
+    children:
+    - CHART-pPZcnfnqcX
+    id: ROW-DCEHkio6yn
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-Df20VvtLVV:
+    children:
+    - CHART-zuk2hFsSyY
+    id: ROW-Df20VvtLVV
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    type: ROW
+  ROW-IBQdvO4FLT:
+    children:
+    - CHART-M5r2iDDgny
+    id: ROW-IBQdvO4FLT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    type: ROW
+  ROW-KGaNRprMAA:
+    children:
+    - CHART-HcfktqC2-z
+    id: ROW-KGaNRprMAA
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-P4xqNMCTft:
+    children:
+    - CHART-1UHgK_lDUI
+    id: ROW-P4xqNMCTft
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-PNGaasZh8:
+    children:
+    - CHART-rciB5eDCd8
+    id: ROW-PNGaasZh8
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-U_AA_DCzXM:
+    children:
+    - CHART-CtStW1CWOn
+    id: ROW-U_AA_DCzXM
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-HJBGBDjcXD
+    type: ROW
+  ROW-VRfqsNzBZJ:
+    children:
+    - CHART-Fmuko8Ypi-
+    - CHART--h9rWi1L_1
+    id: ROW-VRfqsNzBZJ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    type: ROW
+  ROW-Vb9IvHfNKy:
+    children:
+    - CHART-fZ0xC4EZtP
+    - CHART-McwI9H9rgF
+    - CHART-VkSJoEbxor
+    id: ROW-Vb9IvHfNKy
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    type: ROW
+  ROW-VeGJJ1seUE:
+    children:
+    - CHART-2YlYqG0ylm
+    id: ROW-VeGJJ1seUE
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    type: ROW
+  ROW-_-VTpm2cxY:
+    children:
+    - CHART-QWtuC8VoRO
+    - CHART-8eYCZjSa95
+    id: ROW-_-VTpm2cxY
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    type: ROW
+  ROW-f56xpPH4GE:
+    children:
+    - CHART-XEkqmQuoCa
+    id: ROW-f56xpPH4GE
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    type: ROW
+  ROW-fgUQ7BSSdj:
+    children:
+    - CHART-m_A9ZGuX-s
+    - CHART-lP126bPzqx
+    - CHART-jO0NTZuZWg
+    - CHART-cCfVhDM066
+    id: ROW-fgUQ7BSSdj
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    type: ROW
+  ROW-k8WvOJZLco:
+    children:
+    - CHART-N-8z3lknAR
+    id: ROW-k8WvOJZLco
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    type: ROW
+  ROW-mujg2nGzs:
+    children:
+    - CHART-9z2dha5JvZ
+    id: ROW-mujg2nGzs
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    type: ROW
+  ROW-nO4buOYtra:
+    children:
+    - CHART-6gO7kbMmZH
+    id: ROW-nO4buOYtra
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB--E37Kpha5
+    type: ROW
+  ROW-uGoVtBSk8:
+    children:
+    - CHART-7XQ1iyn_Kv
+    id: ROW-uGoVtBSk8
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-tjVDb9Vcj
+    type: ROW
+  ROW-vsoK8qmJ-z:
+    children:
+    - CHART-GD1t7GWSSB
+    - CHART-1zEPaMIVsz
+    id: ROW-vsoK8qmJ-z
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-WOwhJbXkC
+    type: ROW
+  ROW-z_tGncIySH:
+    children:
+    - CHART-Z0VaV0RkLY
+    - CHART-taU1daLA8k
+    id: ROW-z_tGncIySH
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    - TAB-ykHTHaYZr
+    type: ROW
+  TAB--E37Kpha5:
+    children:
+    - ROW-fgUQ7BSSdj
+    - ROW-nO4buOYtra
+    - ROW-0lZMk5cbKM
+    id: TAB--E37Kpha5
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Customer Booking Allotment
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    type: TAB
+  TAB-HJBGBDjcXD:
+    children:
+    - ROW-AQ7lcV_wlI
+    - ROW-PNGaasZh8
+    - ROW-KGaNRprMAA
+    - ROW-U_AA_DCzXM
+    - ROW-P4xqNMCTft
+    - ROW-DCEHkio6yn
+    id: TAB-HJBGBDjcXD
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Container Operations
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    type: TAB
+  TAB-WOwhJbXkC:
+    children:
+    - ROW-vsoK8qmJ-z
+    - ROW-_-VTpm2cxY
+    - ROW-VeGJJ1seUE
+    - ROW-Df20VvtLVV
+    - ROW-f56xpPH4GE
+    id: TAB-WOwhJbXkC
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Analytics
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    type: TAB
+  TAB-tjVDb9Vcj:
+    children:
+    - ROW-Vb9IvHfNKy
+    - ROW-mujg2nGzs
+    - ROW-uGoVtBSk8
+    id: TAB-tjVDb9Vcj
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Booking Allocation
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    type: TAB
+  TAB-ykHTHaYZr:
+    children:
+    - ROW-z_tGncIySH
+    - ROW-VRfqsNzBZJ
+    - ROW-IBQdvO4FLT
+    - ROW-k8WvOJZLco
+    id: TAB-ykHTHaYZr
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Exception Reports
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    - TABS-cMZjGMqncN
+    type: TAB
+  TABS-cMZjGMqncN:
+    children:
+    - TAB-tjVDb9Vcj
+    - TAB--E37Kpha5
+    - TAB-HJBGBDjcXD
+    - TAB-ykHTHaYZr
+    - TAB-WOwhJbXkC
+    id: TABS-cMZjGMqncN
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW--YxOG5tmuM
+    - COLUMN-AgyUJGfhAA
+    type: TABS
+metadata:
+  chart_configuration:
+    '237':
+      id: 237
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '239':
+      id: 239
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '242':
+      id: 242
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '243':
+      id: 243
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '245':
+      id: 245
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '248':
+      id: 248
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '250':
+      id: 250
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '251':
+      id: 251
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '252':
+      id: 252
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '253':
+      id: 253
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '254':
+      id: 254
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '255':
+      id: 255
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '256':
+      id: 256
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '257':
+      id: 257
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '456':
+      id: 456
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 594
+        - 603
+        - 604
+        - 605
+    '593':
+      id: 593
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 594
+        - 603
+        - 604
+        - 605
+    '594':
+      id: 594
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 237
+        - 239
+        - 242
+        - 243
+        - 245
+        - 248
+        - 250
+        - 251
+        - 252
+        - 253
+        - 254
+        - 255
+        - 256
+        - 257
+        - 443
+        - 444
+        - 448
+        - 449
+        - 450
+        - 451
+        - 452
+        - 453
+        - 454
+        - 455
+        - 456
+        - 457
+        - 458
+        - 459
+        - 534
+        - 593
+        - 603
+        - 604
+        - 605
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 237
+    - 239
+    - 242
+    - 243
+    - 245
+    - 248
+    - 250
+    - 251
+    - 252
+    - 253
+    - 254
+    - 255
+    - 256
+    - 257
+    - 443
+    - 444
+    - 448
+    - 449
+    - 450
+    - 451
+    - 452
+    - 453
+    - 454
+    - 455
+    - 456
+    - 457
+    - 458
+    - 459
+    - 534
+    - 593
+    - 594
+    - 603
+    - 604
+    - 605
+  color_scheme: ''
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  shared_label_colors: {}
+  color_scheme_domain: []
+  native_filter_configuration:
+  - id: NATIVE_FILTER-GYndaRM-Y
+    controlValues:
+      enableEmptyFilter: false
+    name: Date Range
+    filterType: filter_time
+    targets:
+    - {}
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 237
+    - 239
+    - 452
+    - 453
+    - 454
+    - 455
+    tabsInScope:
+    - TAB--E37Kpha5
+version: 1.0.0

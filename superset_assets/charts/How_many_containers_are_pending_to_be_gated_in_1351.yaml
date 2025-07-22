@@ -1,0 +1,254 @@
+slice_name: How many containers are pending to be gated in ?
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 78__table
+  viz_type: pivot_table_v2
+  slice_id: 242
+  groupbyColumns: []
+  groupbyRows:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POL
+    sqlExpression: pol
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel
+    sqlExpression: vessel_name
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Gate Cut-off
+    sqlExpression: gate_close_cutoff
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    shipment_created: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-10T18:15:10.296062'
+      column_name: Cutoff Passed
+      created_on: '2024-10-10T18:15:10.296057'
+      description: null
+      expression: "CASE WHEN CURRENT_DATE> gate_close_cutoff and gate_in_date is NULL\
+        \ THEN 1 ELSE 0 \nEND"
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 1374
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 71acdb5d-ced9-45d8-bd43-9ca734e56e1d
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Cutoff passed
+    optionName: metric_79xlnz99q5_py0rkwincvc
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-12-06T11:19:01.093367'
+      column_name: Gate In Pending
+      created_on: '2024-12-06T11:19:01.093363'
+      description: null
+      expression: case when gate_in_date is null then 1 else 0 end
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 2255
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 78bbd5fe-9638-4a5f-98eb-aee1bab9b167
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Gate in Pending
+    optionName: metric_zyjpur64ng_yidvvlbhgae
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-10T18:07:45.409631'
+      column_name: Gate In 0-3 Days
+      created_on: '2024-10-10T18:07:45.409630'
+      description: null
+      expression: "CASE WHEN gate_close_cutoff BETWEEN CURRENT_DATE AND CURRENT_DATE\
+        \ + INTERVAL '3 days' AND gate_in_date is NULL THEN 1 ELSE 0\r\nend"
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1370
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 7748e85c-baf7-421b-be47-5865136697f2
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Cutoff in 0-3 Days
+    optionName: metric_20ejmfj6sv8_a9i2tlgi74s
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-10T18:07:45.409614'
+      column_name: Gate In 3-5 Days
+      created_on: '2024-10-10T18:07:45.409612'
+      description: null
+      expression: "CASE \n    WHEN gate_close_cutoff BETWEEN CURRENT_DATE + INTERVAL\
+        \ '3 days' \n                               AND CURRENT_DATE + INTERVAL '5\
+        \ days' \n         AND gate_in_date IS NULL \n    THEN 1 \n    ELSE 0 \nEND\n"
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1369
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 9bc6ed57-6d89-4581-927b-608bc826dc49
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Cutoff in 3-5 Days
+    optionName: metric_yvput37valf_3a7ty0liibn
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2024-10-10T18:07:45.409595'
+      column_name: Gate In 5+ Days
+      created_on: '2024-10-10T18:07:45.409594'
+      description: null
+      expression: "CASE \n    WHEN gate_close_cutoff > CURRENT_DATE + INTERVAL '5\
+        \ days' \n         AND gate_in_date IS NULL \n    THEN 1 \n    ELSE 0 \nEND\n"
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 1368
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 91c0cfc2-279a-4e3b-84ed-e598fe8b4367
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Cutoff in 5+ Days
+    optionName: metric_pn9z908eu5n_6ix53ochish
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - clause: WHERE
+    comparator:
+    - ocean
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_n3lvql7e17h_iudjzyfmtvq
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: freight_type
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_7ih66jv802w_smr1z1d4djc
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_dlkbyqqitr_m5hc7svkg8a
+    isExtra: true
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: gate_close_cutoff
+  row_limit: 1000
+  order_desc: true
+  aggregateFunction: Sum
+  rowTotals: false
+  rowSubTotals: false
+  colTotals: true
+  colSubTotals: false
+  combineMetric: false
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#FEDAD9'
+    column: Cutoff passed
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Gate in Pending
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Cutoff in 0-3 Days
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Cutoff in 3-5 Days
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: Cutoff in 5+ Days
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: a29d26f6-f496-4937-80b9-232278806659
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

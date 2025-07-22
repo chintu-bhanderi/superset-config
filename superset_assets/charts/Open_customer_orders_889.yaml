@@ -1,0 +1,65 @@
+slice_name: Open customer orders
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 76__table
+  viz_type: big_number_total
+  slice_id: 452
+  metric:
+    aggregate: null
+    column: null
+    datasourceWarning: false
+    expressionType: SQL
+    hasCustomLabel: true
+    label: Containers ordered
+    optionName: metric_uqy03yuwe3_yk0jw3cmvr9
+    sqlExpression: COUNT(DISTINCT order_number)
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_c6cldxff7i6_g6xcjqtjhw
+  - expressionType: SQL
+    sqlExpression: job_number is NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_1girjsinvpz_nbt3moliy8
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_dkx6zwbti7k_2ondxmkt4pg
+  header_font_size: 0.4
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 6
+  - 58
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 964723ee-5560-4362-adca-c9a7dd23a81d
+version: 1.0.0
+dataset_uuid: 409d613f-b962-4e9d-94a6-0b0ec54c3e85

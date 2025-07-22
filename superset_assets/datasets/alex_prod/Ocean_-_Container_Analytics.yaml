@@ -1,0 +1,407 @@
+table_name: Ocean - Container Analytics
+main_dttm_col: container_created_at
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: public
+sql: "WITH RankedShipments AS (\n    SELECT\n        sc.container_number,\n      \
+  \  sc.created_at AS container_created_at, \n        sc.loaded_at, \n        sc.arrived_at_origin_port_date,\
+  \ \n        sc.last_action_status AS container_last_status, \n        s.estimated_time_of_arrival\
+  \ AS eta_pod, \n        s.estimated_time_of_departure AS etd_pol, \n        s.eta_initial,\
+  \ \n        s.eta_status, \n        s.job_number,\n        origin.name AS PoL, \n\
+  \        destination.name AS PoD, \n        carrier.name AS carrier,\n        s.id\
+  \ AS shipment_id, \n        s.trade_type as trade_type,\n        sc.id AS container_id,\n\
+  \        asr.gate_close_cutoff AS gate_close_cutoff,\n        s.lfd_at_pod, \n \
+  \       s.lfd_at_empty_return, \n        asr.loaded_at_container_date,\n       \
+  \ s.created_at, \n        s.actual_time_of_arrival AS ata_pod, \n        s.atd_pol_date\
+  \ AS atd_pol,\n        s.job_execution_date as jed,\n        s.shipment_type,\n\
+  \        ROW_NUMBER() OVER (PARTITION BY sc.container_number ORDER BY s.created_at\
+  \ DESC) AS rn\n    FROM\n        shipment_containers AS sc\n        LEFT OUTER JOIN\
+  \ container_cargo_details AS ccd ON sc.id = ccd.shipment_container_id\n        LEFT\
+  \ OUTER JOIN shipments AS s ON s.id = ccd.shipment_id\n        left outer join branch_accounts\
+  \ as branch on branch.id = s.involved_branch_id\n        LEFT OUTER JOIN locations\
+  \ AS origin ON s.port_of_loading_id = origin.id\n        LEFT OUTER JOIN locations\
+  \ AS destination ON s.port_of_discharge_id = destination.id\n        LEFT OUTER\
+  \ JOIN carriers AS carrier ON carrier.id = s.carrier_id\n        LEFT OUTER JOIN\
+  \ analytics_shipment_reports AS asr ON asr.id = s.id\n    WHERE s.freight_type =\
+  \ 'ocean' \n    and s.tenant_id = {{url_param('tenant_id') or 43}}\n    and 'Shipment::Shipment'\
+  \ in {% if url_param('allowed_doctypes') %}\n{{ parse_url_param(url_param('allowed_doctypes'))\
+  \ }}\n{% else %} ('Shipment::Shipment') {% endif %}\nand\n(case when {{url_param('is_collaborator')\
+  \ or false}} then {{url_param('user_contact_id') or 1}}  = any(s.collaborator_ids)\
+  \ else 1=1 end)\nand\nbranch.erp_cost_center_id in{% if url_param('allowed_cost_centers')\
+  \ %} \n{{ parse_url_param(url_param('allowed_cost_centers')) }}\n{% else %}\n(branch.erp_cost_center_id)\n\
+  {% endif %}\n   \n)\nSELECT *\nFROM RankedShipments\nWHERE rn = 1\n-- RLS ....\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 2938bd1f-22ad-4635-8dc5-2a3ac41c98c8
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: Trade Lane
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: CONCAT(PoL, ' - ', PoD)
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: arrived_at_origin_port_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: loaded_at_container_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: lfd_at_empty_return
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_created_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: gate_close_cutoff
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: lfd_at_pod
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: created_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: loaded_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: ata_pod
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: eta_initial
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: eta_pod
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: atd_pol
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: etd_pol
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: rn
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipment_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_last_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: eta_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: job_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipment_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: carrier
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: jed
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: trade_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d

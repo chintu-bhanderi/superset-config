@@ -1,0 +1,46 @@
+slice_name: CBM - Ocean Export
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 70__table
+  viz_type: big_number_total
+  slice_id: 448
+  metric: LCL CBM
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_igznorw43se_4fppa15kzsx
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_zlfuusvho2b_m3bpvq5ktte
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade
+  header_font_size: 0.4
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f8704cc3-45fe-4c57-a77d-4ece748bf080
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

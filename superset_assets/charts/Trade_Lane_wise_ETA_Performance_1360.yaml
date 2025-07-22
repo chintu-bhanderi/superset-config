@@ -1,0 +1,94 @@
+slice_name: Trade Lane wise ETA Performance
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 100__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 254
+  x_axis: Trade Lane
+  x_axis_sort_asc: true
+  metrics:
+  - count
+  groupby:
+  - eta_status
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_f4m77etmq1j_8q6ss60ae5p
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: container_created_at
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_2qis3u9y8ew_5h6zmb7lqan
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: eta_status is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: Last year
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_4fw1hm1slx4_09ofo32pd2jt
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_wver50uve5c_59hya0gc6b6
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  timeseries_limit_metric: count
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: max
+  color_scheme: supersetColors
+  stack: Stack
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  truncateXAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards: []
+query_context: null
+cache_timeout: null
+uuid: 3dad6c9d-7562-4812-8d68-5744a9041e75
+version: 1.0.0
+dataset_uuid: 2938bd1f-22ad-4635-8dc5-2a3ac41c98c8

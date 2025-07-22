@@ -1,0 +1,70 @@
+slice_name: Ocean Export - Containers Pending to be Gated In
+description: null
+certified_by: null
+certification_details: null
+viz_type: shipmnts-swimlane
+params:
+  datasource: 78__table
+  viz_type: shipmnts-swimlane
+  slice_id: 603
+  date_column:
+  - gate_close_cutoff
+  cols:
+  - gate_close_cutoff
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job Number
+    sqlExpression: job_number
+  - customer
+  - carrier
+  - container_type
+  - container_number
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_z17mdk86xnf_udeda2yy4e9
+  - expressionType: SIMPLE
+    subject: gate_close_cutoff
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_zwxd8qgd4e_26rp0kc6xqz
+  - expressionType: SIMPLE
+    subject: Gate in Pending
+    operator: IN
+    operatorId: IN
+    comparator:
+    - '1'
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_34zbh2whr2o_rajpcqiyalk
+  time_grain_sqla: P1W
+  row_limit: 10000
+  header_text: Hello, World!
+  bold_text: true
+  header_font_size: xl
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: f87f88be-25b8-4906-8dee-433018dbbc51
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

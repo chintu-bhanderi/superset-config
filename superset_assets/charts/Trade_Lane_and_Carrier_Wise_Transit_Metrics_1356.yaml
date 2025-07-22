@@ -1,0 +1,183 @@
+slice_name: Trade Lane and Carrier Wise Transit Metrics
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 78__table
+  viz_type: pivot_table_v2
+  slice_id: 251
+  groupbyColumns: []
+  groupbyRows:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POL
+    sqlExpression: pol
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POD
+    sqlExpression: pod
+  - carrier
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    shipment_created: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-31T07:45:35.836877'
+      column_name: Estimated Transit
+      created_on: '2025-03-31T07:45:35.836876'
+      description: null
+      expression: 'eta - etd
+
+        '
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3354
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 0bb91575-cbab-4ec9-9893-6198253e2c74
+      verbose_name: null
+    aggregate: AVG
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Estimated Transit
+    optionName: metric_54h3ml2yl6w_r3xhwbezh2
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-31T07:45:35.836799'
+      column_name: Actual Transit
+      created_on: '2025-03-31T07:45:35.836796'
+      description: null
+      expression: ata-atd
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3360
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 4bc9a5ad-a57c-4dfc-8d88-bc2a03e5f62f
+      verbose_name: null
+    aggregate: AVG
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Actual Transit
+    optionName: metric_d1irxyy7gsn_lssjg6gel6g
+  - expressionType: SQL
+    sqlExpression: AVG( ata-eta)
+    column: null
+    aggregate: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Average Transit delay
+    optionName: metric_6odbriq1i3a_ydfb2omj2of
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-31T07:45:35.836901'
+      column_name: Late Arrivals
+      created_on: '2025-03-31T07:45:35.836900'
+      description: null
+      expression: 'CASE WHEN ata>eta THEN 1 ELSE 0 END '
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3353
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: af61cd07-22f1-4b26-8226-c2c12d205124
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Late arrivals
+    optionName: metric_r03lrqe2ihn_dohalt4n0g9
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: trade_type
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_wkr8xnasw8_vz3wfqljny
+  - expressionType: SIMPLE
+    subject: eta
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_nx94xsp9g1b_dz2rbu1i4fu
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: Average Transit
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: Actual Transit
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Late arrivals
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Average Transit delay
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 26d1b3fc-7c87-4fd9-a40a-e5fd73b86cac
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

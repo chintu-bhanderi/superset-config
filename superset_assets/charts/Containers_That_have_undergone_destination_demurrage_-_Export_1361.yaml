@@ -1,0 +1,176 @@
+slice_name: Containers That have undergone destination demurrage -  Export
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 78__table
+  viz_type: table
+  slice_id: 256
+  query_mode: aggregate
+  groupby:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job Number
+    sqlExpression: job_number
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Container. number
+    sqlExpression: container_number
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Carrier
+    sqlExpression: carrier
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POD
+    sqlExpression: pod
+  - datasourceWarning: false
+    expressionType: SQL
+    label: LFD POD / PCD
+    sqlExpression: CASE WHEN lfd_at_pocd is null then lfd_at_pod else lfd_at_pocd
+      end
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    shipment_created: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2025-03-31T10:20:13.867976'
+      column_name: Demurrage Days
+      created_on: '2025-03-31T10:20:13.867972'
+      description: null
+      expression: pod_gate_out-eta
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 3362
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 989762b9-5e79-470c-b9f4-3bbf840e4974
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Demurrage Days
+    optionName: metric_p85avpeotpc_0ci7drsh6v6w
+    sqlExpression: null
+  all_columns:
+  - container_number
+  - freight_type
+  - trade_type
+  - vessel_name
+  - destination_carrier_free_days
+  - destination_port_free_days
+  - lfd_at_carrier
+  - lfd_at_empty_return
+  - lfd_at_pod
+  - lfd_at_pocd
+  - pol
+  - pod
+  - jed
+  - carrier
+  - customer
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_8z1lij8bmj_dpccgi0ss3f
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: eta
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_cgzlqlvrvet_7uvtmeir6eg
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: lfd_at_pocd is not null or lfd_at_pod is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_erscc0aeecv_nm3ota916lk
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: pod_gate_out is not NULL
+    subject: null
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_f63n11ay9as_0osep6ki9va
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: "pod_gate_out > lfd_at_pod \nOR \npod_gate_out > (eta + INTERVAL\
+      \ '1 day' * destination_port_free_days)"
+    subject: null
+  - clause: WHERE
+    comparator:
+    - export
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_ygidgrt7khq_rgv9t2v13
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: trade_type
+  order_by_cols: []
+  row_limit: 5000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting:
+  - colorScheme: '#EFA1AA'
+    column: SUM(Demurrage Days)
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 014fc07d-87bc-4e82-8456-4e7c478973e6
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

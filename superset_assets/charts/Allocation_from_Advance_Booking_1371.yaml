@@ -1,0 +1,179 @@
+slice_name: Allocation from Advance Booking
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 77__table
+  viz_type: pivot_table_v2
+  slice_id: 593
+  groupbyColumns: []
+  groupbyRows:
+  - vessel_voyage
+  - name
+  - pod
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Container code
+    sqlExpression: container_type
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    booking_date: true
+    created_at: true
+    doc_cutoff_date: true
+    estimated_time_of_departure: true
+    si_cutoff_date: true
+    valid_till_date: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: received
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 3050
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: Received
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Received
+    optionName: metric_95d6wpax1q_9ue79nb7n7
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: alloted
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 3051
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: Alloted
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Alloted
+    optionName: metric_c356nupx41v_rbm914phos
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pending
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 3053
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: INTEGER
+      type_generic: 0
+      verbose_name: Pending
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Pending
+    optionName: metric_acp7e56plqu_2a0l7kxsxz2
+    sqlExpression: null
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: Expired Count
+      description: null
+      expression: CASE WHEN CURRENT_DATE > valid_till_date::DATE AND pending>0 THEN
+        pending ELSE 0 END
+      filterable: true
+      groupby: true
+      id: 3684
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: true
+    label: Expired
+    optionName: metric_th86dd2wzb_b7p09muxpng
+    sqlExpression: null
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SQL
+    sqlExpression: vessel_voyage!='-'
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_utwf8tn2uyg_vjiew91wci
+  - expressionType: SIMPLE
+    subject: estimated_time_of_departure
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: true
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_onv7mk283v_damyuoy6bv
+  row_limit: 1000
+  order_desc: true
+  aggregateFunction: Sum
+  expandCollapse: true
+  rowSubTotals: false
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: key_a_to_z
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: Received
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: Alloted
+    operator: None
+  - colorScheme: '#FFEF9D'
+    column: Pending
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Expired
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 6a474714-3b9b-4a54-8e7b-0d19465054c0
+version: 1.0.0
+dataset_uuid: d9d11ad6-1020-4592-835f-4399ab9a9647

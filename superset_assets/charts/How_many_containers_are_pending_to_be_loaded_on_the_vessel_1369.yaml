@@ -1,0 +1,147 @@
+slice_name: How many containers are pending to be loaded on the vessel?
+description: null
+certified_by: null
+certification_details: null
+viz_type: shipmnts-swimlane
+params:
+  datasource: 78__table
+  viz_type: shipmnts-swimlane
+  slice_id: 457
+  date_column:
+  - etd
+  cols:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Container
+    sqlExpression: container_number
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Job number
+    sqlExpression: 'case when shipment_booking_number is not NULL then shipment_booking_number
+      else job_number end
+
+      '
+  - carrier
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Vessel Name
+    sqlExpression: vessel_name
+  - datasourceWarning: false
+    expressionType: SQL
+    label: POL
+    sqlExpression: pol
+  - etd
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:20:50.496853'
+      column_name: Departures 0-3 Days
+      created_on: '2025-06-13T12:20:50.496852'
+      description: null
+      expression: CASE WHEN etd between CURRENT_DATE AND CURRENT_DATE + INTERVAL '3
+        days' THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4465
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 6f216634-ef11-4bc9-b414-b5b0f89fab2c
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departure in 0-3 Days
+    optionName: metric_77zvh3km47s_f0t44li708
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:20:50.496841'
+      column_name: Departures 3-5 Days
+      created_on: '2025-06-13T12:20:50.496840'
+      description: null
+      expression: CASE WHEN etd between CURRENT_DATE+INTERVAL '3 days'  AND CURRENT_DATE
+        + INTERVAL '5 days' THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4464
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: a926c3e3-2971-4aba-b82c-54d76fba47c7
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departures in 3-5 Days
+    optionName: metric_kbajwpbcanm_0n3gbrmwmzim
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:20:50.496828'
+      column_name: Departures 5+ Days
+      created_on: '2025-06-13T12:20:50.496827'
+      description: null
+      expression: CASE WHEN etd > CURRENT_DATE+INTERVAL '5 days'  THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4463
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 83f7947c-e357-4adb-b59e-28df4901a397
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departure in 5+ Days
+    optionName: metric_ocuxxm4n4_acgjzt48qw
+  adhoc_filters:
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_a0hwb2uhmns_5ggqzjw3906
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    operatorId: TEMPORAL_RANGE
+    sqlExpression: loaded_on_vessel_date is NULL
+    subject: loaded_on_vessel_date
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_7wyrz302u5g_ubjpipl9oc
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: atd is not NULL
+    subject: null
+  time_grain_sqla: P1W
+  row_limit: 10000
+  header_text: Hello, World!
+  bold_text: true
+  header_font_size: xl
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: addebb7d-c6a0-40b5-8ddb-a4fa7d91eb55
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78

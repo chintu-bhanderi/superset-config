@@ -1,0 +1,213 @@
+slice_name: How many containers are pending to be loaded on basis ETD ?
+description: null
+certified_by: null
+certification_details: null
+viz_type: pivot_table_v2
+params:
+  datasource: 78__table
+  viz_type: pivot_table_v2
+  slice_id: 456
+  groupbyColumns: []
+  groupbyRows:
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Customer
+    sqlExpression: customer
+  - datasourceWarning: false
+    expressionType: SQL
+    label: Port of Loading
+    sqlExpression: pol
+  - carrier
+  - etd
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    ata: true
+    atd: true
+    docs_cutoff: true
+    docs_handover_date: true
+    empty_picked_up_date: true
+    empty_return_date: true
+    eta: true
+    etd: true
+    gate_close_cutoff: true
+    jed: true
+    jobdate: true
+    lfd_at_carrier: true
+    lfd_at_empty_return: true
+    lfd_at_pocd: true
+    lfd_at_pod: true
+    loaded_on_vessel_date: true
+    loading_date: true
+    pcd_gate_out: true
+    pod_gate_out: true
+    pol_gated_in_date: true
+    routing_updated_at: true
+    shipment_created: true
+  metrics:
+  - count
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:17:02.025166'
+      column_name: Departures 0-3 Days
+      created_on: '2025-06-13T12:17:02.025165'
+      description: null
+      expression: CASE WHEN etd between CURRENT_DATE AND CURRENT_DATE + INTERVAL '3
+        days' THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4465
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 6f216634-ef11-4bc9-b414-b5b0f89fab2c
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departures in 0-3 Days
+    optionName: metric_bal7zu16yy_77sxzcmofcy
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:17:02.025150'
+      column_name: Departures 3-5 Days
+      created_on: '2025-06-13T12:17:02.025149'
+      description: null
+      expression: CASE WHEN etd between CURRENT_DATE+INTERVAL '3 days'  AND CURRENT_DATE
+        + INTERVAL '5 days' THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4464
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: a926c3e3-2971-4aba-b82c-54d76fba47c7
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departures in 3-5 Days
+    optionName: metric_lcch37km1jr_im7dg2ng3vq
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:20:02.358542'
+      column_name: Departures 5+ Days
+      created_on: '2025-06-13T12:20:02.358538'
+      description: null
+      expression: CASE WHEN etd > CURRENT_DATE+INTERVAL '5 days'  THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4463
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: 83f7947c-e357-4adb-b59e-28df4901a397
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departures in 5+ Days
+    optionName: metric_h5bzshzz1o_bcq5kxcc496
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2025-06-13T12:20:02.357217'
+      column_name: Departures - ETD Crossed
+      created_on: '2025-06-13T12:20:02.357214'
+      description: null
+      expression: CASE WHEN etd > CURRENT_DATE THEN 1 ELSE 0 END
+      extra: '{}'
+      filterable: true
+      groupby: true
+      id: 4466
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: null
+      type_generic: null
+      uuid: be331736-78f6-4d29-8e25-b063713d1036
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: true
+    label: Departures -  ETD Crossed
+    optionName: metric_g71vm8w7rz9_z2alv0a4dw
+  metricsLayout: COLUMNS
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: etd
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_swfcabtb6gp_zmbddkwgjyo
+  - expressionType: SQL
+    sqlExpression: 'loaded_on_vessel_date is NULL
+
+      '
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_9wkcsyp221_5waglk0x29b
+  - expressionType: SQL
+    sqlExpression: etd is not NULL
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_nitum0wv1e_qn2xkflspgs
+  row_limit: 10000
+  order_desc: true
+  aggregateFunction: Sum
+  colTotals: true
+  valueFormat: SMART_NUMBER
+  date_format: smart_date
+  rowOrder: value_z_to_a
+  colOrder: key_a_to_z
+  conditional_formatting:
+  - colorScheme: '#E8EBFE'
+    column: Loading Pending
+    operator: None
+  - colorScheme: '#FEDAD9'
+    column: Departure in 0-3 Days
+    operator: None
+  - colorScheme: '#FCFFE6'
+    column: Departure in 3-5 Days
+    operator: None
+  - colorScheme: '#CDFEE1'
+    column: Departure in 5+ Days
+    operator: None
+  extra_form_data: {}
+  dashboards:
+  - 6
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 94f5bdd0-0fc0-4219-8ae3-626a635f0391
+version: 1.0.0
+dataset_uuid: 477b721b-7118-4416-8368-3f7bc1e9df78
