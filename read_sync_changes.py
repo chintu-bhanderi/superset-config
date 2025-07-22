@@ -1,11 +1,12 @@
 import os
 import yaml
 from datetime import datetime
+from collections import defaultdict
 
 LOG_FILE = "sync_changes.log"
 CHARTS_FOLDER = "superset_assets/charts"
 DASHBOARDS_FOLDER = "superset_assets/dashboards"
-CHANGES_AFTER = "2025-07-22 17:00:00"  # Change this datetime as needed
+CHANGES_AFTER = "2025-07-21 17:00:00"  # Change this datetime as needed
 
 def parse_logs(log_file, after_dt):
     modified_charts = set()
@@ -22,47 +23,57 @@ def parse_logs(log_file, after_dt):
 
     return modified_charts
 
-def extract_chart_uuids(chart_files):
-    chart_uuids = set()
+def extract_chart_metadata(chart_files):
+    chart_map = {}  # uuid → slice_name
     for file_path in chart_files:
         try:
             with open(file_path, "r") as f:
                 chart = yaml.safe_load(f)
                 uuid = chart.get("uuid")
+                slice_name = chart.get("slice_name") or os.path.basename(file_path)
                 if uuid:
-                    chart_uuids.add(uuid)
+                    chart_map[uuid] = slice_name
         except Exception as e:
             print(f"⚠️ Failed to read chart file {file_path}: {e}")
-    return chart_uuids
+    return chart_map
 
-def find_dashboards_with_uuids(dashboard_folder, uuids_to_find):
-    affected_dashboards = set()
+def find_dashboard_chart_mapping(dashboard_folder, chart_uuid_map):
+    dashboard_to_charts = defaultdict(list)
+
     for filename in os.listdir(dashboard_folder):
         if not filename.endswith(".yaml"):
             continue
+
         file_path = os.path.join(dashboard_folder, filename)
         try:
             with open(file_path, "r") as f:
                 dashboard = yaml.safe_load(f)
-                if "position" in dashboard:
-                    if any(uuid in str(dashboard["position"]) for uuid in uuids_to_find):
-                        title = dashboard.get("dashboard_title")
-                        if title:
-                            affected_dashboards.add(title)
+                if not dashboard:
+                    continue
+
+                dashboard_title = dashboard.get("dashboard_title") or filename
+                position_data = str(dashboard.get("position", {}))
+
+                for uuid, slice_name in chart_uuid_map.items():
+                    if uuid in position_data:
+                        dashboard_to_charts[dashboard_title].append(slice_name)
         except Exception as e:
             print(f"⚠️ Failed to read dashboard file {file_path}: {e}")
-    return affected_dashboards
+
+    return dashboard_to_charts
 
 if __name__ == "__main__":
     after_time = datetime.strptime(CHANGES_AFTER, "%Y-%m-%d %H:%M:%S")
 
     modified_chart_files = parse_logs(LOG_FILE, after_time)
-    chart_uuids = extract_chart_uuids(modified_chart_files)
-    affected_dashboards = find_dashboards_with_uuids(DASHBOARDS_FOLDER, chart_uuids)
+    chart_uuid_map = extract_chart_metadata(modified_chart_files)
+    dashboard_chart_map = find_dashboard_chart_mapping(DASHBOARDS_FOLDER, chart_uuid_map)
 
-    if affected_dashboards:
-        print(f"📊 Dashboards affected by modified charts ({len(affected_dashboards)}):")
-        for title in sorted(affected_dashboards):
-            print(f"  - {title}")
+    if dashboard_chart_map:
+        print(f"📊 Dashboards affected by modified charts ({len(dashboard_chart_map)}):")
+        for dashboard_title, charts in sorted(dashboard_chart_map.items()):
+            print(f"  {dashboard_title}")
+            for chart_name in sorted(set(charts)):
+                print(f"    - {chart_name}")
     else:
         print("✅ No dashboards affected.")
