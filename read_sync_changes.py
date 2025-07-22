@@ -4,7 +4,7 @@ from datetime import datetime
 
 LOG_FILE = "sync_changes.log"
 ASSETS_BASE = "superset_assets"
-CHANGES_AFTER = "2025-07-21 17:00:00"
+CHANGES_AFTER = "2025-07-22 18:39:19"
 
 def parse_logs(log_file, after_dt):
     modified = {"charts": [], "dashboards": [], "datasets": []}

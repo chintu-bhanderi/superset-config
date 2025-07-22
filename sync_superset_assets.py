@@ -113,7 +113,7 @@ for root, dirs, files in os.walk(root_data_folder):
 LOG_FILE = "sync_changes.log"
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 with open(LOG_FILE, "a") as log:
-    log.write(f"# Sync run at {timestamp}\n")
+    log.write(f"# Sync run at: {timestamp}\n")
     if modified_files:
         for f in modified_files:
             log.write(f"{f}\n")

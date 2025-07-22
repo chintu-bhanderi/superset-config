@@ -15,7 +15,6 @@ params:
     operatorId: IN
     comparator:
     - export
-    - import
     clause: WHERE
     sqlExpression: null
     isExtra: false
@@ -53,10 +52,10 @@ params:
   dashboards:
   - 38
   - 62
-query_context: '{"datasource":{"id":70,"type":"table"},"force":false,"queries":[{"filters":[{"col":"trade","op":"IN","val":["export","import"]},{"col":"freight","op":"IN","val":["ocean"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+query_context: '{"datasource":{"id":70,"type":"table"},"force":false,"queries":[{"filters":[{"col":"trade","op":"IN","val":["export"]},{"col":"freight","op":"IN","val":["ocean"]},{"col":"jed","op":"TEMPORAL_RANGE","val":"No
   filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":["FCL
   TEU"],"annotation_layers":[],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"70__table","viz_type":"big_number_total","slice_id":789,"metric":"FCL
-  TEU","adhoc_filters":[{"expressionType":"SIMPLE","subject":"trade","operator":"IN","operatorId":"IN","comparator":["export","import"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_zlfuusvho2b_m3bpvq5ktte"},{"expressionType":"SIMPLE","subject":"freight","operator":"IN","operatorId":"IN","comparator":["ocean"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_7aotqpts947_vttnivs5keq"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
+  TEU","adhoc_filters":[{"expressionType":"SIMPLE","subject":"trade","operator":"IN","operatorId":"IN","comparator":["export"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_zlfuusvho2b_m3bpvq5ktte"},{"expressionType":"SIMPLE","subject":"freight","operator":"IN","operatorId":"IN","comparator":["ocean"],"clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_7aotqpts947_vttnivs5keq"},{"expressionType":"SIMPLE","subject":"jed","operator":"TEMPORAL_RANGE","comparator":"No
   filter","clause":"WHERE","sqlExpression":null,"isExtra":true,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_igznorw43se_4fppa15kzsx"}],"header_font_size":0.4,"subheader_font_size":0.15,"y_axis_format":",d","time_format":"smart_date","conditional_formatting":[],"extra_form_data":{},"dashboards":[38,62],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
 cache_timeout: null
 uuid: 8be06916-5391-4d11-917c-ac9b51ed68fd
