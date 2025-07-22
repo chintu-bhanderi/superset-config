@@ -135,7 +135,9 @@ sql: "select\n    ship.job_number as job_number,\n    CONCAT('<a href=\"https://
   \ AS rn from product_order_items ) as product_order_items on ship.id = product_order_items.parent_id\
   \ and product_order_items.rn=1\nwhere ship.shipment_type != 'consol' and ship.job_number\
   \ is not null  and ship.deleted_at is null and ship.cancelled_at is null\nand ship.job_execution_date>'2023-01-01'\n\
-  and ship.tenant_id = {{url_param('tenant_id') or 43}}\nand\n(case when {{url_param('is_collaborator')\
+  and ship.tenant_id = {{url_param('tenant_id') or 43}}\nand 'Shipment::Shipment'\
+  \ in {% if url_param('allowed_doctypes') %}\n{{ parse_url_param(url_param('allowed_doctypes'))\
+  \ }}\n{% else %} ('Shipment::Shipment') {% endif %}\nand\n(case when {{url_param('is_collaborator')\
   \ or False}} then {{url_param('user_contact_id') or 1}}  = any(ship.collaborator_ids)\
   \ else 1=1 end)\nand\nship.customer_company_id  = {%if url_param('company') %}\n\
   {{ url_param('company') }}\n{% else %}\nship.customer_company_id\n{% endif %}\n\
