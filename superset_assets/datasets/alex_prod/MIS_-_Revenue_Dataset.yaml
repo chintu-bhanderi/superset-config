@@ -5,8 +5,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 schema: public
-sql:
-  "WITH filtered_shipments AS (\n  SELECT\n    s.id,\n    COALESCE(s.job_number,\
+sql: "WITH filtered_shipments AS (\n  SELECT\n    s.id,\n    COALESCE(s.job_number,\
   \ s.shipment_booking_number) as job_number,\n    s.job_execution_date::DATE AS jed,\n\
   \    s.chargeable_weight/1000.0 AS tonnage,\n    s.freight_type,\n    s.load_type,\n\
   \    s.trade_type,\n    s.incoterms,\n    s.gross_volume as cbm,\n    s.collaborator_ids\
@@ -28,7 +27,7 @@ sql:
   \    s.vessel_name,\n    s.voyage_number,\n    s.tenant_id,\n    s.carrier_id\n\
   \  FROM shipments s\n  WHERE \n  s.deleted_at is null and s.cancelled_at is null\
   \ AND s.created_at > CURRENT_DATE - Interval '2 Years' AND\n  s.tenant_id = {{ url_param('tenant_id')\
-  \ or 10 }}\n    AND (\n      {% if url_param('allowed_doctypes') %}\n        'Shipment::Shipment'\
+  \ or 84 }}\n    AND (\n      {% if url_param('allowed_doctypes') %}\n        'Shipment::Shipment'\
   \ IN {{ parse_url_param(url_param('allowed_doctypes')) }}\n      {% else %} TRUE\
   \ {% endif %}\n    )\n    AND (\n      CASE\n        WHEN {{ url_param('is_collaborator')\
   \ or false }}\n        THEN {{ url_param('user_contact_id') or 1 }} = ANY(s.collaborator_ids)\n\
@@ -131,1631 +130,1693 @@ normalize_columns: false
 always_filter_main_dttm: false
 uuid: ed854b24-dc83-420a-b942-0ac77d1d6be1
 metrics:
-  - metric_name: Prov Margin YoY Growth %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "(\n  (\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year',\
-      \ current_date) \n             AND jed < date_trunc('year', current_date + interval\
-      \ '1 year') \n        THEN prov_margin\n        ELSE 0 \n      END\n    ) \n \
-      \   -\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date\
-      \ - interval '1 year') \n             AND jed < date_trunc('year', current_date)\
-      \ \n        THEN prov_margin\n        ELSE 0 \n      END\n    )\n  ) * 100.0\n\
-      )\n/ NULLIF(\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date)\
-      \ \n             AND jed < date_trunc('year', current_date + interval '1 year')\
-      \ \n        THEN prov_margin\n        ELSE 0 \n      END\n    ), 0\n)\n"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Revenue YoY Growth %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "(\n  (\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year',\
-      \ current_date) \n             AND jed < date_trunc('year', current_date + interval\
-      \ '1 year') \n        THEN actual_income\n        ELSE 0 \n      END\n    ) \n\
-      \    -\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date\
-      \ - interval '1 year') \n             AND jed < date_trunc('year', current_date)\
-      \ \n        THEN actual_income\n        ELSE 0 \n      END\n    )\n  ) * 100.0\n\
-      )\n/ NULLIF(\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date)\
-      \ \n             AND jed < date_trunc('year', current_date + interval '1 year')\
-      \ \n        THEN actual_income\n        ELSE 0 \n      END\n    ), 0\n)\n"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: GP % YTD - Previous
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date - interval\
-      \ '1 year') \n             AND jed < (current_date - interval '1 year') \n   \
-      \     THEN actual_gp \n        ELSE 0 \n    END) / NULLIF(SUM(CASE \n        WHEN\
-      \ jed >= date_trunc('year', current_date - interval '1 year') \n             AND\
-      \ jed < (current_date - interval '1 year') \n        THEN actual_income \n   \
-      \     ELSE 0 \n    END), 0)) * 100"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: GP % YTD - Current
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date) \n\
-      \             AND jed < current_date \n        THEN actual_gp \n        ELSE 0\
-      \ \n    END) / NULLIF(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date)\
-      \ \n             AND jed < current_date \n        THEN actual_income \n      \
-      \  ELSE 0 \n    END), 0)) * 100"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Weekly Avg GP
-    verbose_name: Weekly Avg GP
-    metric_type: null
-    expression:
-      "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)  \n\
-      \         AND jed < date_trunc('week', current_date)  -- Exclude current week\n\
-      \    THEN actual_gp\n    ELSE 0  \n  END\n)  \n/  \nNULLIF(EXTRACT(WEEK FROM current_date)\
-      \ - 1, 0)\n"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Weekly Avg Revenue
-    verbose_name: Weekly Avg Revenue
-    metric_type: null
-    expression:
-      "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)  \n\
-      \         AND jed < date_trunc('week', current_date)  -- Exclude current week\n\
-      \    THEN actual_income\n    ELSE 0  \n  END\n)  \n/  \nNULLIF(EXTRACT(WEEK FROM\
-      \ current_date) - 1, 0)\n"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Monthly Avg GP
-    verbose_name: Monthly Avg GP
-    metric_type: null
-    expression:
-      "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)\n \
-      \        AND jed <= current_date\n    THEN actual_gp\n    ELSE 0 \n  END\n) /\
-      \ EXTRACT(MONTH FROM current_date)"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Monthly Avg Revenue
-    verbose_name: Monthly Avg Revenue
-    metric_type: null
-    expression:
-      "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)\n \
-      \        AND jed <= current_date\n    THEN actual_income\n    ELSE 0 \n  END\n\
-      ) / EXTRACT(MONTH FROM current_date)"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Deviation %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "CASE \n    WHEN SUM(actual_income) = 0 OR SUM(estimate_income) = 0\
-      \ THEN NULL\n    ELSE (SUM(actual_gp) * 100 / SUM(actual_income)) - (SUM(estimated_gp)\
-      \ * 100 / SUM(estimate_income))\nEND"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Estimate GP %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "CASE \n    WHEN SUM(estimate_income) > 0 THEN (SUM(estimated_gp) *\
-      \ 100.0) / SUM(estimate_income)\n    ELSE 0 \nEND"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Actual GP %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "CASE \n    WHEN SUM(actual_income) = 0 THEN NULL\n    ELSE SUM(actual_gp)\
-      \ * 100 / SUM(actual_income)\nEND"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: GP / Container
-    verbose_name: GP / Container
-    metric_type: null
-    expression:
-      "CASE \n  WHEN SUM(container_count) > 0 \n  THEN SUM(actual_gp) / SUM(container_count)\
-      \ \n  ELSE 0 \nEND"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Income / Container
-    verbose_name: Income / Container
-    metric_type: null
-    expression:
-      "CASE \n  WHEN SUM(container_count) > 0 \n  THEN SUM(actual_income)\
-      \ / SUM(container_count) \n  ELSE 0 \nEND"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: Estimated GP %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "CASE \n  WHEN SUM(estimated_income) > 0 THEN (SUM(estimated_gp) / SUM(estimated_income))\
-      \ * 100\n  ELSE 0 END"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: GP %
-    verbose_name: ""
-    metric_type: null
-    expression:
-      "CASE \n  WHEN SUM(actual_income) > 0 THEN (SUM(actual_gp) / SUM(actual_income))\
-      \ * 100\n  ELSE 0 END"
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
-  - metric_name: count
-    verbose_name: Shipments
-    metric_type: count
-    expression: COUNT(*)
-    description: null
-    d3format: null
-    currency: null
-    extra: {}
-    warning_text: null
+- metric_name: Prov Margin YoY Growth %
+  verbose_name: ''
+  metric_type: null
+  expression: "(\n  (\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year',\
+    \ current_date) \n             AND jed < date_trunc('year', current_date + interval\
+    \ '1 year') \n        THEN prov_margin\n        ELSE 0 \n      END\n    ) \n \
+    \   -\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date\
+    \ - interval '1 year') \n             AND jed < date_trunc('year', current_date)\
+    \ \n        THEN prov_margin\n        ELSE 0 \n      END\n    )\n  ) * 100.0\n\
+    )\n/ NULLIF(\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date)\
+    \ \n             AND jed < date_trunc('year', current_date + interval '1 year')\
+    \ \n        THEN prov_margin\n        ELSE 0 \n      END\n    ), 0\n)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Revenue YoY Growth %
+  verbose_name: ''
+  metric_type: null
+  expression: "(\n  (\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year',\
+    \ current_date) \n             AND jed < date_trunc('year', current_date + interval\
+    \ '1 year') \n        THEN actual_income\n        ELSE 0 \n      END\n    ) \n\
+    \    -\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date\
+    \ - interval '1 year') \n             AND jed < date_trunc('year', current_date)\
+    \ \n        THEN actual_income\n        ELSE 0 \n      END\n    )\n  ) * 100.0\n\
+    )\n/ NULLIF(\n    SUM(\n      CASE \n        WHEN jed >= date_trunc('year', current_date)\
+    \ \n             AND jed < date_trunc('year', current_date + interval '1 year')\
+    \ \n        THEN actual_income\n        ELSE 0 \n      END\n    ), 0\n)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: GP % YTD - Previous
+  verbose_name: ''
+  metric_type: null
+  expression: "(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date - interval\
+    \ '1 year') \n             AND jed < (current_date - interval '1 year') \n   \
+    \     THEN actual_gp \n        ELSE 0 \n    END) / NULLIF(SUM(CASE \n        WHEN\
+    \ jed >= date_trunc('year', current_date - interval '1 year') \n             AND\
+    \ jed < (current_date - interval '1 year') \n        THEN actual_income \n   \
+    \     ELSE 0 \n    END), 0)) * 100"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: GP % YTD - Current
+  verbose_name: ''
+  metric_type: null
+  expression: "(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date) \n\
+    \             AND jed < current_date \n        THEN actual_gp \n        ELSE 0\
+    \ \n    END) / NULLIF(SUM(CASE \n        WHEN jed >= date_trunc('year', current_date)\
+    \ \n             AND jed < current_date \n        THEN actual_income \n      \
+    \  ELSE 0 \n    END), 0)) * 100"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Weekly Avg GP
+  verbose_name: Weekly Avg GP
+  metric_type: null
+  expression: "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)  \n\
+    \         AND jed < date_trunc('week', current_date)  -- Exclude current week\n\
+    \    THEN actual_gp\n    ELSE 0  \n  END\n)  \n/  \nNULLIF(EXTRACT(WEEK FROM current_date)\
+    \ - 1, 0)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Weekly Avg Revenue
+  verbose_name: Weekly Avg Revenue
+  metric_type: null
+  expression: "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)  \n\
+    \         AND jed < date_trunc('week', current_date)  -- Exclude current week\n\
+    \    THEN actual_income\n    ELSE 0  \n  END\n)  \n/  \nNULLIF(EXTRACT(WEEK FROM\
+    \ current_date) - 1, 0)\n"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Monthly Avg GP
+  verbose_name: Monthly Avg GP
+  metric_type: null
+  expression: "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)\n \
+    \        AND jed <= current_date\n    THEN actual_gp\n    ELSE 0 \n  END\n) /\
+    \ EXTRACT(MONTH FROM current_date)"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Monthly Avg Revenue
+  verbose_name: Monthly Avg Revenue
+  metric_type: null
+  expression: "SUM(\n  CASE \n    WHEN jed >= date_trunc('year', current_date)\n \
+    \        AND jed <= current_date\n    THEN actual_income\n    ELSE 0 \n  END\n\
+    ) / EXTRACT(MONTH FROM current_date)"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Deviation %
+  verbose_name: ''
+  metric_type: null
+  expression: "CASE \n    WHEN SUM(actual_income) = 0 OR SUM(estimate_income) = 0\
+    \ THEN NULL\n    ELSE (SUM(actual_gp) * 100 / SUM(actual_income)) - (SUM(estimated_gp)\
+    \ * 100 / SUM(estimate_income))\nEND"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Estimate GP %
+  verbose_name: ''
+  metric_type: null
+  expression: "CASE \n    WHEN SUM(estimate_income) > 0 THEN (SUM(estimated_gp) *\
+    \ 100.0) / SUM(estimate_income)\n    ELSE 0 \nEND"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Actual GP %
+  verbose_name: ''
+  metric_type: null
+  expression: "CASE \n    WHEN SUM(actual_income) = 0 THEN NULL\n    ELSE SUM(actual_gp)\
+    \ * 100 / SUM(actual_income)\nEND"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: GP / Container
+  verbose_name: GP / Container
+  metric_type: null
+  expression: "CASE \n  WHEN SUM(container_count) > 0 \n  THEN SUM(actual_gp) / SUM(container_count)\
+    \ \n  ELSE 0 \nEND"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Income / Container
+  verbose_name: Income / Container
+  metric_type: null
+  expression: "CASE \n  WHEN SUM(container_count) > 0 \n  THEN SUM(actual_income)\
+    \ / SUM(container_count) \n  ELSE 0 \nEND"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: Estimated GP %
+  verbose_name: ''
+  metric_type: null
+  expression: "CASE \n  WHEN SUM(estimated_income) > 0 THEN (SUM(estimated_gp) / SUM(estimated_income))\
+    \ * 100\n  ELSE 0 END"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: GP %
+  verbose_name: ''
+  metric_type: null
+  expression: "CASE \n  WHEN SUM(actual_income) > 0 THEN (SUM(actual_gp) / SUM(actual_income))\
+    \ * 100\n  ELSE 0 END"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: count
+  verbose_name: Shipments
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
 columns:
-  - column_name: Destination Sector
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE\n    WHEN pod_country IN ('Vietnam', 'Taiwan', 'Thailand', 'Indonesia',\
-      \ 'China', 'Cambodia', 'Brunei') THEN 'Far East - FEA'\n    WHEN pod_country =\
-      \ 'Sri Lanka' THEN 'Colombo - CBO'\n    WHEN pod_country IN ('United Arab Emirates',\
-      \ 'Turkey', 'Saudi Arabia', 'Qatar', 'Oman', 'Lebanon', 'Kuwait', 'Jordan', 'Israel',\
-      \ 'Egypt', 'Bahrain') THEN 'Middle East - MEA'\n    WHEN pod_country = 'Iran'\
-      \ THEN 'Iran - IRA'\n    WHEN pod_country IN ('Malaysia', 'India', 'Hong Kong',\
-      \ 'Singapore') THEN 'Asia - ASIA'\n    WHEN pod_country IN ('Seychelles', 'Mauritius',\
-      \ 'Maldives', 'Madagascar', 'Mayotte', 'R\xE9union', 'Comoros') THEN 'Indian Ocean\
-      \ Island - IOI'\n    WHEN pod_country IN ('Tanzania', 'Somalia', 'Kenya') THEN\
-      \ 'East Africa - EAF'\n    WHEN pod_country IN ('Senegal', 'Nigeria', 'Mozambique',\
-      \ 'Morocco', 'Ghana', 'Gambia', 'Gabon', 'Cameroon', 'Cote d Ivoire') THEN 'West\
-      \ Africa - WAF'\n    WHEN pod_country = 'South Africa' THEN 'South Africa - SAF'\n\
-      \    WHEN pod_country IN ('Algeria', 'Angola', 'Tunisia', 'Libya', 'Sudan', 'Sierra\
-      \ Leone', 'Niger', 'Namibia', 'Mali', 'Malawi') THEN 'North Africa - NAF'\n  \
-      \  WHEN pod_country IN ('Spain', 'Italy', 'Greece', 'France', 'Portugal', 'Turkey',\
-      \ 'Cyprus') THEN 'Mediterranean - MED'\n    WHEN pod_country IN ('Sweden', 'Romania',\
-      \ 'Poland', 'Netherlands', 'Norway', 'Switzerland', 'Ukraine', 'United Kingdom',\
-      \ 'Germany', 'Denmark', 'Belgium') THEN 'Europe'\n    WHEN pod_country IN ('Brazil',\
-      \ 'Argentina', 'Chile', 'Peru', 'Colombia', 'Venezuela', 'Ecuador', 'Uruguay',\
-      \ 'Paraguay', 'Bolivia', 'Suriname', 'Guyana', 'French Guiana') THEN 'South America\
-      \ West Coast - SAMWC'\n    WHEN pod_country IN ('Mexico', 'USA') THEN 'USA West\
-      \ Coast - USWC'\n    WHEN pod_country = 'Canada' THEN 'Canada'\n    WHEN pod_country\
-      \ IN ('Australia', 'New Zealand', 'Papua New Guinea') THEN 'Australia, New Zealand,\
-      \ Papua New Guinea - AUS'\n    WHEN pod_country = 'Russia' THEN 'Russia - RUS'\n\
-      \    WHEN pod_country IN ('Guatemala', 'Honduras', 'El Salvador', 'Panama', 'Jamaica',\
-      \ 'Cuba', 'Dominican Republic') THEN 'Central America and Caribbean'\n    WHEN\
-      \ pod_country IN ('Hungary', 'Czech Republic', 'Slovakia', 'Bulgaria', 'Serbia')\
-      \ THEN 'Eastern Europe'\n    WHEN pod_country IN ('Kazakhstan', 'Uzbekistan',\
-      \ 'Turkmenistan', 'Kyrgyzstan', 'Tajikistan') THEN 'Central Asia'\n    WHEN pod_country\
-      \ IN ('Pakistan', 'Bangladesh', 'Nepal', 'Bhutan', 'Afghanistan') THEN 'South\
-      \ Asia'\n    WHEN pod_country IN ('Zambia', 'Zimbabwe', 'Botswana', 'Uganda',\
-      \ 'Rwanda') THEN 'Central Africa'\n    WHEN pod_country IN ('Fiji', 'Samoa', 'Tonga',\
-      \ 'Micronesia') THEN 'Pacific Islands'\n    WHEN pod_country IN ('Belize', 'Costa\
-      \ Rica', 'Nicaragua') THEN 'Latin America'\n    ELSE NULL\nEND\n"
-    description: Defining the Sector basis POD Country
-    python_date_format: null
-    extra: {}
-  - column_name: Origin Sector
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE\n    WHEN pol_country IN ('Vietnam', 'Taiwan', 'Thailand', 'Indonesia',\
-      \ 'China', 'Cambodia', 'Brunei') THEN 'Far East - FEA'\n    WHEN pol_country =\
-      \ 'Sri Lanka' THEN 'Colombo - CBO'\n    WHEN pol_country IN ('United Arab Emirates',\
-      \ 'Turkey', 'Saudi Arabia', 'Qatar', 'Oman', 'Lebanon', 'Kuwait', 'Jordan', 'Israel',\
-      \ 'Egypt', 'Bahrain') THEN 'Middle East - MEA'\n    WHEN pol_country = 'Iran'\
-      \ THEN 'Iran - IRA'\n    WHEN pol_country IN ('Malaysia', 'India', 'Hong Kong',\
-      \ 'Singapore') THEN 'Asia - ASIA'\n    WHEN pol_country IN ('Seychelles', 'Mauritius',\
-      \ 'Maldives', 'Madagascar', 'Mayotte', 'R\xE9union', 'Comoros') THEN 'Indian Ocean\
-      \ Island - IOI'\n    WHEN pol_country IN ('Tanzania', 'Somalia', 'Kenya') THEN\
-      \ 'East Africa - EAF'\n    WHEN pol_country IN ('Senegal', 'Nigeria', 'Mozambique',\
-      \ 'Morocco', 'Ghana', 'Gambia', 'Gabon', 'Cameroon', 'Cote d Ivoire') THEN 'West\
-      \ Africa - WAF'\n    WHEN pol_country = 'South Africa' THEN 'South Africa - SAF'\n\
-      \    WHEN pol_country IN ('Algeria', 'Angola', 'Tunisia', 'Libya', 'Sudan', 'Sierra\
-      \ Leone', 'Niger', 'Namibia', 'Mali', 'Malawi') THEN 'North Africa - NAF'\n  \
-      \  WHEN pol_country IN ('Spain', 'Italy', 'Greece', 'France', 'Portugal', 'Turkey',\
-      \ 'Cyprus') THEN 'Mediterranean - MED'\n    WHEN pol_country IN ('Sweden', 'Romania',\
-      \ 'Poland', 'Netherlands', 'Norway', 'Switzerland', 'Ukraine', 'United Kingdom',\
-      \ 'Germany', 'Denmark', 'Belgium') THEN 'Europe'\n    WHEN pol_country IN ('Brazil',\
-      \ 'Argentina', 'Chile', 'Peru', 'Colombia', 'Venezuela', 'Ecuador', 'Uruguay',\
-      \ 'Paraguay', 'Bolivia', 'Suriname', 'Guyana', 'French Guiana') THEN 'South America\
-      \ West Coast - SAMWC'\n    WHEN pol_country IN ('Mexico', 'USA') THEN 'USA West\
-      \ Coast - USWC'\n    WHEN pol_country = 'Canada' THEN 'Canada'\n    WHEN pol_country\
-      \ IN ('Australia', 'New Zealand', 'Papua New Guinea') THEN 'Australia, New Zealand,\
-      \ Papua New Guinea - AUS'\n    WHEN pol_country = 'Russia' THEN 'Russia - RUS'\n\
-      \    WHEN pol_country IN ('Guatemala', 'Honduras', 'El Salvador', 'Panama', 'Jamaica',\
-      \ 'Cuba', 'Dominican Republic') THEN 'Central America and Caribbean'\n    WHEN\
-      \ pol_country IN ('Hungary', 'Czech Republic', 'Slovakia', 'Bulgaria', 'Serbia')\
-      \ THEN 'Eastern Europe'\n    WHEN pol_country IN ('Kazakhstan', 'Uzbekistan',\
-      \ 'Turkmenistan', 'Kyrgyzstan', 'Tajikistan') THEN 'Central Asia'\n    WHEN pol_country\
-      \ IN ('Pakistan', 'Bangladesh', 'Nepal', 'Bhutan', 'Afghanistan') THEN 'South\
-      \ Asia'\n    WHEN pol_country IN ('Zambia', 'Zimbabwe', 'Botswana', 'Uganda',\
-      \ 'Rwanda') THEN 'Central Africa'\n    WHEN pol_country IN ('Fiji', 'Samoa', 'Tonga',\
-      \ 'Micronesia') THEN 'Pacific Islands'\n    WHEN pol_country IN ('Belize', 'Costa\
-      \ Rica', 'Nicaragua') THEN 'Latin America'\n    ELSE NULL\nEND\n"
-    description: Determining sector basis POL Country
-    python_date_format: null
-    extra: {}
-  - column_name: Logistics Product
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE\n    WHEN lop = 'OCEAN - IMPORT' AND service = 'Forwarding' THEN\
-      \ 'Ocean Import Forwarding'\n    WHEN lop = 'OCEAN - IMPORT' AND service = 'Clearance'\
-      \ THEN 'Ocean Import Clearance'\n    WHEN lop = 'OCEAN - EXPORT' AND service =\
-      \ 'Clearance' THEN 'Ocean Export Clearance'\n    WHEN lop = 'OCEAN - EXPORT' AND\
-      \ service = 'Forwarding' THEN 'Ocean Export Forwarding'\n    WHEN lop = 'AIR -\
-      \ EXPORT' AND service = 'Forwarding' THEN 'Air Export Forwarding'\n    WHEN lop\
-      \ = 'AIR - EXPORT' AND service = 'Clearance' THEN 'Air Export Clearance'\n   \
-      \ WHEN lop = 'AIR - IMPORT' AND service = 'Forwarding' THEN 'Air Import Forwarding'\n\
-      \    WHEN lop = 'AIR - IMPORT' AND service = 'Clearance' THEN 'Air Import Clearance'\n\
-      \    ELSE 'Miscellaneous'\nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP YTD Difference - Current date
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
-      \        AND jed < current_date\n        THEN actual_gp\n        ELSE 0\n    END\n\
-      -\nCASE \n        WHEN jed >= date_trunc('year', current_date) - interval '1 year'\n\
-      \             AND jed < date_trunc('year', current_date) - interval '1 year' +\
-      \ (current_date - date_trunc('year', current_date))\n        THEN actual_gp\n\
-      \        ELSE 0\n    END"
-    description:
-      GP Difference between This year to current Date - Previous year start
-      to current date of previous year
-    python_date_format: null
-    extra: {}
-  - column_name: GP T3M - Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
-      \   THEN actual_income - actual_expense\n        ELSE 0\n    END\n-\nCASE \n \
-      \       WHEN jed >= date_trunc('month', current_date) - interval '6 months'\n\
-      \             AND jed < date_trunc('month', current_date) - interval '3 months'\n\
-      \        THEN actual_income - actual_expense\n        ELSE 0\n    END"
-    description: Difference of Current T3M GP and Previous T3M GP ...
-    python_date_format: null
-    extra: {}
-  - column_name: GP TTM - Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
-      \    THEN actual_gp\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN jed\
-      \ >= date_trunc('month', current_date) - interval '24 months'\n             AND\
-      \ jed < date_trunc('month', current_date) - interval '12 months'\n        THEN\
-      \ actual_gp\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue TTM - Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
-      \    THEN actual_income\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN\
-      \ jed >= date_trunc('month', current_date) - interval '24 months'\n          \
-      \   AND jed < date_trunc('month', current_date) - interval '12 months'\n     \
-      \   THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue T3M - Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
-      \   THEN actual_income\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN\
-      \ jed >= date_trunc('month', current_date) - interval '6 months'\n           \
-      \  AND jed < date_trunc('month', current_date) - interval '3 months'\n       \
-      \ THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue YTD - Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
-      \        AND jed < current_date\n        THEN actual_income\n        ELSE 0\n\
-      \    END\n-\nCASE \n        WHEN jed >= date_trunc('year', current_date) - interval\
-      \ '1 year'\n             AND jed < date_trunc('year', current_date) - interval\
-      \ '1 year' + (current_date - date_trunc('year', current_date))\n        THEN actual_income\n\
-      \        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP YTD - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('year', current_date - interval\
-      \ '1 year') \n             AND jed < (current_date - interval '1 year') \n   \
-      \     THEN prov_margin\n        ELSE 0 \n    END"
-    description: GP Previous Year - But not upto the same YTD
-    python_date_format: null
-    extra: {}
-  - column_name: GP T3M - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '6 months'\n             AND jed < date_trunc('month', current_date) - interval\
-      \ '3 months'\n        THEN actual_income - actual_expense\n        ELSE 0\n  \
-      \  END"
-    description: GP of Previous 3 Trailing Months
-    python_date_format: null
-    extra: {}
-  - column_name: Year Revenue Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
-      \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN actual_income\
-      \ \n  ELSE 0 \nEND\n-\nCASE \n  WHEN jed >= date_trunc('year', current_date -\
-      \ interval '1 year') \n       AND jed < date_trunc('year', current_date) \n  THEN\
-      \ actual_income \n  ELSE 0 \nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP MTD - Prior
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE WHEN jed >= date_trunc('month', current_date) - interval '1 year'\n\
-      \              AND jed < date_trunc('month', current_date) - interval '1 year'\
-      \ + (current_date - date_trunc('month', current_date)) \n         THEN actual_gp\n\
-      \         ELSE 0 \n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue MTD - Prior
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE WHEN jed >= date_trunc('month', current_date) - interval '1 year'\n\
-      \              AND jed < date_trunc('month', current_date) - interval '1 year'\
-      \ + (current_date - date_trunc('month', current_date)) \n         THEN actual_income\n\
-      \         ELSE 0 \n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue T3M  - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '6 months'\n             AND jed < date_trunc('month', current_date) - interval\
-      \ '3 months'\n        THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP Difference
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
-      \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN prov_margin\n\
-      \  ELSE 0 \nEND\n-\nCASE \n  WHEN jed >= date_trunc('year', current_date - interval\
-      \ '1 year') \n       AND jed < date_trunc('year', current_date) \n  THEN prov_margin\n\
-      \  ELSE 0 \nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP TTM - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '24 months'\n             AND jed < date_trunc('month', current_date) - interval\
-      \ '12 months'\n        THEN actual_gp\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue TTM - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '24 months'\n             AND jed < date_trunc('month', current_date) - interval\
-      \ '12 months'\n        THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP T3M
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
-      \   THEN actual_income - actual_expense\n        ELSE 0\n    END"
-    description: GP of Trailing 3 months
-    python_date_format: null
-    extra: {}
-  - column_name: GP YTD - Current
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
-      \        AND jed < current_date\n        THEN prov_margin\n        ELSE 0\n  \
-      \  END"
-    description: GP YTD till the current date
-    python_date_format: null
-    extra: {}
-  - column_name: GP TTM
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
-      \    THEN actual_gp\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue TTM
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
-      \    THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue T3M
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
-      \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
-      \   THEN actual_income\n        ELSE 0\n    END"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue YTD - Current
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
-      \        AND jed < current_date\n        THEN actual_income\n        ELSE 0\n\
-      \    END\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue YTD - Previous
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE\n     WHEN jed >= date_trunc('year', current_date - interval '1\
-      \ year') \n             AND jed < (current_date - interval '1 year') \n    THEN\
-      \ actual_income\n    ELSE 0\nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP This Week
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n      \
-      \   AND jed < date_trunc('week', current_date + interval '1 week')  \n    THEN\
-      \ prov_margin\n    ELSE 0  \n  END\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue This Week
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n      \
-      \   AND jed < date_trunc('week', current_date + interval '1 week')  \n    THEN\
-      \ actual_income\n    ELSE 0  \n  END\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP Prev Week
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
-      \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN prov_margin\n\
-      \    ELSE 0  \nEND  \n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue Last Week
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
-      \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN actual_income\n\
-      \    ELSE 0  \nEND  \n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: JED Week
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "'Week-' || EXTRACT(WEEK FROM jed) || ' ' || EXTRACT(YEAR FROM jed)\
-      \ || \n' (' || \nTO_CHAR(DATE_TRUNC('week', jed), 'DDth Mon') || ' - ' || \nTO_CHAR(DATE_TRUNC('week',\
-      \ jed) + INTERVAL '6 days', 'DDth Mon') || \n')'\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP Deviation (Est-Actual)
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "    CASE\n        WHEN estimated_gp > 0 THEN ROUND(((actual_gp - estimated_gp)\
-      \ / estimated_gp) * 100, 2)\n    END"
-    description: Deviation between Estimated and Actual GP
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue This Year
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
-      \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN actual_income\
-      \ \n  ELSE 0 \nEND\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue Prev Year
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date - interval '1\
-      \ year') \n       AND jed < date_trunc('year', current_date) \n  THEN actual_income\
-      \ \n  ELSE 0 \nEND\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP This Year
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
-      \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN prov_margin\n\
-      \  ELSE 0 \nEND\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP Prev Year
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE \n  WHEN jed >= date_trunc('year', current_date - interval '1\
-      \ year') \n       AND jed < date_trunc('year', current_date) \n  THEN prov_margin\n\
-      \  ELSE 0 \nEND\n"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: Overseas Agent
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "case\n\twhen trade = 'import' then og_agent\n    when trade = 'export'\
-      \ then dg_agent\n    else agent\nend"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: JED Week with Year - Old
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: "'Week ' || EXTRACT(WEEK FROM jed) || ' - ' || EXTRACT(YEAR FROM
-      jed)"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: JED Month (Numeric)
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "LPAD(EXTRACT(MONTH FROM jed)::TEXT, 2, '0') || ' - ' || TO_CHAR(jed,
-      'Mon')
+- column_name: Destination Sector
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n    WHEN pod_country IN ('Vietnam', 'Taiwan', 'Thailand', 'Indonesia',\
+    \ 'China', 'Cambodia', 'Brunei') THEN 'Far East - FEA'\n    WHEN pod_country =\
+    \ 'Sri Lanka' THEN 'Colombo - CBO'\n    WHEN pod_country IN ('United Arab Emirates',\
+    \ 'Turkey', 'Saudi Arabia', 'Qatar', 'Oman', 'Lebanon', 'Kuwait', 'Jordan', 'Israel',\
+    \ 'Egypt', 'Bahrain') THEN 'Middle East - MEA'\n    WHEN pod_country = 'Iran'\
+    \ THEN 'Iran - IRA'\n    WHEN pod_country IN ('Malaysia', 'India', 'Hong Kong',\
+    \ 'Singapore') THEN 'Asia - ASIA'\n    WHEN pod_country IN ('Seychelles', 'Mauritius',\
+    \ 'Maldives', 'Madagascar', 'Mayotte', 'R\xE9union', 'Comoros') THEN 'Indian Ocean\
+    \ Island - IOI'\n    WHEN pod_country IN ('Tanzania', 'Somalia', 'Kenya') THEN\
+    \ 'East Africa - EAF'\n    WHEN pod_country IN ('Senegal', 'Nigeria', 'Mozambique',\
+    \ 'Morocco', 'Ghana', 'Gambia', 'Gabon', 'Cameroon', 'Cote d Ivoire') THEN 'West\
+    \ Africa - WAF'\n    WHEN pod_country = 'South Africa' THEN 'South Africa - SAF'\n\
+    \    WHEN pod_country IN ('Algeria', 'Angola', 'Tunisia', 'Libya', 'Sudan', 'Sierra\
+    \ Leone', 'Niger', 'Namibia', 'Mali', 'Malawi') THEN 'North Africa - NAF'\n  \
+    \  WHEN pod_country IN ('Spain', 'Italy', 'Greece', 'France', 'Portugal', 'Turkey',\
+    \ 'Cyprus') THEN 'Mediterranean - MED'\n    WHEN pod_country IN ('Sweden', 'Romania',\
+    \ 'Poland', 'Netherlands', 'Norway', 'Switzerland', 'Ukraine', 'United Kingdom',\
+    \ 'Germany', 'Denmark', 'Belgium') THEN 'Europe'\n    WHEN pod_country IN ('Brazil',\
+    \ 'Argentina', 'Chile', 'Peru', 'Colombia', 'Venezuela', 'Ecuador', 'Uruguay',\
+    \ 'Paraguay', 'Bolivia', 'Suriname', 'Guyana', 'French Guiana') THEN 'South America\
+    \ West Coast - SAMWC'\n    WHEN pod_country IN ('Mexico', 'USA') THEN 'USA West\
+    \ Coast - USWC'\n    WHEN pod_country = 'Canada' THEN 'Canada'\n    WHEN pod_country\
+    \ IN ('Australia', 'New Zealand', 'Papua New Guinea') THEN 'Australia, New Zealand,\
+    \ Papua New Guinea - AUS'\n    WHEN pod_country = 'Russia' THEN 'Russia - RUS'\n\
+    \    WHEN pod_country IN ('Guatemala', 'Honduras', 'El Salvador', 'Panama', 'Jamaica',\
+    \ 'Cuba', 'Dominican Republic') THEN 'Central America and Caribbean'\n    WHEN\
+    \ pod_country IN ('Hungary', 'Czech Republic', 'Slovakia', 'Bulgaria', 'Serbia')\
+    \ THEN 'Eastern Europe'\n    WHEN pod_country IN ('Kazakhstan', 'Uzbekistan',\
+    \ 'Turkmenistan', 'Kyrgyzstan', 'Tajikistan') THEN 'Central Asia'\n    WHEN pod_country\
+    \ IN ('Pakistan', 'Bangladesh', 'Nepal', 'Bhutan', 'Afghanistan') THEN 'South\
+    \ Asia'\n    WHEN pod_country IN ('Zambia', 'Zimbabwe', 'Botswana', 'Uganda',\
+    \ 'Rwanda') THEN 'Central Africa'\n    WHEN pod_country IN ('Fiji', 'Samoa', 'Tonga',\
+    \ 'Micronesia') THEN 'Pacific Islands'\n    WHEN pod_country IN ('Belize', 'Costa\
+    \ Rica', 'Nicaragua') THEN 'Latin America'\n    ELSE NULL\nEND\n"
+  description: Defining the Sector basis POD Country
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Origin Sector
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n    WHEN pol_country IN ('Vietnam', 'Taiwan', 'Thailand', 'Indonesia',\
+    \ 'China', 'Cambodia', 'Brunei') THEN 'Far East - FEA'\n    WHEN pol_country =\
+    \ 'Sri Lanka' THEN 'Colombo - CBO'\n    WHEN pol_country IN ('United Arab Emirates',\
+    \ 'Turkey', 'Saudi Arabia', 'Qatar', 'Oman', 'Lebanon', 'Kuwait', 'Jordan', 'Israel',\
+    \ 'Egypt', 'Bahrain') THEN 'Middle East - MEA'\n    WHEN pol_country = 'Iran'\
+    \ THEN 'Iran - IRA'\n    WHEN pol_country IN ('Malaysia', 'India', 'Hong Kong',\
+    \ 'Singapore') THEN 'Asia - ASIA'\n    WHEN pol_country IN ('Seychelles', 'Mauritius',\
+    \ 'Maldives', 'Madagascar', 'Mayotte', 'R\xE9union', 'Comoros') THEN 'Indian Ocean\
+    \ Island - IOI'\n    WHEN pol_country IN ('Tanzania', 'Somalia', 'Kenya') THEN\
+    \ 'East Africa - EAF'\n    WHEN pol_country IN ('Senegal', 'Nigeria', 'Mozambique',\
+    \ 'Morocco', 'Ghana', 'Gambia', 'Gabon', 'Cameroon', 'Cote d Ivoire') THEN 'West\
+    \ Africa - WAF'\n    WHEN pol_country = 'South Africa' THEN 'South Africa - SAF'\n\
+    \    WHEN pol_country IN ('Algeria', 'Angola', 'Tunisia', 'Libya', 'Sudan', 'Sierra\
+    \ Leone', 'Niger', 'Namibia', 'Mali', 'Malawi') THEN 'North Africa - NAF'\n  \
+    \  WHEN pol_country IN ('Spain', 'Italy', 'Greece', 'France', 'Portugal', 'Turkey',\
+    \ 'Cyprus') THEN 'Mediterranean - MED'\n    WHEN pol_country IN ('Sweden', 'Romania',\
+    \ 'Poland', 'Netherlands', 'Norway', 'Switzerland', 'Ukraine', 'United Kingdom',\
+    \ 'Germany', 'Denmark', 'Belgium') THEN 'Europe'\n    WHEN pol_country IN ('Brazil',\
+    \ 'Argentina', 'Chile', 'Peru', 'Colombia', 'Venezuela', 'Ecuador', 'Uruguay',\
+    \ 'Paraguay', 'Bolivia', 'Suriname', 'Guyana', 'French Guiana') THEN 'South America\
+    \ West Coast - SAMWC'\n    WHEN pol_country IN ('Mexico', 'USA') THEN 'USA West\
+    \ Coast - USWC'\n    WHEN pol_country = 'Canada' THEN 'Canada'\n    WHEN pol_country\
+    \ IN ('Australia', 'New Zealand', 'Papua New Guinea') THEN 'Australia, New Zealand,\
+    \ Papua New Guinea - AUS'\n    WHEN pol_country = 'Russia' THEN 'Russia - RUS'\n\
+    \    WHEN pol_country IN ('Guatemala', 'Honduras', 'El Salvador', 'Panama', 'Jamaica',\
+    \ 'Cuba', 'Dominican Republic') THEN 'Central America and Caribbean'\n    WHEN\
+    \ pol_country IN ('Hungary', 'Czech Republic', 'Slovakia', 'Bulgaria', 'Serbia')\
+    \ THEN 'Eastern Europe'\n    WHEN pol_country IN ('Kazakhstan', 'Uzbekistan',\
+    \ 'Turkmenistan', 'Kyrgyzstan', 'Tajikistan') THEN 'Central Asia'\n    WHEN pol_country\
+    \ IN ('Pakistan', 'Bangladesh', 'Nepal', 'Bhutan', 'Afghanistan') THEN 'South\
+    \ Asia'\n    WHEN pol_country IN ('Zambia', 'Zimbabwe', 'Botswana', 'Uganda',\
+    \ 'Rwanda') THEN 'Central Africa'\n    WHEN pol_country IN ('Fiji', 'Samoa', 'Tonga',\
+    \ 'Micronesia') THEN 'Pacific Islands'\n    WHEN pol_country IN ('Belize', 'Costa\
+    \ Rica', 'Nicaragua') THEN 'Latin America'\n    ELSE NULL\nEND\n"
+  description: Determining sector basis POL Country
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Logistics Product
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n    WHEN lop = 'OCEAN - IMPORT' AND service = 'Forwarding' THEN\
+    \ 'Ocean Import Forwarding'\n    WHEN lop = 'OCEAN - IMPORT' AND service = 'Clearance'\
+    \ THEN 'Ocean Import Clearance'\n    WHEN lop = 'OCEAN - EXPORT' AND service =\
+    \ 'Clearance' THEN 'Ocean Export Clearance'\n    WHEN lop = 'OCEAN - EXPORT' AND\
+    \ service = 'Forwarding' THEN 'Ocean Export Forwarding'\n    WHEN lop = 'AIR -\
+    \ EXPORT' AND service = 'Forwarding' THEN 'Air Export Forwarding'\n    WHEN lop\
+    \ = 'AIR - EXPORT' AND service = 'Clearance' THEN 'Air Export Clearance'\n   \
+    \ WHEN lop = 'AIR - IMPORT' AND service = 'Forwarding' THEN 'Air Import Forwarding'\n\
+    \    WHEN lop = 'AIR - IMPORT' AND service = 'Clearance' THEN 'Air Import Clearance'\n\
+    \    ELSE 'Miscellaneous'\nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP YTD Difference - Current date
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
+    \        AND jed < current_date\n        THEN actual_gp\n        ELSE 0\n    END\n\
+    -\nCASE \n        WHEN jed >= date_trunc('year', current_date) - interval '1 year'\n\
+    \             AND jed < date_trunc('year', current_date) - interval '1 year' +\
+    \ (current_date - date_trunc('year', current_date))\n        THEN actual_gp\n\
+    \        ELSE 0\n    END"
+  description: GP Difference between This year to current Date - Previous year start
+    to current date of previous year
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP T3M - Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
+    \   THEN actual_income - actual_expense\n        ELSE 0\n    END\n-\nCASE \n \
+    \       WHEN jed >= date_trunc('month', current_date) - interval '6 months'\n\
+    \             AND jed < date_trunc('month', current_date) - interval '3 months'\n\
+    \        THEN actual_income - actual_expense\n        ELSE 0\n    END"
+  description: Difference of Current T3M GP and Previous T3M GP ...
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP TTM - Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
+    \    THEN actual_gp\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN jed\
+    \ >= date_trunc('month', current_date) - interval '24 months'\n             AND\
+    \ jed < date_trunc('month', current_date) - interval '12 months'\n        THEN\
+    \ actual_gp\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue TTM - Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
+    \    THEN actual_income\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN\
+    \ jed >= date_trunc('month', current_date) - interval '24 months'\n          \
+    \   AND jed < date_trunc('month', current_date) - interval '12 months'\n     \
+    \   THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue T3M - Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
+    \   THEN actual_income\n        ELSE 0\n    END\n    \n-\nCASE \n        WHEN\
+    \ jed >= date_trunc('month', current_date) - interval '6 months'\n           \
+    \  AND jed < date_trunc('month', current_date) - interval '3 months'\n       \
+    \ THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue YTD - Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
+    \        AND jed < current_date\n        THEN actual_income\n        ELSE 0\n\
+    \    END\n-\nCASE \n        WHEN jed >= date_trunc('year', current_date) - interval\
+    \ '1 year'\n             AND jed < date_trunc('year', current_date) - interval\
+    \ '1 year' + (current_date - date_trunc('year', current_date))\n        THEN actual_income\n\
+    \        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP YTD - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('year', current_date - interval\
+    \ '1 year') \n             AND jed < (current_date - interval '1 year') \n   \
+    \     THEN prov_margin\n        ELSE 0 \n    END"
+  description: GP Previous Year - But not upto the same YTD
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP T3M - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '6 months'\n             AND jed < date_trunc('month', current_date) - interval\
+    \ '3 months'\n        THEN actual_income - actual_expense\n        ELSE 0\n  \
+    \  END"
+  description: GP of Previous 3 Trailing Months
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Year Revenue Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
+    \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN actual_income\
+    \ \n  ELSE 0 \nEND\n-\nCASE \n  WHEN jed >= date_trunc('year', current_date -\
+    \ interval '1 year') \n       AND jed < date_trunc('year', current_date) \n  THEN\
+    \ actual_income \n  ELSE 0 \nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP MTD - Prior
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN jed >= date_trunc('month', current_date) - interval '1 year'\n\
+    \              AND jed < date_trunc('month', current_date) - interval '1 year'\
+    \ + (current_date - date_trunc('month', current_date)) \n         THEN actual_gp\n\
+    \         ELSE 0 \n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue MTD - Prior
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN jed >= date_trunc('month', current_date) - interval '1 year'\n\
+    \              AND jed < date_trunc('month', current_date) - interval '1 year'\
+    \ + (current_date - date_trunc('month', current_date)) \n         THEN actual_income\n\
+    \         ELSE 0 \n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue T3M  - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '6 months'\n             AND jed < date_trunc('month', current_date) - interval\
+    \ '3 months'\n        THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP Difference
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
+    \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN prov_margin\n\
+    \  ELSE 0 \nEND\n-\nCASE \n  WHEN jed >= date_trunc('year', current_date - interval\
+    \ '1 year') \n       AND jed < date_trunc('year', current_date) \n  THEN prov_margin\n\
+    \  ELSE 0 \nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP TTM - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '24 months'\n             AND jed < date_trunc('month', current_date) - interval\
+    \ '12 months'\n        THEN actual_gp\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue TTM - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '24 months'\n             AND jed < date_trunc('month', current_date) - interval\
+    \ '12 months'\n        THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP T3M
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
+    \   THEN actual_income - actual_expense\n        ELSE 0\n    END"
+  description: GP of Trailing 3 months
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP YTD - Current
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
+    \        AND jed < current_date\n        THEN prov_margin\n        ELSE 0\n  \
+    \  END"
+  description: GP YTD till the current date
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP TTM
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
+    \    THEN actual_gp\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue TTM
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '12 months'\n             AND jed < date_trunc('month', current_date)\n    \
+    \    THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue T3M
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('month', current_date) - interval\
+    \ '3 months'\n             AND jed < date_trunc('month', current_date)\n     \
+    \   THEN actual_income\n        ELSE 0\n    END"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue YTD - Current
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n        WHEN jed >= date_trunc('year', current_date)\n     \
+    \        AND jed < current_date\n        THEN actual_income\n        ELSE 0\n\
+    \    END\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue YTD - Previous
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE\n     WHEN jed >= date_trunc('year', current_date - interval '1\
+    \ year') \n             AND jed < (current_date - interval '1 year') \n    THEN\
+    \ actual_income\n    ELSE 0\nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP This Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n      \
+    \   AND jed < date_trunc('week', current_date + interval '1 week')  \n    THEN\
+    \ prov_margin\n    ELSE 0  \n  END\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue This Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date)  \n      \
+    \   AND jed < date_trunc('week', current_date + interval '1 week')  \n    THEN\
+    \ actual_income\n    ELSE 0  \n  END\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP Prev Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
+    \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN prov_margin\n\
+    \    ELSE 0  \nEND  \n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue Last Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE  \n    WHEN jed >= date_trunc('week', current_date) - interval\
+    \ '1 week'  \n    AND jed < date_trunc('week', current_date)  \n    THEN actual_income\n\
+    \    ELSE 0  \nEND  \n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Week
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "'Week-' || EXTRACT(WEEK FROM jed) || ' ' || EXTRACT(YEAR FROM jed)\
+    \ || \n' (' || \nTO_CHAR(DATE_TRUNC('week', jed), 'DDth Mon') || ' - ' || \nTO_CHAR(DATE_TRUNC('week',\
+    \ jed) + INTERVAL '6 days', 'DDth Mon') || \n')'\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP Deviation (Est-Actual)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "    CASE\n        WHEN estimated_gp > 0 THEN ROUND(((actual_gp - estimated_gp)\
+    \ / estimated_gp) * 100, 2)\n    END"
+  description: Deviation between Estimated and Actual GP
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue This Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
+    \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN actual_income\
+    \ \n  ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue Prev Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date - interval '1\
+    \ year') \n       AND jed < date_trunc('year', current_date) \n  THEN actual_income\
+    \ \n  ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP This Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date) \n       AND\
+    \ jed < date_trunc('year', current_date + interval '1 year') \n  THEN prov_margin\n\
+    \  ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP Prev Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE \n  WHEN jed >= date_trunc('year', current_date - interval '1\
+    \ year') \n       AND jed < date_trunc('year', current_date) \n  THEN prov_margin\n\
+    \  ELSE 0 \nEND\n"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Overseas Agent
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "case\n\twhen trade = 'import' then og_agent\n    when trade = 'export'\
+    \ then dg_agent\n    else agent\nend"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Week with Year - Old
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: '''Week '' || EXTRACT(WEEK FROM jed) || '' - '' || EXTRACT(YEAR FROM
+    jed)'
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Month (Numeric)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: 'LPAD(EXTRACT(MONTH FROM jed)::TEXT, 2, ''0'') || '' - '' || TO_CHAR(jed,
+    ''Mon'')
 
-      "
-    description: Month extracted in Numeric
-    python_date_format: null
-    extra: {}
-  - column_name: Revenue MTD
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE WHEN \njed >= date_trunc('month', current_date)\nAND jed < current_date\
-      \ \nTHEN actual_income \nELSE 0 \nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: GP MTD
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression:
-      "CASE WHEN \njed >= date_trunc('month', current_date)\nAND jed < current_date\
-      \ \nTHEN actual_gp\nELSE 0 \nEND"
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: JED Year
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: TO_CHAR(date_trunc('year', jed), 'YYYY')
-    description: Year Extracted from JED
-    python_date_format: null
-    extra: {}
-  - column_name: JED Month Numeric Old
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: EXTRACT(MONTH FROM DATE_TRUNC('month', jed))
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: JED Month
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: TO_CHAR(DATE_TRUNC('month', jed), 'Mon')
-    description: Month extracted
-    python_date_format: null
-    extra: {}
-  - column_name: Prov Income
-    verbose_name: Prov Income
-    is_dttm: false
-    is_active: true
-    type: null
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: COALESCE(estimate_income,actual_income)
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: onboarded_on
-    verbose_name: Customer Onboarded At
-    is_dttm: true
-    is_active: true
-    type: DATE
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: total_buy_unbilled_amount
-    verbose_name: Total Buy Unbilled
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: customer_created_at
-    verbose_name: Customer Created On
-    is_dttm: true
-    is_active: true
-    type: DATE
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: total_sell_unbilled_amount
-    verbose_name: Total Sell Unbilled
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: jed
-    verbose_name: Job Execution Date
-    is_dttm: true
-    is_active: true
-    type: DATE
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: is_destination_clearance
-    verbose_name: Is Destination Clearance
-    is_dttm: false
-    is_active: true
-    type: INTEGER
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: is_origin_clearance
-    verbose_name: Is Origin Clearance
-    is_dttm: false
-    is_active: true
-    type: INTEGER
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: teu_count
-    verbose_name: "# TEUs"
-    is_dttm: false
-    is_active: true
-    type: INTEGER
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: job_number
-    verbose_name: "Job #"
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: actual_expense
-    verbose_name: Actual Expense
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: actual_gp
-    verbose_name: Actual GP
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: actual_income
-    verbose_name: Actual Income
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: estimate_expense
-    verbose_name: Estimate Expense
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: estimated_gp
-    verbose_name: Estimated GP
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: estimate_income
-    verbose_name: Estimated Income
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: prov_margin
-    verbose_name: Prov Margin
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: dg_agent
-    verbose_name: Destination Agent
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: og_agent
-    verbose_name: Origin Agent
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: accounting_status
-    verbose_name: Accounting Status
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: business_vertical
-    verbose_name: Business Vertical
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: container_count
-    verbose_name: Container Count
-    is_dttm: false
-    is_active: true
-    type: INTEGER
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: commodity_category
-    verbose_name: Commodity Category
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: default_currency
-    verbose_name: Default Currency
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: carrier_sf
-    verbose_name: Carrier SF
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: customer_sf
-    verbose_name: Customer SF
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: cs
-    verbose_name: Customer Service
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: is_forwarding
-    verbose_name: Is Forwarding
-    is_dttm: false
-    is_active: true
-    type: INTEGER
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: freight
-    verbose_name: Freight Type
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: shipment_hyperlink
-    verbose_name: Job Number
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: trade_lane
-    verbose_name: Trade Lane
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: load_type
-    verbose_name: Load Type
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: voyage_number
-    verbose_name: Voyage Number
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: vessel_name
-    verbose_name: Vessel Name
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: sales_person
-    verbose_name: Sales Person
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: shipment_type
-    verbose_name: Shipment Type
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: trade
-    verbose_name: Trade Type
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pol_pod
-    verbose_name: POL-POD
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: cbm
-    verbose_name: CBM
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: tonnage
-    verbose_name: Tonnage
-    is_dttm: false
-    is_active: true
-    type: DECIMAL
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: agent
-    verbose_name: Agent
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: branch
-    verbose_name: Branch
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: carrier
-    verbose_name: Carrier
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: commodity
-    verbose_name: Commodity
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: customer
-    verbose_name: Customer
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pod
-    verbose_name: POD
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: lop
-    verbose_name: LOP
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pol
-    verbose_name: POL
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: status
-    verbose_name: Status
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: service
-    verbose_name: Service
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: job_close_date
-    verbose_name: null
-    is_dttm: true
-    is_active: true
-    type: DATE
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pod_country_code
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pol_country_code
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pod_code
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pol_code
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pod_country
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: pol_country
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
-  - column_name: tenant
-    verbose_name: null
-    is_dttm: false
-    is_active: true
-    type: STRING
-    advanced_data_type: null
-    groupby: true
-    filterable: true
-    expression: null
-    description: null
-    python_date_format: null
-    extra: {}
+    '
+  description: Month extracted in Numeric
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Revenue MTD
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN \njed >= date_trunc('month', current_date)\nAND jed < current_date\
+    \ \nTHEN actual_income \nELSE 0 \nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: GP MTD
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: "CASE WHEN \njed >= date_trunc('month', current_date)\nAND jed < current_date\
+    \ \nTHEN actual_gp\nELSE 0 \nEND"
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Year
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: TO_CHAR(date_trunc('year', jed), 'YYYY')
+  description: Year Extracted from JED
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Month Numeric Old
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: EXTRACT(MONTH FROM DATE_TRUNC('month', jed))
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: JED Month
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: TO_CHAR(DATE_TRUNC('month', jed), 'Mon')
+  description: Month extracted
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: Prov Income
+  verbose_name: Prov Income
+  is_dttm: false
+  is_active: true
+  type: null
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: COALESCE(estimate_income,actual_income)
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: onboarded_on
+  verbose_name: Customer Onboarded At
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: total_buy_unbilled_amount
+  verbose_name: Total Buy Unbilled
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer_created_at
+  verbose_name: Customer Created On
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: total_sell_unbilled_amount
+  verbose_name: Total Sell Unbilled
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: jed
+  verbose_name: Job Execution Date
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: is_destination_clearance
+  verbose_name: Is Destination Clearance
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: is_origin_clearance
+  verbose_name: Is Origin Clearance
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: teu_count
+  verbose_name: '# TEUs'
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: job_number
+  verbose_name: 'Job #'
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: actual_expense
+  verbose_name: Actual Expense
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: actual_gp
+  verbose_name: Actual GP
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: actual_income
+  verbose_name: Actual Income
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: estimate_expense
+  verbose_name: Estimate Expense
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: estimated_gp
+  verbose_name: Estimated GP
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: estimate_income
+  verbose_name: Estimated Income
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: prov_margin
+  verbose_name: Prov Margin
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: dg_agent
+  verbose_name: Destination Agent
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: og_agent
+  verbose_name: Origin Agent
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: accounting_status
+  verbose_name: Accounting Status
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: business_vertical
+  verbose_name: Business Vertical
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: container_count
+  verbose_name: Container Count
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: commodity_category
+  verbose_name: Commodity Category
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: default_currency
+  verbose_name: Default Currency
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: carrier_sf
+  verbose_name: Carrier SF
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer_sf
+  verbose_name: Customer SF
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: cs
+  verbose_name: Customer Service
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: is_forwarding
+  verbose_name: Is Forwarding
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: freight
+  verbose_name: Freight Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipment_hyperlink
+  verbose_name: Job Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: trade_lane
+  verbose_name: Trade Lane
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: load_type
+  verbose_name: Load Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: voyage_number
+  verbose_name: Voyage Number
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: vessel_name
+  verbose_name: Vessel Name
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: sales_person
+  verbose_name: Sales Person
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: shipment_type
+  verbose_name: Shipment Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: trade
+  verbose_name: Trade Type
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_pod
+  verbose_name: POL-POD
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: cbm
+  verbose_name: CBM
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: tonnage
+  verbose_name: Tonnage
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: agent
+  verbose_name: Agent
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: branch
+  verbose_name: Branch
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: carrier
+  verbose_name: Carrier
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: commodity
+  verbose_name: Commodity
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: customer
+  verbose_name: Customer
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod
+  verbose_name: POD
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: lop
+  verbose_name: LOP
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol
+  verbose_name: POL
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: status
+  verbose_name: Status
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: service
+  verbose_name: Service
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: job_close_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pod_country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pol_country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: tenant
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
 version: 1.0.0
 database_uuid: aa73c28d-a640-49b8-922c-9de0bb13f81d

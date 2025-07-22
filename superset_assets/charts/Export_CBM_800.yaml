@@ -1,0 +1,45 @@
+slice_name: Export CBM
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 70__table
+  viz_type: big_number_total
+  slice_id: 18
+  metric: LCL CBM
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: jed
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_flrthbrs0c_1etwqswvnhi
+  - expressionType: SIMPLE
+    subject: trade
+    operator: IN
+    operatorId: IN
+    comparator:
+    - export
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_8yy2shzmol2_fmazk4yd1bi
+  header_font_size: 0.5
+  subheader_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: be2729e6-ddd1-47dd-b506-4431bb814efa
+version: 1.0.0
+dataset_uuid: 1796121c-92ed-4c17-bbdc-0169cf3c1c17

@@ -1,0 +1,70 @@
+slice_name: Customer Order Revenue and Volume - OE
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 71__table
+  viz_type: table
+  slice_id: 1509
+  query_mode: aggregate
+  groupby:
+  - shipment_hyperlink
+  - teu_count
+  - customer
+  - carrier
+  - pol
+  - pod
+  - teu_count
+  - estimate_expense
+  - estimate_income
+  - estimated_gp
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    onboarded_on: true
+    customer_created_at: true
+    jed: true
+    job_close_date: true
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_cp7g5x1trz4_wvizhf4dhv
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: jed
+  - clause: WHERE
+    comparator:
+    - shipment_planned
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_ex5flfe97ua_w1mimof26k
+    isExtra: false
+    isNew: false
+    operator: IN
+    operatorId: IN
+    sqlExpression: null
+    subject: status
+  order_by_cols: []
+  row_limit: 1000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  conditional_formatting: []
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: '{"datasource":{"id":71,"type":"table"},"force":false,"queries":[{"filters":[{"col":"jed","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"status","op":"IN","val":["shipment_planned"]}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["shipment_hyperlink","teu_count","customer","carrier","pol","pod","estimate_expense","estimate_income","estimated_gp"],"metrics":[],"orderby":[],"annotation_layers":[],"row_limit":1000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_cp7g5x1trz4_wvizhf4dhv","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"jed"},{"clause":"WHERE","comparator":["shipment_planned"],"datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_ex5flfe97ua_w1mimof26k","isExtra":false,"isNew":false,"operator":"IN","operatorId":"IN","sqlExpression":null,"subject":"status"}],"all_columns":[],"annotation_layers":[],"color_pn":true,"conditional_formatting":[],"dashboards":[],"datasource":"71__table","extra_form_data":{},"groupby":["shipment_hyperlink","teu_count","customer","carrier","pol","pod","teu_count","estimate_expense","estimate_income","estimated_gp"],"order_by_cols":[],"order_desc":true,"percent_metrics":[],"query_mode":"aggregate","row_limit":1000,"server_page_length":10,"show_cell_bars":true,"slice_id":1509,"table_timestamp_format":"smart_date","temporal_columns_lookup":{"customer_created_at":true,"jed":true,"job_close_date":true,"onboarded_on":true},"time_grain_sqla":"P1D","viz_type":"table","force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 5d0dedb3-45df-41c6-84d9-6fa175486b4d
+version: 1.0.0
+dataset_uuid: ed854b24-dc83-420a-b942-0ac77d1d6be1

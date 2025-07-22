@@ -7,12 +7,12 @@ import io
 from dotenv import load_dotenv
 
 # --- Load .env ---
-load_dotenv(".env.prod")  # or .env.local
+load_dotenv(".env.staging")  # or .env.local
 
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
-EXPORT_IDS = os.getenv("EXPORT_IDS", "59")
+EXPORT_IDS = os.getenv("EXPORT_IDS", "38")
 DEST_FOLDER = "superset_assets"
 
 # --- URLs ---
